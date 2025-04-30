@@ -17,7 +17,7 @@ include PARTIALS_PATH . 'header.php'; // Memanggil Header
             <button class="btn btn-danger rounded-5">Pesan Sekarang</button>
         </div>
         <div class="col-12 col-md-4 order-1 order-md-2 text-center">
-            <img class="img-fluid foodicon" src="../../assets/img/LandingLogo.png" alt="Landing Logo">
+            <img class="img-fluid foodicon" src="/tribite/assets/img/LandingLogo.png" alt="Landing Logo">
         </div>
     </div>
 </div>
