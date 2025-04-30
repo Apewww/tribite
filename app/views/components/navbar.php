@@ -1,7 +1,7 @@
     <nav class="navbar navbar-expand-md fixed-top">
         <div class="container">
             <div class="navbar-brand">
-                <img src="\assets\img\Logo.png" alt="Logo Navbar" height="50" width="50">
+                <img src="\tribite\assets\img\Logo.png" alt="Logo Navbar" height="50" width="50">
                 <span>TRIBITE</span>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -21,7 +21,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="link-danger btn btn-danger rounded-5 d-block mb-2 mb-md-0 mx-md-2">
-                            <img src="\assets\img\search-icon.png" height="18" width="18">
+                            <img src="\tribite\assets\img\search-icon.png" height="18" width="18">
                         </a>
                     </li>
                     <li class="nav-item">

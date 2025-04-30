@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/config.php'; // Memanggil Config
+include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; // Memanggil Config
 include PARTIALS_PATH . 'header.php'; // Memanggil Header
 ?>
 
