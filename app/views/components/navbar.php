@@ -25,7 +25,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/tribite/login/" class="btn btn-danger rounded-5 d-block">Masuk</a>
+                        <a href="/login" class="btn btn-danger rounded-5 d-block">Masuk</a>
                     </li>
                 </ul>
             </div>
