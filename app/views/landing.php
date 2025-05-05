@@ -1,7 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; // Memanggil Config
 include PARTIALS_PATH . 'header.php'; // Memanggil Header
-echo "Requested URI: " . $uri;
+// echo "Requested URI: " . $uri;
 
 ?>
 
