@@ -5,7 +5,8 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $routes = [
     '/tribite/' => $_SERVER['DOCUMENT_ROOT'] . '/tribite/app/views/landing.php',
-    '/tribite/login' => $_SERVER['DOCUMENT_ROOT'] . '/tribite/app/views/login.php',
+    '/tribite/login/' => $_SERVER['DOCUMENT_ROOT'] . '/tribite/app/views/login.php',
+    '/tribite/menu/' => $_SERVER['DOCUMENT_ROOT'] . '/tribite/app/views/menu.php',
 ];
 
 // Jika route ditemukan
