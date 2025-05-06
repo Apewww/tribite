@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="alert alert-warning mt-3"><?= htmlspecialchars($message) ?></div>
         <?php endif; ?>
 
-        <p class="mt-3 small">Belum punya akun? <a href="#">Daftar sekarang</a></p>
+        <p class="mt-3 small">Belum punya akun? <a href="/register">Daftar sekarang</a></p>
     </div>
 
 </body>
