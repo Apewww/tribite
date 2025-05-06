@@ -172,6 +172,7 @@
       <a href="/home">Beranda</a>
       <a href="/menu" class="active">Daftar Menu</a>
       <a href="#">Promo</a>
+      <a href="/keranjang"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
       <a href="/login"><button class="login-btn">Masuk</button></a>
     </nav>
   </header>
