@@ -32,6 +32,10 @@ switch ($request) {
         require __DIR__ . $viewDir . 'nontifikasi.php';
         break;
 
+    case '/voucher':
+        require __DIR__ . $viewDir . 'voucher.php';
+        break;
+
     default:
         http_response_code(404);
         require __DIR__ . $viewDir . '404.php';
