@@ -1,10 +1,9 @@
-<?php
-// Proses login (sangat sederhana, hanya untuk contoh)
+<?php 
+// Proses login
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    // Dummy login
     if ($username === "admin" && $password === "1234") {
         $message = "Login berhasil!";
     } else {
@@ -18,86 +17,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #fce5e5;
             font-family: 'Poppins', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
-            margin: 0;
         }
-
-        .container {
-            text-align: center;
-            padding: 20px;
-        }
-
         .chef-img {
             width: 150px;
-            margin-bottom: 20px;
         }
-
-        h2 {
-            color: #cc5a5a;
-            margin-bottom: 20px;
-        }
-
-        form input {
-            width: 250px;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 10px;
-        }
-
-        form button {
-            width: 270px;
-            padding: 10px;
-            background-color: #ec7a7a;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .signup {
-            margin-top: 10px;
-            font-size: 12px;
-        }
-
-        .signup a {
-            color: #6941c6;
-            text-decoration: none;
-        }
-
-        .message {
-            margin-top: 10px;
-            color: #d8000c;
-            font-weight: bold;
+        .login-box {
+            max-width: 400px;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <!-- Ganti dengan gambar kamu -->
-        <img src="/tribite/assets/img/login.png-removebg-preview.png" class="chef-img">
+<body class="d-flex justify-content-center align-items-center">
 
-        <h2>Selamat Datang!</h2>
+    <div class="container login-box text-center bg-white rounded-4 shadow p-4">
+        <img src="/tribite/assets/img/login.png-removebg-preview.png" alt="Login Image" class="chef-img mb-3">
+
+        <h2 class="text-danger mb-3">Selamat Datang!</h2>
 
         <form method="POST" action="">
-            <input type="text" name="username" placeholder="Username" required><br>
-            <input type="password" name="password" placeholder="Password" required><br>
-            <button type="submit">Login</button>
+            <div class="mb-3">
+                <input type="text" name="username" class="form-control" placeholder="Username" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-danger w-100">Login</button>
         </form>
 
         <?php if (!empty($message)): ?>
-            <p class="message"><?= htmlspecialchars($message) ?></p>
+            <div class="alert alert-warning mt-3"><?= htmlspecialchars($message) ?></div>
         <?php endif; ?>
 
-        <p class="signup">Belum punya akun? <a href="#">Daftar sekarang</a></p>
+        <p class="mt-3 small">Belum punya akun? <a href="#">Daftar sekarang</a></p>
     </div>
+
 </body>
 </html>
