@@ -6,5 +6,6 @@
     <title>Home - Tribite</title>
     <link rel="stylesheet" href="/tribite/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/tribite/assets/css/global.css">
+
 </head>
 <body>
