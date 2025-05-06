@@ -1,2 +1,3 @@
 <?php
-Location('/home');
+header("Location: /home");
+exit();
