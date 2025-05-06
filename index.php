@@ -20,6 +20,10 @@ switch ($request) {
         require __DIR__ . $viewDir . 'profile.php';
         break;
 
+    case '/keranjang':
+        require __DIR__ . $viewDir . 'keranjang.php';
+        break;
+
     default:
         http_response_code(404);
         require __DIR__ . $viewDir . '404.php';
