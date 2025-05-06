@@ -4,19 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Formulir Daftar</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <style>
     body {
-      background-color: #fce6e2;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+  background-color: #fce6e2;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex; /* Aktifkan Flexbox */
+  justify-content: center; /* Pusatkan secara horizontal */
+  align-items: center; /* Pusatkan secara vertikal */
+  height: 100vh; /* Pastikan tinggi body mencakup seluruh layar */
+}
 
-    .container {
-      max-width: 400px;
-      margin: auto;
-      padding: 2rem;
-    }
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%; /* Tambahkan agar responsif */
+  margin: auto;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk estetika */
+}
 
     .back-btn {
       background: none;
@@ -95,7 +104,7 @@
 </head>
 <body>
   <div class="container">
-    <button class="back-btn">&#8592;</button>
+    <a href="/login"><button class="back-btn"><i class="fa fa-arrow-left" aria-hidden="true"></i></button></a>
     <h1>Daftar</h1>
     <p>Lengkapi data dirimu dibawah ini!</p>
     <form onsubmit="event.preventDefault()">
@@ -111,11 +120,11 @@
         <span class="clear-btn" onclick="document.getElementById('email').value=''">x</span>
       </div>
 
-      <label>Username</label>
+      <label>Nomor Telepon</label>
       <div class="input-wrapper">
         <span class="prefix">🇮🇩 +62</span>
-        <input type="text" placeholder="Masukkan nomor" id="username" class="with-prefix" />
-        <span class="clear-btn" onclick="document.getElementById('username').value=''">x</span>
+        <input type="text" placeholder="Masukkan nomor" id="Telepon" class="with-prefix" />
+        <span class="clear-btn" onclick="document.getElementById('Telepon').value=''">x</span>
       </div>
 
       <button type="submit" class="submit-btn">Lanjutkan</button>
