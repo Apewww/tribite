@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Promo Voucher</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
     * {
       box-sizing: border-box;
@@ -98,7 +100,7 @@
 <body>
   <div class="container">
     <div class="header">
-      <i>&larr;</i>
+      <i class="fas fa-arrow-left" onclick="window.history.back()"></i>
       <span>Promo Voucher</span>
     </div>
     <div class="divider"></div>

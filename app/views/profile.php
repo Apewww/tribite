@@ -133,7 +133,10 @@
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
-
+    .menu-item {
+    text-decoration: none;
+    display: block;
+    }
     .menu-item:hover,
     .logout:hover {
       background-color: #f7c1c1;
@@ -192,7 +195,7 @@
     <div class="box menu">
       <div class="menu-title">Menu</div>
       <div class="menu-item">Alamat Saya</div>
-      <div class="menu-item">Voucher Saya</div>
+      <a href="/voucher" class="menu-item">Voucher Saya</a>
       <div class="menu-item">Metode Pembayaran</div>
       <div class="menu-item">Bookmark</div>
       <div class="menu-item">Riwayat</div>
