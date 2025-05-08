@@ -28,8 +28,8 @@ switch ($request) {
         require __DIR__ . $viewDir . 'register.php';
         break;
 
-    case '/nontifikasi':
-        require __DIR__ . $viewDir . 'nontifikasi.php';
+    case '/notifikasi':
+        require __DIR__ . $viewDir . 'notifikasi.php';
         break;
 
     case '/voucher':

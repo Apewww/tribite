@@ -9,7 +9,7 @@
 
   <div class="bg-pink-300 p-4 rounded-xl flex items-start space-x-3 max-w-sm shadow-md">
     <!-- Icon -->
-    <img src="assets/img/Logo.png" alt="cake icon" class="w-10 h-10">
+    <img src="/tribite/assets/img/Logo.png" alt="cake icon" class="w-10 h-10">
 
     <!-- Text -->
     <div>

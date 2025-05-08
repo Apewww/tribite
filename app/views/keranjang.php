@@ -109,7 +109,7 @@ hr {
 
     <div class="cart-item">
       <input type="checkbox">
-      <img src="assets/img/keranjang.jpg" alt="dessert">
+      <img src="/tribite/assets/img/keranjang.jpg" alt="dessert">
       <div class="item-info">
         <h3>[Ready Stock ] dessert</h3>
         <span class="price">Rp. 60.000</span>
@@ -118,7 +118,7 @@ hr {
 
     <div class="cart-item">
       <input type="checkbox">
-      <img src="assets/img/keranjang.jpg" alt="dessert">
+      <img src="/tribite/assets/img/keranjang.jpg" alt="dessert">
       <div class="item-info">
         <h3>[Ready Stock ] dessert</h3>
         <span class="price">Rp. 60.000</span>
@@ -127,7 +127,7 @@ hr {
 
     <div class="cart-item">
       <input type="checkbox">
-      <img src="assets/img/keranjang.jpg" alt="dessert">
+      <img src="/tribite/assets/img/keranjang.jpg" alt="dessert">
       <div class="item-info">
         <h3>[Ready Stock ] dessert</h3>
         <span class="price">Rp. 60.000</span>
