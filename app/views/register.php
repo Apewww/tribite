@@ -123,7 +123,7 @@
       <label>Nomor Telepon</label>
       <div class="input-wrapper">
         <span class="prefix">🇮🇩 +62</span>
-        <input type="text" placeholder="Masukkan nomor" id="Telepon" class="with-prefix" />
+        <input type="text" placeholder="Masukkan nomor" id="Telepon"  />
         <span class="clear-btn" onclick="document.getElementById('Telepon').value=''">x</span>
       </div>
 
