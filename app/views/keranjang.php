@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    body {
+body {
   font-family: 'Arial', sans-serif;
   background-color: #f8dede;
   margin: 0;
@@ -109,7 +109,7 @@ hr {
 
     <div class="cart-item">
       <input type="checkbox">
-      <img src="tribite/assets/img/kernjng.jpg" alt="dessert">
+      <img src="assets/img/keranjang.jpg" alt="dessert">
       <div class="item-info">
         <h3>[Ready Stock ] dessert</h3>
         <span class="price">Rp. 60.000</span>
@@ -118,7 +118,7 @@ hr {
 
     <div class="cart-item">
       <input type="checkbox">
-      <img src="tribite/assets/img/kernjng.jpg" alt="dessert">
+      <img src="assets/img/keranjang.jpg" alt="dessert">
       <div class="item-info">
         <h3>[Ready Stock ] dessert</h3>
         <span class="price">Rp. 60.000</span>
@@ -127,7 +127,7 @@ hr {
 
     <div class="cart-item">
       <input type="checkbox">
-      <img src="tribite/assets/img/kernjng.jpg" alt="dessert">
+      <img src="assets/img/keranjang.jpg" alt="dessert">
       <div class="item-info">
         <h3>[Ready Stock ] dessert</h3>
         <span class="price">Rp. 60.000</span>
