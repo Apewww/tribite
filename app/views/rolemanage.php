@@ -6,8 +6,8 @@ include PARTIALS_PATH . 'header.php'; // Memanggil Header
 ?>
 
 
-<?php include PARTIALS_PATH . 'navbar.php'; // Memanggil Navbar ?>
-<div class="container min-vh-100 d-flex" id="landingContent">
+<?php include PARTIALS_PATH . 'sidebar.php'; // Memanggil Navbar ?>
+<!-- <div class="container min-vh-100 d-flex" id="landingContent">
     <div class="row align-content-center align-items-center w-100 mx-auto">
         <div class="col-12 col-md-8 order-2 order-md-1 text-center text-md-start py-5 py-md-0">
             <span class="text-danger h5 d-block mb-2 mb-md-3">Halo Selamat datang di ..</span>
@@ -22,7 +22,7 @@ include PARTIALS_PATH . 'header.php'; // Memanggil Header
             <img class="img-fluid foodicon" src="/tribite/assets/img/LandingLogo.png" alt="Landing Logo">
         </div>
     </div>
-</div>
+</div> -->
 
 
 <?php
