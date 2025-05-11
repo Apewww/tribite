@@ -26,11 +26,24 @@ body {
     max-width: 65%;
 }
 
+.navbar .nav-link.active {
+    color: red !important; /* Warna merah untuk link aktif */
+    font-weight: bold; /* Opsional: Tambahkan penekanan */
+}
+
+.bg-pink {
+    background-color: #F7E2E2;
+}
+
+.text-red {
+    color: red;
+}
+
 @media (min-width: 768px) {
     body {
         margin: 10px 150px 0 150px;
     }
-    
+
     .foodicon {
         max-width: 350px;
         height: auto;

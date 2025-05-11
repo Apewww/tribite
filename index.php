@@ -36,8 +36,12 @@ switch ($request) {
         require __DIR__ . $viewDir . 'voucher.php';
         break;
 
-    case '/rolemanage':
-        require __DIR__ . $viewDir . 'rolemanage.php';
+    case '/dashboard':
+        require __DIR__ . $viewDir . 'dashboard.php';
+        break;
+
+    case '/akun':
+        require __DIR__ . $viewDir . 'akun.php';
         break;
 
     default:

@@ -1,10 +1,3 @@
-<style>
-    .navbar .nav-link.active {
-    color: red !important; /* Warna merah untuk link aktif */
-    font-weight: bold; /* Opsional: Tambahkan penekanan */
-}
-
-</style>
 <nav class="navbar navbar-expand-md fixed-top">
     <div class="container">
         <div class="navbar-brand">
