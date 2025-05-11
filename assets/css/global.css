@@ -39,6 +39,10 @@ body {
     color: red;
 }
 
+.content-margin {
+    margin-left: 100px;
+}
+
 @media (min-width: 768px) {
     body {
         margin: 10px 150px 0 150px;
@@ -47,5 +51,9 @@ body {
     .foodicon {
         max-width: 350px;
         height: auto;
+    }
+
+    .content-margin {
+        margin-left: 300px;
     }
 }

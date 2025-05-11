@@ -8,3 +8,5 @@ navbar.addEventListener('shown.bs.collapse', () => {
 navbar.addEventListener('hidden.bs.collapse', () => {
   landing.classList.remove('landing-blur');
 });
+
+new DataTable('#example');
