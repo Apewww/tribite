@@ -27,14 +27,15 @@
 
 <div class="offcanvas offcanvas-start bg-pink text-white" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
     <div class="offcanvas-header">
+        <span class="fs-5 text-red">Tribite AdminPanel</span>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body d-flex flex-column justify-content-between px-3 pt-2 text-white">
         <div>
-            <a href="/dashboard" class="d-flex align-items-center mb-3 text-white text-decoration-none">
+            <!-- <a href="/dashboard" class="d-flex align-items-center mb-3 text-white text-decoration-none">
                 <img src="/tribite/assets/img/Logo.png" alt="Logo" class="img-fluid me-2" style="max-width: 40px;">
                 <span class="fs-5 text-red">Tribite AdminPanel</span>
-            </a>
+            </a> -->
             <ul class="nav nav-pills flex-column w-100" id="menu">
                 <li class="nav-item">
                     <a href="/home" class="nav-link text-black link-danger">

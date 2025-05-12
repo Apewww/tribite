@@ -12,4 +12,9 @@ if (navbar && landing) {
   console.log("Navbar or Landing elements not found on this page.");
 }
 
-new DataTable('#myTable');
+new DataTable('#myTable', {
+    responsive: true,
+    columnDefs: [
+        { responsivePriority: 1, targets: 0 },
+    ]
+});
