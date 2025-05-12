@@ -18,3 +18,10 @@ new DataTable('#myTable', {
         { responsivePriority: 1, targets: 0 },
     ]
 });
+
+new DataTable('#katalogTable', {
+    responsive: true,
+    columnDefs: [
+        { responsivePriority: 1, targets: 0 },
+    ]
+});

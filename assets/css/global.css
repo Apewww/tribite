@@ -45,6 +45,12 @@ body {
     margin-left: 100px;
 }
 
+.img-katalog {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
 
 @media (min-width: 768px) {
     body {
