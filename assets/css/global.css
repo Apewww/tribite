@@ -26,9 +26,11 @@ body {
     max-width: 65%;
 }
 
-.navbar .nav-link.active {
+.navbar .nav-link.active,
+.nav-pills .nav-link.active {
     color: red !important; /* Warna merah untuk link aktif */
     font-weight: bold; /* Opsional: Tambahkan penekanan */
+    background-color: transparent !important; 
 }
 
 .bg-pink {

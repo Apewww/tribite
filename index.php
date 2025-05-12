@@ -39,6 +39,10 @@ switch ($request) {
     case '/dashboard':
         require __DIR__ . $viewDir . 'dashboard.php';
         break;
+        
+    case '/katalogmanage':
+        require __DIR__ . $viewDir . 'katalogmanage.php';
+        break;
 
     case '/akun':
         require __DIR__ . $viewDir . 'akun.php';
