@@ -1,12 +1,15 @@
 const navbar = document.getElementById('navbarNav');
 const landing = document.getElementById('landingContent');
 
-navbar.addEventListener('shown.bs.collapse', () => {
-  landing.classList.add('landing-blur');
-});
+if (navbar && landing) {
+  navbar.addEventListener('shown.bs.collapse', () => {
+    landing.classList.add('landing-blur');
+  });
+  navbar.addEventListener('hidden.bs.collapse', () => {
+    landing.classList.remove('landing-blur');
+  });
+} else {
+  console.log("Navbar or Landing elements not found on this page.");
+}
 
-navbar.addEventListener('hidden.bs.collapse', () => {
-  landing.classList.remove('landing-blur');
-});
-
-new DataTable('#example');
+new DataTable('#myTable');

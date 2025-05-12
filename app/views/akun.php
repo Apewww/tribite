@@ -15,13 +15,14 @@ include PARTIALS_PATH . 'header.php';
                 <h1>Akun Management</h1>
                 <p>Halaman pengelolaan akun pengguna.</p>
                 <div class="table-responsive">
-                    <table id="myTable" class="table table-striped table-bordered nowrap" style="width:100%">
+                    <table id="myTable" class="table table-striped table-bordered nowrap w-100">
                         <thead>
                             <tr>
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Role</th>
                                 <th>Status</th>
+                                <th>Edit</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,18 +31,30 @@ include PARTIALS_PATH . 'header.php';
                                 <td>christychriselle@example.com</td>
                                 <td>Admin</td>
                                 <td>Aktif</td>
+                                <td class="d-flex justify-content-center gap-1">
+                                    <button class="btn btn-primary">Edit</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Christy Chriselle</td>
                                 <td>christychriselle@example.com</td>
                                 <td>Admin</td>
                                 <td>Aktif</td>
+                                <td class="d-flex justify-content-center gap-1">
+                                    <button class="btn btn-primary">Edit</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Christy Chriselle</td>
                                 <td>christychriselle@example.com</td>
                                 <td>Admin</td>
                                 <td>Aktif</td>
+                                <td class="d-flex justify-content-center gap-md-1">
+                                    <button class="btn btn-primary">Edit</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -50,13 +63,6 @@ include PARTIALS_PATH . 'header.php';
         </div>
     </div>
 </div>
-<script>
-$(document).ready(function () {
-    $('#myTable').DataTable({
-        responsive: true
-    });
-});
-</script>
 
 <?php
 include PARTIALS_PATH . 'footer.php';
