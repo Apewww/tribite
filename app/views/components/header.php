@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/tribite/assets/css/global.css">
     <link rel="stylesheet" href="/tribite/assets/css/font-awesome.min.css">
     <link href="/tribite/assets/css/datatables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/tribite/assets/css/responsive.bootstrap5.min.css">
 
 </head>
 <body>

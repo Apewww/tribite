@@ -10,12 +10,12 @@ include PARTIALS_PATH . 'header.php';
     <div class="row">
         <?php include PARTIALS_PATH . 'sidebar.php'; ?>
         
-        <div class="col content-margin">
+        <div class="col">
             <div class="container mt-4">
                 <h1>Akun Management</h1>
                 <p>Halaman pengelolaan akun pengguna.</p>
                 <div class="table-responsive">
-                    <table id="myTable" class="table table-hover w-100">
+                    <table id="myTable" class="table table-striped table-bordered nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Nama</th>

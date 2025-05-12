@@ -9,10 +9,11 @@ include PARTIALS_PATH . 'header.php';
 <div class="container-fluid">
     <div class="row">
         <?php include PARTIALS_PATH . 'sidebar.php'; ?>
-        
-        <div class="col py-3 content-margin">
-            <h1>Dashboard</h1>
-            <p>Halaman Dashboard.</p>
+        <div class="col">
+            <div class="container mt-4">
+                <h1>Dashboard</h1>
+                <p>Halaman Dashboard.</p>
+            </div>
         </div>
     </div>
 </div>
