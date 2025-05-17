@@ -14,6 +14,7 @@
     body {
       background-color: #fce9e9;
       font-family: 'Poppins', sans-serif;
+      padding-top: 56px; /* Tambahkan padding agar konten tidak tertutup navbar */
     }
     .menu-card {
       margin: 30px;
@@ -46,9 +47,10 @@
   </style>
 </head>
 <body>
-  <?php include $_SERVER['DOCUMENT_ROOT'] . '/tribite/app/views/components/navbar.php'; ?>
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; ?>
+<?php include PARTIALS_PATH . 'navbar.php'; ?>
 
-  <main class="container my-5">
+  <div class="container mt-0">
     <div class="row g-4">
       <!-- Menu Card 1 -->
       <div class="col-md-4 col-lg-3">
@@ -56,29 +58,163 @@
           <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
           <h3>Contoh Makanan 1</h3>
           <p class="price">Rp. 30.000</p>
+          <div class="rating">
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
           <button class="btn btn-danger btn-sm">Pesan</button>
         </div>
-      </div>
-      <!-- Menu Card 2 -->
-      <div class="col-md-4 col-lg-3">
-        <div class="menu-card">
-          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
-          <h3>Contoh Makanan 2</h3>
-          <p class="price">Rp. 25.000</p>
-          <button class="btn btn-danger btn-sm">Pesan</button>
-        </div>
-      </div>
-      <!-- Menu Card 3 -->
-      <div class="col-md-4 col-lg-3">
-        <div class="menu-card">
-          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
-          <h3>Contoh Makanan 3</h3>
-          <p class="price">Rp. 20.000</p>
-          <button class="btn btn-danger btn-sm">Pesan</button>
-        </div>
-      </div>
+      </div>  
       <!-- Tambahkan menu lainnya di sini -->
+      <div class="col-md-4 col-lg-3">
+        <div class="menu-card">
+          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
+          <h3>Contoh Makanan 1</h3>
+          <p class="price">Rp. 30.000</p>
+          <div class="rating">
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
+          <button class="btn btn-danger btn-sm">Pesan</button>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <div class="menu-card">
+          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
+          <h3>Contoh Makanan 1</h3>
+          <p class="price">Rp. 30.000</p>
+          <div class="rating">
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
+          <button class="btn btn-danger btn-sm">Pesan</button>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <div class="menu-card">
+          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
+          <h3>Contoh Makanan 1</h3>
+          <p class="price">Rp. 30.000</p>
+          <div class="rating">
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
+          <button class="btn btn-danger btn-sm">Pesan</button>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <div class="menu-card">
+          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
+          <h3>Contoh Makanan 1</h3>
+          <p class="price">Rp. 30.000</p>
+          <div class="rating">
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
+          <button class="btn btn-danger btn-sm">Pesan</button>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <div class="menu-card">
+          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
+          <h3>Contoh Makanan 1</h3>
+          <p class="price">Rp. 30.000</p>
+          <div class="rating">
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
+          <button class="btn btn-danger btn-sm">Pesan</button>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <div class="menu-card">
+          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
+          <h3>Contoh Makanan 1</h3>
+          <p class="price">Rp. 30.000</p>
+          <div class="rating">
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
+          <button class="btn btn-danger btn-sm">Pesan</button>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <div class="menu-card">
+          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
+          <h3>Contoh Makanan 1</h3>
+          <p class="price">Rp. 30.000</p>
+          <div class="rating">
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
+          <button class="btn btn-danger btn-sm">Pesan</button>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <div class="menu-card">
+          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
+          <h3>Contoh Makanan 1</h3>
+          <p class="price">Rp. 30.000</p>
+          <div class="rating">
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
+          <button class="btn btn-danger btn-sm">Pesan</button>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <div class="menu-card">
+          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
+          <h3>Contoh Makanan 1</h3>
+          <p class="price">Rp. 30.000</p>
+          <div class="rating">
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+          </div>
+          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
+          <button class="btn btn-danger btn-sm">Pesan</button>
+        </div>
+      </div>
     </div>
-  </main>
+  </div>
 </body>
 </html>
