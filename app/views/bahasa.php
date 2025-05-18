@@ -20,9 +20,12 @@
     .header {
       display: flex;
       align-items: center;
+      justify-content: center; /* ini bisa bikin teks dan ikon terlalu jauh */
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 20px;
+      gap: 5px; /* tambahkan ini agar lebih rapi */
+      padding-left: 10px; /* agar tidak terlalu ke tengah */
     }
 
     .back-arrow {
@@ -66,9 +69,9 @@
   <div class="container">
     <!-- Header -->
     <div class="header">
-      <span class="back-arrow">&#8592;</span>
       <span id="title">Pilihan Bahasa</span>
     </div>
+  </div>
 
     <!-- Pilihan Bahasa -->
     <div class="language-box" onclick="selectLanguage('EN')">
