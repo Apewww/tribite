@@ -185,8 +185,8 @@
         </div>
         <span class="clear-btn" onclick="document.getElementById('phoneNumber').value=''">x</span>
       </div>
-
-      <button type="submit" class="submit-btn">Lanjutkan</button>
+      
+      <button type="submit" class="submit-btn"><a href="/profile">Lanjutkan</a></button>
     </form>
   </div>
 </body>
