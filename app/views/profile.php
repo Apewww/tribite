@@ -199,7 +199,7 @@
       <div class="menu-item">Metode Pembayaran</div>
       <div class="menu-item">Bookmark</div>
       <div class="menu-item">Riwayat</div>
-      <div class="menu-item">Bahasa</div>
+      <a href="/bahasa" class="menu-item">Bahasa</a>
       <div class="menu-item">Pengaturan Akun</div>
       <div class="logout">Logout</div>
     </div>
