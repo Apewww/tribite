@@ -7,7 +7,7 @@
 </head>
 <body class="bg-pink-100 p-4 min-h-screen flex items-start justify-center">
 
-  <div class="bg-pink-300 p-4 rounded-xl flex items-start space-x-3 max-w-sm shadow-md">
+  <div class="bg-pink-400 p-4 rounded-xl flex items-start space-x-3 max-w-sm shadow-md">
     <!-- Icon -->
     <img src="assets/img/Logo.png" alt="cake icon" class="w-10 h-10">
 
