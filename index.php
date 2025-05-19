@@ -58,7 +58,11 @@ switch ($request) {
         
     case '/pengaturanakun':
         require __DIR__ . $viewDir . 'pengaturanakun.php';
-        break;     
+        break; 
+        
+    case '/alamat':
+        require __DIR__ . $viewDir . 'alamat.php';
+        break;
 
     default:
         http_response_code(404);

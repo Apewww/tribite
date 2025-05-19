@@ -64,28 +64,28 @@
     <h2>Metode Pembayaran</h2>
     <div class="payment-box">
       <div class="payment-option">
-        <img src="assets/img/bitepay.jpg" alt="BITEPAY">
+        <img src="/tribite/assets/img/bitepay.jpg" alt="BITEPAY">
         <span>BITEPAY</span>
       </div>
       <div class="payment-option">
-        <img src="assets/img/cod.png" alt="COD">
+        <img src="/tribite/assets/img/cod.png" alt="COD">
         <span>COD</span>
       </div>
       <div class="payment-option">
-        <img src="assets/img/qris.png" alt="QRIS">
+        <img src="/tribite/assets/img/qris.png" alt="QRIS">
         <span>QRIS</span>
       </div>
       <div class="payment-option">
-        <img src="assets/img/tfbank.jpg" alt="Transfer Bank">
+        <img src="/tribite/assets/img/tfbank.jpg" alt="Transfer Bank">
         <span>Transfer Bank</span>
         <span class="arrow">&gt;</span>
       </div>
       <div class="payment-option">
-        <img src="assets/img/alfamart.png" alt="Alfamart">
+        <img src="/tribite/assets/img/alfamart.png" alt="Alfamart">
         <span>Alfamart</span>
       </div>
       <div class="payment-option">
-        <img src="assets/img/indomart.png" alt="Indomaret">
+        <img src="/tribite/assets/img/indomart.png" alt="Indomaret">
         <span>Indomaret</span>
       </div>
     </div>
