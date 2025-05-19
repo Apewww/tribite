@@ -54,7 +54,11 @@ switch ($request) {
         
     case '/metodepembayaran':
         require __DIR__ . $viewDir . 'metodepembayaran.php';
-        break; 
+        break;
+        
+    case '/pengaturanakun':
+        require __DIR__ . $viewDir . 'pengaturanakun.php';
+        break;     
 
     default:
         http_response_code(404);
