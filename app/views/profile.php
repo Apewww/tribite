@@ -200,7 +200,7 @@
       <div class="menu-item">Bookmark</div>
       <div class="menu-item">Riwayat</div>
       <a href="/bahasa" class="menu-item">Bahasa</a>
-      <div class="menu-item">Pengaturan Akun</div>
+      <a href="menu-item">Pengaturan Akun</a>
       <div class="logout">Logout</div>
     </div>
   </div>
