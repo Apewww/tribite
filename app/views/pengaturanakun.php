@@ -72,17 +72,6 @@
       </ul>
     </div>
 
-    <!-- Detail Keamanan & Akun -->
-    <div class="card">
-      <h2>Keamanan & Akun</h2>
-      <ul class="menu">
-        <li>Username</li>
-        <li>No. Handphone</li>
-        <li>Email</li>
-        <li>Akun Media Sosial</li>
-        <li>Ganti Password</li>
-      </ul>
-    </div>
   </div>
 
 </body>
