@@ -50,7 +50,11 @@ switch ($request) {
 
     case '/bahasa':
         require __DIR__ . $viewDir . 'bahasa.php';
-        break;    
+        break; 
+        
+    case '/metodepembayaran':
+        require __DIR__ . $viewDir . 'metodepembayaran.php';
+        break; 
 
     default:
         http_response_code(404);
