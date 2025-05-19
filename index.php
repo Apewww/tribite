@@ -28,13 +28,29 @@ switch ($request) {
         require __DIR__ . $viewDir . 'register.php';
         break;
 
-    case '/nontifikasi':
-        require __DIR__ . $viewDir . 'nontifikasi.php';
+    case '/notifikasi':
+        require __DIR__ . $viewDir . 'notifikasi.php';
         break;
 
     case '/voucher':
         require __DIR__ . $viewDir . 'voucher.php';
         break;
+
+    case '/dashboard':
+        require __DIR__ . $viewDir . 'dashboard.php';
+        break;
+        
+    case '/katalogmanage':
+        require __DIR__ . $viewDir . 'katalogmanage.php';
+        break;
+
+    case '/akun':
+        require __DIR__ . $viewDir . 'akun.php';
+        break;
+
+    case '/bahasa':
+        require __DIR__ . $viewDir . 'bahasa.php';
+        break;    
 
     default:
         http_response_code(404);

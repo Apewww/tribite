@@ -6,6 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($username === "admin" && $password === "1234") {
         $message = "Login berhasil!";
+        header("Location: /dashboard");
     } else {
         $message = "Username atau password salah.";
     }

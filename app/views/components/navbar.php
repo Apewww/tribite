@@ -1,11 +1,4 @@
-<style>
-    .navbar .nav-link.active {
-    color: red !important; /* Warna merah untuk link aktif */
-    font-weight: bold; /* Opsional: Tambahkan penekanan */
-}
-
-</style>
-<nav class="navbar navbar-expand-md fixed-top">
+<nav class="navbar navbar-expand-md fixed-top ">
     <div class="container">
         <div class="navbar-brand">
             <img src="\tribite\assets\img\Logo.png" alt="Logo Navbar" height="50" width="50">
@@ -38,3 +31,8 @@
         </div>
     </div>
 </nav>
+<style>
+  .navbar {
+    background-color: #fce9e9; /* Warna latar belakang navbar */
+  }
+</style>

@@ -26,13 +26,43 @@ body {
     max-width: 65%;
 }
 
+.navbar .nav-link.active,
+.nav-pills .nav-link.active {
+    color: red !important; /* Warna merah untuk link aktif */
+    font-weight: bold; /* Opsional: Tambahkan penekanan */
+    background-color: transparent !important; 
+}
+
+.bg-pink {
+    background-color: #F7E2E2;
+}
+
+.text-red {
+    color: red;
+}
+
+.content-margin {
+    margin-left: 100px;
+}
+
+.img-katalog {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+
 @media (min-width: 768px) {
     body {
         margin: 10px 150px 0 150px;
     }
-    
+
     .foodicon {
         max-width: 350px;
         height: auto;
+    }
+
+    .content-margin {
+        margin-left: 300px;
     }
 }
