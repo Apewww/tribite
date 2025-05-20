@@ -66,6 +66,10 @@ switch ($request) {
 
     case '/akunsosialmedia':
         require __DIR__ . $viewDir . 'akunsosialmedia.php';
+        break;
+        
+    case '/keamanandanakun':
+        require __DIR__ . $viewDir . 'keamanandanakun.php';
         break;    
 
     default:

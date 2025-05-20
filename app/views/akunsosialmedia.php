@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pengaturan Akun</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Akun Sosial Media</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      display: flex;
+      font-family: Arial, sans-serif;
       background-color: #f5f5f5;
-    }
-
-    .sidebar, .main, .submenu {
-      flex: 1;
-      padding: 20px;
-      background-color: #fddede; /* warna pink muda dari Figma */
+      display: flex;
+      justify-content: center;
+      align-items: center;
       min-height: 100vh;
-      box-sizing: border-box;
     }
 
-    .section-title {
+    .container {
+      background-color: #fddede; /* Warna pink dari Figma */
+      padding: 30px 20px;
+      width: 320px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .title {
       font-weight: bold;
       font-size: 1.2em;
       margin-bottom: 20px;
+      text-align: center;
     }
 
     .card {
       background-color: white;
       border: 1px solid #ccc;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      padding: 15px 20px;
+      border-radius: 6px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      padding: 12px 16px;
+      margin-bottom: 10px;
       cursor: pointer;
+      transition: background-color 0.2s;
     }
 
     .card:hover {
       background-color: #f0f0f0;
     }
 
-    .arrow {
-      font-weight: bold;
+    .card img {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+    }
+
+    .card span {
+      font-size: 0.95em;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="title">Akun Sosial Media</div>
 
-  <div class="sidebar">
-    <!-- Kosong seperti di Figma -->
+    <div class="card" onclick="alert('Hubungkan ke Facebook')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook">
+      <span>Hubungkan Akun Facebook</span>
+    </div>
+
+    <div class="card" onclick="alert('Hubungkan ke Google')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google">
+      <span>Hubungkan Akun Google</span>
+    </div>
   </div>
-
-  <div class="main">
-    <div class="section-title">Pengaturan Akun</div>
-    <div class="card" onclick="showSubmenu('keamanan')">Keamanan & Akun <span class="arrow">></span></div>
-    <div class="card">Alamat Saya <span class="arrow">></span></div>
-    <div class="card">Pengaturan Notifikasi <span class="arrow">></span></div>
-  </div>
-
-  <div class="submenu" id="submenu">
-    <div class="section-title">Keamanan & Akun</div>
-    <div class="card">Username</div>
-    <div class="card">No. Handphone</div>
-    <div class="card">Email</div>
-    <div class="card">Akun Media Sosial</div>
-    <div class="card">Ganti Password</div>
-  </div>
-
 </body>
 </html>
