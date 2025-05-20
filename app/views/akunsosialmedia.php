@@ -5,22 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Akun Sosial Media</title>
   <style>
-    body {
+   * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: Arial, sans-serif;
       background-color: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      height: 100vh;
+      width: 100vw;
     }
 
     .container {
-      background-color: #fddede; /* Warna pink dari Figma */
+      background-color: #fddede;
+      height: 100vh;
       padding: 30px 20px;
-      width: 320px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .title {
