@@ -71,7 +71,6 @@
         <li>Pengaturan Notifikasi <span class="arrow">></span></li>
       </ul>
     </div>
-
   </div>
 
 </body>
