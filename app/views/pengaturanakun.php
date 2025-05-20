@@ -5,35 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pengaturan Akun</title>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: Arial, sans-serif;
       background-color: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      height: 100vh;
+      width: 100vw;
     }
 
     .container {
       background-color: #fddede;
+      height: 100vh;
       padding: 30px 20px;
-      width: 360px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .title {
       font-weight: bold;
-      font-size: 1.3em;
-      margin-bottom: 20px;
+      font-size: 1.5em;
       text-align: center;
+      margin-bottom: 30px;
     }
 
     .menu-item {
       background-color: white;
       border: 1px solid #ccc;
-      padding: 14px 16px;
+      padding: 18px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -48,6 +49,7 @@
 
     .menu-item:not(:last-child) {
       border-bottom: none;
+      margin-bottom: 10px;
     }
   </style>
 </head>
