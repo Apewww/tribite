@@ -59,15 +59,15 @@
 
     <div class="menu-item" onclick="window.location.href='keamanan-akun.html'">
       Keamanan & Akun
-      <span>&#9654;</span>
+      
     </div>
     <div class="menu-item" onclick="window.location.href='alamat-saya.html'">
       Alamat Saya
-      <span>&#9654;</span>
+      
     </div>
     <div class="menu-item" onclick="window.location.href='pengaturan-notifikasi.html'">
       Pengaturan Notifikasi
-      <span>&#9654;</span>
+      
     </div>
   </div>
 </body>

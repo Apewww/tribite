@@ -5,22 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Keamanan & Akun</title>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: Arial, sans-serif;
       background-color: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      height: 100vh;
+      width: 100vw
     }
 
     .container {
       background-color: #fddede; /* Warna pink */
+      height: 100vh
       padding: 30px 20px;
-      width: 360px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .title {
@@ -78,8 +79,8 @@
       <span class="label">Email</span>
       <span class="value">t********e@gmail.com</span>
     </div>
-    <div class="row link-row" onclick="alert('Buka halaman Akun Media Sosial')">
-      <span class="label">Akun Media Sosial</span>
+    <div class="row link-row" onclick="alert('Buka halaman Akun Sosial Media')">
+      <span class="label">Akun Sosial Media</span>
       <span>&#9654;</span>
     </div>
     <div class="row link-row" onclick="alert('Buka halaman Ganti Password')">
