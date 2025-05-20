@@ -66,7 +66,7 @@
     <div class="card">
       <h2>Pengaturan Akun</h2>
       <ul class="menu">
-        <li>Keamanan & Akun <span class="arrow">></span></li>
+        <a href="/keamanandanakun" class="menu">Keamanan dan Akun</a>
         <li>Alamat Saya <span class="arrow">></span></li>
         <li>Pengaturan Notifikasi <span class="arrow">></span></li>
       </ul>
