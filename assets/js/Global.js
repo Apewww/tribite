@@ -13,15 +13,33 @@ if (navbar && landing) {
 }
 
 new DataTable('#myTable', {
-    responsive: true,
-    columnDefs: [
-        { responsivePriority: 1, targets: 0 },
-    ]
+  responsive: true,
+  columnDefs: [
+    { responsivePriority: 1, targets: 0 },
+  ],
+  pageLength: 10,
+  lengthMenu: [5, 10, 25, 50],
+  ordering: true,
+  info: false,
+  language: {
+    lengthMenu: '_MENU_',
+  },
+  dom: '<"top w-100"f>rt<"bottom d-flex justify-content-between justify-content-md-end align-items-center mt-3"lp><"clear">'
+
 });
 
 new DataTable('#katalogTable', {
-    responsive: true,
-    columnDefs: [
-        { responsivePriority: 1, targets: 0 },
-    ]
+  responsive: true,
+  columnDefs: [
+    { responsivePriority: 1, targets: 0 },
+  ],
+  pageLength: 10,
+  lengthMenu: [5, 10, 25, 50],
+  ordering: true,
+  info: false,
+  language: {
+    lengthMenu: '_MENU_',
+  },
+  dom: '<"top w-100"f>rt<"bottom d-flex justify-content-between justify-content-md-end align-items-center"lp><"clear">'
+
 });

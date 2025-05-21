@@ -45,7 +45,7 @@ switch ($request) {
         break;
 
     case '/akun':
-        require __DIR__ . $viewDir . 'akun.php';
+        require __DIR__ . $viewDir . 'akunmanage.php';
         break;
 
     case '/bahasa':
@@ -70,7 +70,12 @@ switch ($request) {
         
     case '/keamanandanakun':
         require __DIR__ . $viewDir . 'keamanandanakun.php';
+        break; 
+        
+    case '/riwayat':
+        require __DIR__ . $viewDir . 'riwayat.php';
         break;    
+
 
     default:
         http_response_code(404);

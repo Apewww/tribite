@@ -12,12 +12,14 @@ include PARTIALS_PATH . 'header.php';
         
         <div class="col">
             <div class="container mt-4">
-                <h1>Katalog Management</h1>
-                <p>Halaman pengelolaan katalog.</p>
-                <div class="d-flex justify-content-md-end justify-content-center">
-                    <a href="tambah_katalog.php" class="btn btn-success mb-3">+ Tambah Produk</a>
+                <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-center align-items-center">
+                  <div class="text-center text-md-start">
+                    <h3>Katalog Management</h3>
+                    <p>Halaman pengelolaan katalog.</p>
+                  </div>
+                  <a href="tambah_katalog.php" class="btn btn-success w-100 w-md-auto mb-4">+ Tambah Produk</a>
                 </div>
-                <table id="katalogTable" class="table table-striped table-bordered nowrap w-100">
+                <table id="katalogTable" class="table nowrap w-100">
                         <thead>
                             <tr>
                                 <th data-priority="1">ID</th>

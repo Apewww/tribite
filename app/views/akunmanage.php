@@ -12,9 +12,13 @@ include PARTIALS_PATH . 'header.php';
         
         <div class="col">
             <div class="container mt-4">
-                <h1>Akun Management</h1>
-                <p>Halaman pengelolaan akun pengguna.</p>
-                <table id="myTable" class="table table-striped table-bordered nowrap w-100">
+                <div class="d-flex flex-column flex-md-row justify-content-md-between justify-content-center align-items-center">
+                  <div class="text-center text-md-start">
+                    <h3>Akun Management</h3>
+                    <p>Halaman pengelolaan akun.</p>
+                  </div>
+                </div>
+                <table id="myTable" class="table nowrap w-100">
                         <thead>
                             <tr>
                                 <th data-priority="1">Nama</th>
