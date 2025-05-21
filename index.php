@@ -73,6 +73,10 @@ switch ($request) {
         require __DIR__ . $viewDir . 'keamanandanakun.php';
         break;    
 
+    case '/riwayat':
+        require __DIR__ . $viewDir . 'riwayat.php';
+        break;    
+
     default:
         http_response_code(404);
         require __DIR__ . $viewDir . '404.php';

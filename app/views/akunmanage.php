@@ -30,8 +30,8 @@ include PARTIALS_PATH . 'header.php';
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Christy Chriselle</td>
-                                <td>christychriselle@example.com</td>
+                                <td>Rafly Anggara Putra</td>
+                                <td>raflyaptr24@if.unjani.ac.id</td>
                                 <td>Admin</td>
                                 <td>Aktif</td>
                                 <td>
@@ -42,8 +42,8 @@ include PARTIALS_PATH . 'header.php';
                                 </td>
                             </tr>
                             <tr>
-                                <td>Christy Chriselle</td>
-                                <td>christychriselle@example.com</td>
+                                <td>Nabila Dwi Marsono</td>
+                                <td>example@if.unjani.ac.id</td>
                                 <td>Admin</td>
                                 <td>Aktif</td>
                                 <td>
@@ -54,8 +54,32 @@ include PARTIALS_PATH . 'header.php';
                                 </td>
                             </tr>
                             <tr>
-                                <td>Christy Chriselle</td>
-                                <td>christychriselle@example.com</td>
+                                <td>Rafi Saputra</td>
+                                 <td>example@if.unjani.ac.id</td>
+                                <td>Admin</td>
+                                <td>Aktif</td>
+                                <td>
+                                    <div class="d-inline d-md-flex justify-content-md-center gap-2">
+                                        <button class="btn btn-primary">Edit</button>
+                                        <button class="btn btn-danger">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Aulia</td>
+                                 <td>example@if.unjani.ac.id</td>
+                                <td>Admin</td>
+                                <td>Aktif</td>
+                                <td>
+                                    <div class="d-inline d-md-flex justify-content-md-center gap-2">
+                                        <button class="btn btn-primary">Edit</button>
+                                        <button class="btn btn-danger">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Insan Najib</td>
+                                 <td>example@if.unjani.ac.id</td>
                                 <td>Admin</td>
                                 <td>Aktif</td>
                                 <td>
