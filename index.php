@@ -2,6 +2,7 @@
 
 $request = $_SERVER['REQUEST_URI'];
 $viewDir = '/app/views/';
+$dbDir = '/app/db/';
 
 switch ($request) {
     case '/home':
@@ -70,12 +71,7 @@ switch ($request) {
         
     case '/keamanandanakun':
         require __DIR__ . $viewDir . 'keamanandanakun.php';
-        break; 
-        
-    case '/riwayat':
-        require __DIR__ . $viewDir . 'riwayat.php';
         break;    
-
 
     default:
         http_response_code(404);
