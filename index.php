@@ -75,6 +75,10 @@ switch ($request) {
 
     case '/riwayat':
         require __DIR__ . $viewDir . 'riwayat.php';
+        break;
+    
+    case '/reservasi':
+        require __DIR__ . $viewDir . 'reservasi.php';
         break;    
 
     default:

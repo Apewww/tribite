@@ -25,12 +25,29 @@
       border-radius: 40px;
       padding: 30px 20px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
       background: linear-gradient(to bottom right, #f8d7da, #f5c6cb);
+      animation: fadeIn 0.8s ease both;
     }
 
     .box:hover {
       transform: translateY(-3px);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .profile-icon {
@@ -153,18 +170,13 @@
       margin-top: 30px;
       background-color: #fff0f0;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
 
   <div class="container-fluid px-3 px-md-5 mt-4">
     <!-- Profil Box -->
-    <div class="box text-center">
+    <div class="box text-center fade-in">
       <div class="dropdown">
         <div class="profile-icon dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-circle-user fa-5x text-white" id="defaultIcon"></i>
@@ -206,7 +218,7 @@
     </div>
 
     <!-- Menu Box -->
-    <div class="box mt-4">
+    <div class="box mt-4 fade-in" style="animation-delay: 0.3s;">
       <div class="menu-title">Menu</div>
       <div class="menu-item">Alamat Saya</div>
       <a href="/voucher" class="menu-item">Voucher Saya</a>
