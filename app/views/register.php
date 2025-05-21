@@ -127,6 +127,12 @@
         <span class="clear-btn" onclick="document.getElementById('email').value=''">x</span>
       </div>
 
+      <label>Password</label>
+      <div class="input-wrapper">
+        <input type="password" placeholder="Masukkan password" id="password" required />
+        <span class="clear-btn" onclick="document.getElementById('password').value=''">x</span>
+      </div>
+
       <label>Nomor Telepon</label>
       <div class="input-wrapper">
         <div style="display: flex; align-items: center;">
