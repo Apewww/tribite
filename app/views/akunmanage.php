@@ -55,7 +55,7 @@ include PARTIALS_PATH . 'header.php';
                             </tr>
                             <tr>
                                 <td>Rafi Saputra</td>
-                                 <td>example@if.unjani.ac.id</td>
+                                <td>example@if.unjani.ac.id</td>
                                 <td>Admin</td>
                                 <td>Aktif</td>
                                 <td>
