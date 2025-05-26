@@ -33,6 +33,8 @@
     }
 
     .row {
+      color: black;
+      text-decoration: none;
       background-color: white;
       border: 1px solid #ccc;
       padding: 12px 16px;
@@ -56,7 +58,7 @@
     }
 
     .label {
-      font-weight: bold;
+      font-weight: regular;
     }
 
     .value {
@@ -80,13 +82,9 @@
       <span class="label">Email</span>
       <span class="value">t********e@gmail.com</span>
     </div>
-    <div class="row link-row" onclick="alert('Buka halaman Akun Sosial Media')">
-      <span class="label">Akun Sosial Media</span>
-      <span>&#9654;</span>
-    </div>
-    <div class="row link-row" onclick="alert('Buka halaman Ganti Password')">
-      <span class="label">Ganti Password</span>
-      <span>&#9654;</span>
+    <div>
+    <a href="/akunsosialmedia" class="row link-row" onclick="window.location.href='akunsosialmedia.html'">Akun Sosial Media</a>
+    <a href="/gantipassword" class="row link-row" onclick="window.location.href='gantipassword.html'">Ganti Password</a> 
     </div>
   </div>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

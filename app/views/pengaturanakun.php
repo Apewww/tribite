@@ -33,6 +33,8 @@
     }
 
     .menu-item {
+      color: black;
+      text-decoration: none;
       background-color: white;
       border: 1px solid #ccc;
       padding: 18px 16px;
@@ -57,21 +59,19 @@
 <body>
   <div class="container">
     <div class="title">Pengaturan Akun</div>
-
-    <div class="menu-item" onclick="window.location.href='keamanan-akun.html'">
-      Keamanan & Akun
-      
+    <div>
+    <a href="/keamanandanakun" class="menu-item" onclick="window.location.href='keamanan-akun.html'">Keamanan dan Akun</a>  
     </div>
-    <div class="menu-item" onclick="window.location.href='alamat-saya.html'">
-      Alamat Saya
-      
+    
+    <div>
+    <a href="/alamatsaya" class="menu-item" onclick="window.location.href='alamat-saya.html'">Alamat Saya</a> 
     </div>
-    <div class="menu-item" onclick="window.location.href='pengaturan-notifikasi.html'">
-      Pengaturan Notifikasi
-      
+    
+    <div>
+    <a href="/pengaturannotifikasi" class="menu-item" onclick="window.location.href='pengaturan-notifikasi.html'">Pengaturan Notifikasi</a>
     </div>
   </div>
-  
+
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
