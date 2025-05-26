@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Form Alamat</title>
+  <!-- Link Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="alamat-style.css">
 </head>
 <style>
@@ -121,7 +123,11 @@
 
       <label>Nama Jalan, Gedung, No. Rumah</label>
       <input type="text" placeholder="">
+
+      <input type="submit" name="submit" value="Simpan Alamat" class="btn btn-danger mt-3">
     </form>
   </div>
+  <!-- Link Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
