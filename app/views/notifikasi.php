@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Notifikasi Pengiriman</title>
+  <!-- Link Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-pink-100 p-4 min-h-screen flex items-start justify-center">
@@ -20,6 +22,7 @@
       </p>
     </div>
   </div>
-
+  <!-- Link Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
