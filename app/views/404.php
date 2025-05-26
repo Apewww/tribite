@@ -1,6 +1,6 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; // Memanggil Config
-include PARTIALS_PATH . 'header.php'; // Memanggil Header
+include PARTIALS_PATH . 'header.php';
 ?>
 
 <div class="container min-vh-100 d-flex align-items-center justify-content-center" id="landingContent">

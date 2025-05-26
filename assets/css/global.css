@@ -83,6 +83,52 @@ div .dt-container div.dt-search input {
     width: 99% !important;
 }
 
+.menu-body {
+  background-color: #fce9e9;
+  font-family: 'Poppins', sans-serif;
+  padding-top: 56px; /* Tambahkan padding agar konten tidak tertutup navbar */
+}
+.menu-card {
+  margin: 30px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.menu-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+.menu-card h3 {
+  font-size: 16px;
+  margin-top: 10px;
+}
+.menu-card p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+.price {
+  font-weight: bold;
+  margin-top: 10px;
+}
+.menu-card button {
+  margin-top: 10px;
+}
+
+.auth-body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+}
+
+.chef-img {
+    width: 150px;
+}
+.login-box {
+    max-width: 400px;
+}
+
 @media (min-width: 768px) {
     body {
         margin: 10px 150px 0 150px;

@@ -1,142 +1,92 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formulir Daftar</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <style>
-    body {
-      background-color: #fce6e2;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+<?php
+$pageTitle = "Register";
+include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
+include PARTIALS_PATH . 'header.php';
+session_start();
 
-    .container {
-      background-color: #fff;
-      border-radius: 10px;
-      max-width: 400px;
-      width: 100%;
-      padding: 2rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+if (isset($_POST['register'])) {
+  $nama = htmlspecialchars(trim($_POST['nama']));
+  $email = htmlspecialchars(trim($_POST['email']));
+  $password = htmlspecialchars(trim($_POST['password']));
+  $telcode = $_POST['countryCode'];
+  $telepon = $_POST['phoneNumber'];
+  $phone = $telcode . $telepon;
 
-    .back-btn {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
+  // echo $nama;
+  // echo $email;
+  // echo $password;
+  // echo $telcode . $telepon;
+  $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+  
+  try {
+    $stmt = $conn->prepare("CALL CreateAkun(?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $nama, $email, $hashedPassword, $phone);
+    $stmt->execute();
 
-    h1 {
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
+    $_SESSION['notif'] = ["System", "Akun berhasil dibuat!"];
+    
+  } catch (mysqli_sql_exception $e) {
+    $_SESSION['notif'] = ["Error", $e->getMessage()];
+  }
 
-    p {
-      margin-top: 0;
-      margin-bottom: 2rem;
-    }
+  $stmt->close();
+  $conn->close();
+}
 
-    .input-wrapper {
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
+if (isset($_SESSION['notif'])) {
+  list($headMessage, $message) = $_SESSION['notif'];
+  unset($_SESSION['notif']);
+}
+?>
 
-    .input-wrapper input {
-      width: 95%;
-      padding: 0.75rem;
-      border: none;
-      border-bottom: 2px solid #000;
-      background: transparent;
-      font-size: 1rem;
-    }
+<div style="position: fixed; top: 1rem; right: 1rem; z-index: 1050;" id="notif">
+  <?php if (isset($headMessage) && isset($message)): ?>
+    <?php include PARTIALS_PATH . 'notifikasi.php'; ?>
+  <?php endif; ?>
+</div>
 
-    .input-wrapper .clear-btn {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      font-weight: bold;
-      color: #333;
-    }
+<div class="d-flex justify-content-center align-items-center auth-body" id="registerContent">
 
-    .input-wrapper select {
-      padding: 0.75rem 0.5rem 0.75rem 0;
-      border: none;
-      border-bottom: 2px solid #000;
-      background: transparent;
-      font-size: 1rem;
-      outline: none;
-    }
+  <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+    <div class="mb-3">
+      <a href="/login" class="btn btn-link p-0 text-decoration-none">
+        <i class="fa fa-arrow-left me-2"></i> Kembali
+      </a>
+    </div>
+    
+    <h1 class="h4 fw-bold mb-1">Daftar</h1>
+    <p class="text-muted mb-4">Lengkapi data dirimu di bawah ini!</p>
 
-    .input-wrapper input[type="tel"] {
-      padding: 0.75rem;
-      border: none;
-      border-bottom: 2px solid #000;
-      background: transparent;
-      font-size: 1rem;
-      width: 100%;
-      outline: none;
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 1rem;
-      background-color: #ea6e6e;
-      border: none;
-      color: white;
-      font-weight: bold;
-      font-size: 1rem;
-      border-radius: 1rem;
-      cursor: pointer;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.3rem;
-      font-weight: 500;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <a href="/login">
-      <button class="back-btn">
-        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-      </button>
-    </a>
-    <h1>Daftar</h1>
-    <p>Lengkapi data dirimu dibawah ini!</p>
-    <form method="post" action="" onsubmit="event.preventDefault()">
-      <label>Nama Lengkap</label>
-      <div class="input-wrapper">
-        <input type="text" placeholder="Masukkan nama lengkap" id="nama" required />
-        <span class="clear-btn" onclick="document.getElementById('nama').value=''">x</span>
+    <form method="POST" action="register">
+      <div class="mb-3">
+        <label for="nama" class="form-label">Nama Lengkap</label>
+        <div class="input-group">
+          <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan nama lengkap" required>
+          <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('nama').value=''">x</button>
+        </div>
       </div>
 
-      <label>Email</label>
-      <div class="input-wrapper">
-        <input type="email" placeholder="Masukkan email" id="email" required />
-        <span class="clear-btn" onclick="document.getElementById('email').value=''">x</span>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <div class="input-group">
+          <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan email" required>
+          <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('email').value=''">x</button>
+        </div>
       </div>
 
-      <label>Password</label>
-      <div class="input-wrapper">
-        <input type="password" placeholder="Masukkan password" id="password" required />
-        <span class="clear-btn" onclick="document.getElementById('password').value=''">x</span>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-group">
+          <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan password" required>
+          <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('password').value=''">x</button>
+        </div>
       </div>
 
-      <label>Nomor Telepon</label>
-      <div class="input-wrapper">
-        <div style="display: flex; align-items: center;">
-          <select id="countryCode">
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Nomor Telepon</label>
+        <div class="input-group">
+          <select class="form-select" name="countryCode" id="countryCode" style="max-width: 100px;">
+            <option selected>+62</option>
             <option value="Indonesia">+62</option>
             <option value="Afghanistan">+93</option>
             <option value="Armenia">+374</option>
@@ -187,13 +137,34 @@
             <option value="Vietnam">+84</option>
             <option value="Yemen">+967</option>
           </select>
-          <input type="tel" id="phoneNumber" placeholder="8123456789" style="flex: 1;" required />
+          <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="8123456789" required>
+          <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('phoneNumber').value=''">x</button>
         </div>
-        <span class="clear-btn" onclick="document.getElementById('phoneNumber').value=''">x</span>
       </div>
-      
-      <button type="submit" class="submit-btn"><a href="/profile">Lanjutkan</a></button>
+
+      <div class="d-grid mt-4">
+        <button type="submit" name="register" class="btn btn-danger">
+          Submit
+        </button>
+      </div>
     </form>
   </div>
-</body>
-</html>
+</div>
+<script>
+  setTimeout(() => {
+    const notif = document.getElementById('notif');
+    if (!notif) return;
+
+    notif.classList.add('fade');
+
+    notif.addEventListener('transitionend', () => {
+      notif.remove();
+    });
+
+    setTimeout(() => notif.style.display = 'none', 300);
+  }, 3000);
+</script>
+
+<?php
+include PARTIALS_PATH . 'footer.php'; 
+?> 

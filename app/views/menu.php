@@ -1,220 +1,83 @@
-<!-- filepath: c:\xampp\htdocs\tribite\app\views\menu.php -->
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tribite Menu</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <style>
-    body {
-      background-color: #fce9e9;
-      font-family: 'Poppins', sans-serif;
-      padding-top: 56px; /* Tambahkan padding agar konten tidak tertutup navbar */
-    }
-    .menu-card {
-      margin: 30px;
-      background-color: white;
-      border-radius: 15px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-    .menu-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-    }
-    .menu-card h3 {
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    .menu-card p {
-      font-size: 14px;
-      margin: 5px 0;
-    }
-    .price {
-      font-weight: bold;
-      margin-top: 10px;
-    }
-    .menu-card button {
-      margin-top: 10px;
-    }
-  </style>
-</head>
-<body>
-<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; ?>
-<?php include PARTIALS_PATH . 'navbar.php'; ?>
+<?php
+$pageTitle = "Menu";
+include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
+include PARTIALS_PATH . 'header.php';
 
-  <div class="container mt-0">
-    <div class="row g-4">
-      <!-- Menu Card 1 -->
-      <div class="col-md-4 col-lg-3">
-        <div class="menu-card">
-          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
-          <h3>Contoh Makanan 1</h3>
-          <p class="price">Rp. 30.000</p>
-          <div class="rating">
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
+$menuItems = [
+  [
+    'nama' => 'Nasi Goreng Spesial',
+    'harga' => 30000,
+    'gambar' => '/tribite/assets/img/LandingLogo.png',
+  ],
+  [
+    'nama' => 'Mie Ayam Jamur',
+    'harga' => 25000,
+    'gambar' => '/tribite/assets/img/LandingLogo.png',
+  ],
+  [
+    'nama' => 'Sate Ayam',
+    'harga' => 35000,
+    'gambar' => '/tribite/assets/img/LandingLogo.png',
+  ],
+  [
+    'nama' => 'Mie Ayam Jamur',
+    'harga' => 25000,
+    'gambar' => '/tribite/assets/img/LandingLogo.png',
+  ],
+    [
+    'nama' => 'Nasi Goreng Spesial',
+    'harga' => 30000,
+    'gambar' => '/tribite/assets/img/LandingLogo.png',
+  ],
+  [
+    'nama' => 'Mie Ayam Jamur',
+    'harga' => 25000,
+    'gambar' => '/tribite/assets/img/LandingLogo.png',
+  ],
+  [
+    'nama' => 'Sate Ayam',
+    'harga' => 35000,
+    'gambar' => '/tribite/assets/img/LandingLogo.png',
+  ],
+  [
+    'nama' => 'Mie Ayam Jamur',
+    'harga' => 25000,
+    'gambar' => '/tribite/assets/img/LandingLogo.png',
+  ],
+];
+?>
+
+
+<?php include PARTIALS_PATH . 'navbar.php';?>
+<div class="container min-vh-100 d-flex menu-body" id="menuContent">
+<div class="container py-4">
+  <div class="row">
+    <?php foreach ($menuItems as $item): ?>
+      <div class="col-md-4 col-lg-3 mb-4">
+        <div class="card h-100 text-center d-flex flex-column">
+          <img src="<?= $item['gambar']; ?>" class="card-img-top img-fluid" alt="<?= $item['nama']; ?>" style="height: 150px; object-fit: cover;">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <h5 class="card-title"><?= $item['nama']; ?></h5>
+            <p class="card-text text-danger fw-bold">Rp. <?= number_format($item['harga'], 0, ',', '.'); ?></p>
+            <div class="rating mb-2">
+              <?php for ($i = 0; $i < 5; $i++): ?>
+                <i class="fa-regular fa-star"></i>
+              <?php endfor; ?>
+            </div>
+            <div class="mt-auto">
+              <button class="btn btn-danger btn-sm me-1"><i class="fa fa-cart-plus"></i></button>
+              <button class="btn btn-danger btn-sm">Pesan</button>
+            </div>
           </div>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
-          <button class="btn btn-danger btn-sm">Pesan</button>
-        </div>
-      </div>  
-      <!-- Tambahkan menu lainnya di sini -->
-      <div class="col-md-4 col-lg-3">
-        <div class="menu-card">
-          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
-          <h3>Contoh Makanan 1</h3>
-          <p class="price">Rp. 30.000</p>
-          <div class="rating">
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
-          <button class="btn btn-danger btn-sm">Pesan</button>
-        </div>
-      </div>
-      <div class="col-md-4 col-lg-3">
-        <div class="menu-card">
-          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
-          <h3>Contoh Makanan 1</h3>
-          <p class="price">Rp. 30.000</p>
-          <div class="rating">
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
-          <button class="btn btn-danger btn-sm">Pesan</button>
-        </div>
-      </div>
-      <div class="col-md-4 col-lg-3">
-        <div class="menu-card">
-          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
-          <h3>Contoh Makanan 1</h3>
-          <p class="price">Rp. 30.000</p>
-          <div class="rating">
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
-          <button class="btn btn-danger btn-sm">Pesan</button>
-        </div>
-      </div>
-      <div class="col-md-4 col-lg-3">
-        <div class="menu-card">
-          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
-          <h3>Contoh Makanan 1</h3>
-          <p class="price">Rp. 30.000</p>
-          <div class="rating">
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
-          <button class="btn btn-danger btn-sm">Pesan</button>
         </div>
       </div>
-      <div class="col-md-4 col-lg-3">
-        <div class="menu-card">
-          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
-          <h3>Contoh Makanan 1</h3>
-          <p class="price">Rp. 30.000</p>
-          <div class="rating">
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
-          <button class="btn btn-danger btn-sm">Pesan</button>
-        </div>
-      </div>
-      <div class="col-md-4 col-lg-3">
-        <div class="menu-card">
-          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
-          <h3>Contoh Makanan 1</h3>
-          <p class="price">Rp. 30.000</p>
-          <div class="rating">
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
-          <button class="btn btn-danger btn-sm">Pesan</button>
-        </div>
-      </div>
-      <div class="col-md-4 col-lg-3">
-        <div class="menu-card">
-          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
-          <h3>Contoh Makanan 1</h3>
-          <p class="price">Rp. 30.000</p>
-          <div class="rating">
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
-          <button class="btn btn-danger btn-sm">Pesan</button>
-        </div>
-      </div>
-      <div class="col-md-4 col-lg-3">
-        <div class="menu-card">
-          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
-          <h3>Contoh Makanan 1</h3>
-          <p class="price">Rp. 30.000</p>
-          <div class="rating">
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
-          <button class="btn btn-danger btn-sm">Pesan</button>
-        </div>
-      </div>
-      <div class="col-md-4 col-lg-3">
-        <div class="menu-card">
-          <img src="/tribite/assets/img/LandingLogo.png" alt="Contoh Makanan">
-          <h3>Contoh Makanan 1</h3>
-          <p class="price">Rp. 30.000</p>
-          <div class="rating">
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-cart-plus"></i></button>
-          <button class="btn btn-danger btn-sm">Pesan</button>
-        </div>
-      </div>
-    </div>
+    <?php endforeach; ?>
   </div>
-</body>
-</html>
+</div>
+
+</div>
+
+
+<?php
+include PARTIALS_PATH . 'footer.php'; 
+?> 

@@ -1,8 +1,7 @@
 <?php
+$pageTitle = "Home";
 include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
 include PARTIALS_PATH . 'header.php';
-// echo "Requested URI: " . $uri;
-
 ?>
 
 
