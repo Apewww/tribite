@@ -2,7 +2,7 @@
 
 $request = $_SERVER['REQUEST_URI'];
 $viewDir = '/app/views/';
-$dbDir = '/app/db/';
+// $dbDir = '/app/db/';
 
 switch ($request) {
     case '/home':
@@ -79,6 +79,14 @@ switch ($request) {
     
     case '/reservasi':
         require __DIR__ . $viewDir . 'reservasi.php';
+        break;    
+
+    case '/logout':
+        require __DIR__ . $viewDir . 'logout.php';
+        break;    
+
+    case '/akun_edit':
+        require __DIR__ . $viewDir . 'akun_edit.php';
         break;    
 
     default:

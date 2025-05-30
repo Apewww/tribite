@@ -4,6 +4,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php';
 include PARTIALS_PATH . 'header.php';
 session_start();
 
+if (isset($_SESSION['user']['nama'])) {
+    header('Location: dashboard');
+    exit;
+} 
+
 if (isset($_POST['login'])) {
     $email = htmlspecialchars(trim($_POST['email']));
     $password = htmlspecialchars(trim($_POST['password']));
@@ -61,8 +66,8 @@ if (isset($_SESSION['notif'])) {
         </form>
 
         <div class="mt-3">
-          <p class="small mb-1">Belum punya akun? <a href="/register">Daftar sekarang</a></p>
-          <p class="small">Kembali ke <a href="/home">Home</a></p>
+          <p class="small mb-1">Belum punya akun? <a href="/register" class="text-decoration-none">Daftar sekarang</a></p>
+          <p class="small">Kembali ke <a href="/home" class="text-decoration-none">Kembali</a></p>
         </div>
 
     </div>

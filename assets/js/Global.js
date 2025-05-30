@@ -43,3 +43,20 @@ new DataTable('#katalogTable', {
   dom: '<"top w-100"f>rt<"bottom d-flex justify-content-between justify-content-md-end align-items-center"lp><"clear">'
 
 });
+
+const notif = document.getElementById('notif');
+if (notif) {
+  setTimeout(() => {
+    notif.classList.add('visually-hidden');
+  }, 3000);
+}
+
+const editButtons = document.querySelectorAll('#edit-akun');
+  editButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      document.getElementById('edit-id').value = button.dataset.id;
+      document.getElementById('data-nama').value = button.dataset.nama;
+      document.getElementById('data-email').value = button.dataset.email;
+      document.getElementById('data-role').value = button.dataset.role;
+    });
+  });

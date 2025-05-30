@@ -13,13 +13,13 @@
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-black" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="/tribite/assets/img/aaaa.png" alt="profile" width="30" height="30" class="rounded-circle">
-                <span class="ms-2">TRIBITE</span>
+                <span class="ms-2"><?= $username ?? "TRIBITE"; ?></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                 <li><a class="dropdown-item" href="/profile">Profile</a></li>
                 <li><a class="dropdown-item" href="#">Settings</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="/login">Keluar</a></li>
+                <li><a class="dropdown-item" href="/logout">Keluar</a></li>
             </ul>
         </div>
     </span>
@@ -54,7 +54,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="/akun" class="nav-link text-black link-danger">
-                        <i class="fa fa-address-card-o"></i> <span class="ms-2">Akun</span>
+                        <i class="fa fa-address-card"></i> <span class="ms-2">Akun</span>
                     </a>
                 </li>
             </ul>

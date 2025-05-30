@@ -4,6 +4,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php';
 include PARTIALS_PATH . 'header.php';
 session_start();
 
+if (isset($_SESSION['user']['nama'])) {
+    header('Location: dashboard');
+    exit;
+} 
+
 if (isset($_POST['register'])) {
   $nama = htmlspecialchars(trim($_POST['nama']));
   $email = htmlspecialchars(trim($_POST['email']));

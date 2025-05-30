@@ -1,10 +1,45 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php';
-include PARTIALS_PATH . 'header.php'; 
-// echo "Requested URI: " . $uri;
+$pageTitle = "Akun Management";
+include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
+include PARTIALS_PATH . 'header.php';
 
+
+session_start();
+if ($_SESSION['user']['nama']) {
+    $username = $_SESSION['user']['nama'];
+} else {
+    header('Location: login');
+    exit;
+}
+// print_r($_SESSION['user']);
+$stmt = $conn->prepare("CALL GetAkun");
+$stmt->execute();
+$result = $stmt->get_result();
+$akun = [];
+if ($result->num_rows >= 1) {
+    while ($row = $result->fetch_assoc()) {
+        $akun[] = $row;
+    }
+} else {
+    $_SESSION['notif'] = ["Warn", "Akun tidak ditemukan!"];
+}
+$stmt->close();
+$conn->close();
+
+// echo '<pre>';
+// print_r($akun);
+// echo '</pre>';
+if (isset($_SESSION['notif'])) {
+  list($headMessage, $message) = $_SESSION['notif'];
+  unset($_SESSION['notif']);
+}
 ?>
 
+<div style="position: fixed; top: 1rem; right: 1rem; z-index: 1050;" id="notif">
+  <?php if (isset($headMessage) && isset($message)): ?>
+    <?php include PARTIALS_PATH . 'notifikasi.php'; ?>
+  <?php endif; ?>
+</div>
 
 <div class="container-fluid">
     <div class="row">
@@ -29,69 +64,58 @@ include PARTIALS_PATH . 'header.php';
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Rafly Anggara Putra</td>
-                                <td>raflyaptr24@if.unjani.ac.id</td>
-                                <td>Admin</td>
-                                <td>Aktif</td>
-                                <td>
-                                    <div class="d-inline d-md-flex justify-content-md-center gap-2">
-                                        <button class="btn btn-primary">Edit</button>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Nabila Dwi Marsono</td>
-                                <td>example@if.unjani.ac.id</td>
-                                <td>Admin</td>
-                                <td>Aktif</td>
-                                <td>
-                                    <div class="d-inline d-md-flex justify-content-md-center gap-2">
-                                        <button class="btn btn-primary">Edit</button>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Rafi Saputra</td>
-                                <td>example@if.unjani.ac.id</td>
-                                <td>Admin</td>
-                                <td>Aktif</td>
-                                <td>
-                                    <div class="d-inline d-md-flex justify-content-md-center gap-2">
-                                        <button class="btn btn-primary">Edit</button>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Aulia</td>
-                                 <td>example@if.unjani.ac.id</td>
-                                <td>Admin</td>
-                                <td>Aktif</td>
-                                <td>
-                                    <div class="d-inline d-md-flex justify-content-md-center gap-2">
-                                        <button class="btn btn-primary">Edit</button>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Insan Najib</td>
-                                 <td>example@if.unjani.ac.id</td>
-                                <td>Admin</td>
-                                <td>Aktif</td>
-                                <td>
-                                    <div class="d-inline d-md-flex justify-content-md-center gap-2">
-                                        <button class="btn btn-primary">Edit</button>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
+                            <?php foreach ($akun as $row): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($row['nama']) ?></td>
+                                    <td><?= htmlspecialchars($row['email']) ?></td>
+                                    <td><?= $row['role'] ? 'Admin' : 'User' ?></td>
+                                    <td><?= $row['active'] ? 'Aktif' : 'Nonaktif' ?></td>
+                                    <td>
+                                        <div class="d-inline d-md-flex justify-content-md-center gap-2">
+                                            <button type="button" class="btn btn-primary" data-id="<?= $row['id'] ?>" data-nama="<?= htmlspecialchars($row['nama']) ?>" data-email="<?= htmlspecialchars($row['email']) ?>" data-role="<?= $row['role'] ?>" data-bs-toggle="modal" data-bs-target="#EditModal" id="edit-akun">Edit</button>
+                                            <!-- <a href="/akun/edit.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a> -->
+                                            <a href="/akun/delete.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin hapus akun ini?')">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
             </div>
+        </div>
+        <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <form method="POST" action="akun_edit">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="EditModalLabel">Edit</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <input type="hidden" name="id" id="edit-id">
+                    <div class="mb-3">
+                        <input type="text" name="nama" class="form-control" placeholder="Nama" id="data-nama" value="">
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" name="email" class="form-control" placeholder="Email" id="data-email">
+                    </div>
+                    <div class="mb-3">
+                        <select name="role" class="form-control" id="data-role">
+                            <option value="0">User</option>
+                            <option value="1">Admin</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+            </form>
+          </div>
         </div>
     </div>
 </div>
