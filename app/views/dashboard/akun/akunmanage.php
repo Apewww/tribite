@@ -8,7 +8,7 @@ session_start();
 if ($_SESSION['user']['nama']) {
     $username = $_SESSION['user']['nama'];
 } else {
-    header('Location: login');
+    header('Location: /login');
     exit;
 }
 // print_r($_SESSION['user']);
@@ -74,7 +74,10 @@ if (isset($_SESSION['notif'])) {
                                         <div class="d-inline d-md-flex justify-content-md-center gap-2">
                                             <button type="button" class="btn btn-primary" data-id="<?= $row['id'] ?>" data-nama="<?= htmlspecialchars($row['nama']) ?>" data-email="<?= htmlspecialchars($row['email']) ?>" data-role="<?= $row['role'] ?>" data-bs-toggle="modal" data-bs-target="#EditModal" id="edit-akun">Edit</button>
                                             <!-- <a href="/akun/edit.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a> -->
-                                            <a href="/akun/delete.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin hapus akun ini?')">Delete</a>
+                                            <form action="/akun/akun_delete" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin hapus akun ini?')">
+                                              <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                              <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -85,7 +88,7 @@ if (isset($_SESSION['notif'])) {
         </div>
         <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
-            <form method="POST" action="akun_edit">
+            <form method="POST" action="/akun/akun_edit">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h1 class="modal-title fs-5" id="EditModalLabel">Edit</h1>

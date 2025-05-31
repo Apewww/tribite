@@ -2,6 +2,7 @@
 $pageTitle = "Menu";
 include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
 include PARTIALS_PATH . 'header.php';
+session_start();
 
 $menuItems = [
   [
@@ -45,6 +46,7 @@ $menuItems = [
     'gambar' => '/tribite/assets/img/LandingLogo.png',
   ],
 ];
+
 ?>
 
 
@@ -52,6 +54,12 @@ $menuItems = [
 <div class="container min-vh-100 d-flex menu-body" id="menuContent">
 <div class="container py-4">
   <div class="row">
+    <div class="mb-4">
+      <!-- <input type="text" id="searchInput" class="form-control" placeholder="Cari menu..." onkeyup="filterMenu()"> -->
+      <!-- <input type="text" id="searchInput" class="form-control" placeholder="Cari menu..." onkeyup="filterMenu()" value="<?= htmlspecialchars($_POST['q'] ?? '') ?>"> -->
+      <input type="text" id="searchInput" class="form-control" name="q" value="<?= htmlspecialchars($_POST['q'] ?? '') ?>" 
+       oninput="filterMenu()" />
+    </div>
     <?php foreach ($menuItems as $item): ?>
       <div class="col-md-4 col-lg-3 mb-4">
         <div class="card h-100 text-center d-flex flex-column">
@@ -74,9 +82,15 @@ $menuItems = [
     <?php endforeach; ?>
   </div>
 </div>
-
 </div>
-
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('searchInput');
+    if (input && input.value.trim() !== '') {
+      filterMenu();
+    }
+  });
+</script>
 
 <?php
 include PARTIALS_PATH . 'footer.php'; 

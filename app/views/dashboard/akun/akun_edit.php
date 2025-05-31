@@ -3,7 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php';
 session_start();
 
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 1) {
-    header('Location: home');
+    header('Location: /home');
     exit;
 }
 
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     $conn->close();
 
-    header('Location: akun');
+    header('Location: /akun');
     exit;
 }
 ?>

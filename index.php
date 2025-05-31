@@ -10,11 +10,11 @@ switch ($request) {
         break;
 
     case '/login':
-        require __DIR__ . $viewDir . 'login.php';
+        require __DIR__ . $viewDir . 'auth/login.php';
         break;
 
     case '/menu':
-        require __DIR__ . $viewDir . 'menu.php';
+        require __DIR__ . $viewDir . 'katalog/menu.php';
         break;
 
     case '/profile':
@@ -26,7 +26,7 @@ switch ($request) {
         break;
 
     case '/register':
-        require __DIR__ . $viewDir . 'register.php';
+        require __DIR__ . $viewDir . 'auth/register.php';
         break;
 
     case '/notifikasi':
@@ -46,7 +46,7 @@ switch ($request) {
         break;
 
     case '/akun':
-        require __DIR__ . $viewDir . 'akunmanage.php';
+        require __DIR__ . $viewDir . 'dashboard/akun/akunmanage.php';
         break;
 
     case '/bahasa':
@@ -82,11 +82,15 @@ switch ($request) {
         break;    
 
     case '/logout':
-        require __DIR__ . $viewDir . 'logout.php';
+        require __DIR__ . $viewDir . 'auth/logout.php';
         break;    
 
-    case '/akun_edit':
-        require __DIR__ . $viewDir . 'akun_edit.php';
+    case '/akun/akun_edit':
+        require __DIR__ . $viewDir . 'dashboard/akun/akun_edit.php';
+        break;    
+
+    case '/akun/akun_delete':
+        require __DIR__ . $viewDir . 'dashboard/akun/akun_delete.php';
         break;    
 
     default:

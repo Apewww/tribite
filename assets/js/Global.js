@@ -60,3 +60,30 @@ const editButtons = document.querySelectorAll('#edit-akun');
       document.getElementById('data-role').value = button.dataset.role;
     });
   });
+
+function toggleSearchInput(e) {
+    e.preventDefault();
+    const wrapper = document.getElementById('navSearchWrapper');
+    const input = document.getElementById('navSearchInput');
+    wrapper.classList.toggle('d-none');
+    if (!wrapper.classList.contains('d-none')) {
+      input.focus();
+    }
+}
+
+function filterMenu() {
+  const input = document.getElementById('searchInput');
+  if(!input) return;
+
+  const filter = input.value.toLowerCase();
+  const cards = document.querySelectorAll('.menu-body .card');
+  
+  cards.forEach(card => {
+    const title = card.querySelector('.card-title').textContent.toLowerCase();
+    if(title.includes(filter)) {
+      card.parentElement.style.display = "block";
+    } else {
+      card.parentElement.style.display = "none";
+    }
+  });
+}

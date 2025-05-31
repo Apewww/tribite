@@ -1,0 +1,29 @@
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
+session_start();
+
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 1) {
+    header('Location: /home');
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+    $id = $_POST['id'];
+
+    $stmt = $conn->prepare("CALL DeleteAkun(?)");
+    $stmt->bind_param("i", $id);
+    
+    try {
+        $stmt->execute();
+        $_SESSION['notif'] = ["System", "Berhasil di Delete!"];
+    } catch (mysqli_sql_exception $e) {
+        $_SESSION['notif'] = ["Warn", "Gagal delete akun: " . $e->getMessage()];
+    }
+
+    $stmt->close();
+    $conn->close();
+
+    header('Location: /akun');
+    exit;
+}
+?>

@@ -117,6 +117,10 @@ div .dt-container div.dt-search input {
   margin-top: 10px;
 }
 
+.navbar {
+  background-color: #fce9e9; /* Warna latar belakang navbar */
+}
+
 .auth-body {
     font-family: 'Poppins', sans-serif;
     height: 100vh;

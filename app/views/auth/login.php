@@ -5,7 +5,7 @@ include PARTIALS_PATH . 'header.php';
 session_start();
 
 if (isset($_SESSION['user']['nama'])) {
-    header('Location: dashboard');
+    header('Location: /dashboard');
     exit;
 } 
 

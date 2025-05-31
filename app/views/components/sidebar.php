@@ -6,10 +6,15 @@
 </style>
 
 <nav class="navbar navbar-light bg-pink px-3">
-    <button class="btn btn-outline-danger" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
-        <i class="fa fa-bars"></i>
-    </button>
-    <span class="navbar-brand ms-2">
+    <span class="navbar-brand">
+        <button class="btn btn-outline-danger" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+            <i class="fa fa-bars"></i>
+        </button>
+        <a href="/home" class="text-decoration-none text-black">
+            <span class="ms-2">Tribite AdminPanel</span>
+        </a>
+    </span>
+    <span class="ms-2">
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-black" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="/tribite/assets/img/aaaa.png" alt="profile" width="30" height="30" class="rounded-circle">
@@ -37,11 +42,11 @@
                 <span class="fs-5 text-red">Tribite AdminPanel</span>
             </a> -->
             <ul class="nav nav-pills flex-column w-100" id="menu">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="/home" class="nav-link text-black link-danger">
                         <i class="fa fa-home"></i> <span class="ms-2">Home</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="/dashboard" class="nav-link text-black link-danger">
                         <i class="fa fa-tachometer"></i> <span class="ms-2">Dashboard</span>
