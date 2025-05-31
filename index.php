@@ -42,7 +42,7 @@ switch ($request) {
         break;
         
     case '/katalogmanage':
-        require __DIR__ . $viewDir . 'katalogmanage.php';
+        require __DIR__ . $viewDir . 'dashboard/katalog/katalogmanage.php';
         break;
 
     case '/akun':
@@ -92,6 +92,19 @@ switch ($request) {
     case '/akun/akun_delete':
         require __DIR__ . $viewDir . 'dashboard/akun/akun_delete.php';
         break;    
+
+    case '/katalogmanage/kategori_add':
+        require __DIR__ . $viewDir . 'dashboard/katalog/kategori_tambah.php';
+        break;  
+
+    case '/katalogmanage/katalog_add':
+        require __DIR__ . $viewDir . 'dashboard/katalog/katalog_tambah.php';
+        break;   
+
+    case '/katalogmanage/katalog_edit':
+        require __DIR__ . $viewDir . 'dashboard/katalog/katalog_edit.php';
+        break;   
+        
 
     default:
         http_response_code(404);

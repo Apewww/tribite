@@ -36,7 +36,7 @@
                 </li>
 
                 <?php if (isset($_SESSION['user'])): ?>
-                    <li class="nav-item dropdown ms-md-3">
+                    <li class="nav-item dropdown ms-md-4">
                         <a href="#" class="btn btn-danger dropdown-toggle d-flex align-items-center justify-content-center rounded-5 px-2 py-2"
                            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-circle-user text-white me-2" style="font-size: 20px;"></i>
@@ -52,8 +52,8 @@
                         </ul>
                     </li>
                 <?php else: ?>
-                    <li class="nav-item">
-                        <a href="/login" class="btn btn-danger rounded-5 d-block px-3 py-2">Masuk</a>
+                    <li class="nav-item ms-md-2">
+                        <a href="/login" class="btn btn-danger rounded-5 d-block mx-md-2 ">Masuk</a>
                     </li>
                 <?php endif; ?>
             </ul>

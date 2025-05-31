@@ -52,14 +52,32 @@ if (notif) {
 }
 
 const editButtons = document.querySelectorAll('#edit-akun');
-  editButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      document.getElementById('edit-id').value = button.dataset.id;
-      document.getElementById('data-nama').value = button.dataset.nama;
-      document.getElementById('data-email').value = button.dataset.email;
-      document.getElementById('data-role').value = button.dataset.role;
-    });
+editButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    document.getElementById('edit-id').value = button.dataset.id;
+    document.getElementById('data-nama').value = button.dataset.nama;
+    document.getElementById('data-email').value = button.dataset.email;
+    document.getElementById('data-role').value = button.dataset.role;
   });
+});
+
+const buttons = document.querySelectorAll('#edit-katalog');
+buttons.forEach(button => {
+    button.addEventListener('click', function () {
+        const id = this.dataset.id;
+        const nama = this.dataset.nama;
+        const deskripsi = this.dataset.deskripsi;
+        const harga = this.dataset.harga;
+        const kategori = this.dataset.kategori;
+        const status = this.dataset.status
+        document.getElementById('data-id').value = id;
+        document.getElementById('data-nama').value = nama;
+        document.getElementById('data-deskripsi').value = deskripsi;
+        document.getElementById('data-harga').value = harga;
+        document.getElementById('data-kategori').value = kategori;
+        document.getElementById('data-status').value = status;
+    });
+});
 
 function toggleSearchInput(e) {
     e.preventDefault();

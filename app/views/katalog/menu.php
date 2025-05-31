@@ -4,48 +4,20 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php';
 include PARTIALS_PATH . 'header.php';
 session_start();
 
-$menuItems = [
-  [
-    'nama' => 'Nasi Goreng Spesial',
-    'harga' => 30000,
-    'gambar' => '/tribite/assets/img/LandingLogo.png',
-  ],
-  [
-    'nama' => 'Mie Ayam Jamur',
-    'harga' => 25000,
-    'gambar' => '/tribite/assets/img/LandingLogo.png',
-  ],
-  [
-    'nama' => 'Sate Ayam',
-    'harga' => 35000,
-    'gambar' => '/tribite/assets/img/LandingLogo.png',
-  ],
-  [
-    'nama' => 'Mie Ayam Jamur',
-    'harga' => 25000,
-    'gambar' => '/tribite/assets/img/LandingLogo.png',
-  ],
-    [
-    'nama' => 'Nasi Goreng Spesial',
-    'harga' => 30000,
-    'gambar' => '/tribite/assets/img/LandingLogo.png',
-  ],
-  [
-    'nama' => 'Mie Ayam Jamur',
-    'harga' => 25000,
-    'gambar' => '/tribite/assets/img/LandingLogo.png',
-  ],
-  [
-    'nama' => 'Sate Ayam',
-    'harga' => 35000,
-    'gambar' => '/tribite/assets/img/LandingLogo.png',
-  ],
-  [
-    'nama' => 'Mie Ayam Jamur',
-    'harga' => 25000,
-    'gambar' => '/tribite/assets/img/LandingLogo.png',
-  ],
-];
+$katalog = [];
+if ($stmt = $conn->prepare("CALL GetKatalog()")) {
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $katalog[] = $row;
+        }
+    } else {
+        $_SESSION['notif'] = ["Warn", "Katalog tidak ditemukan!"];
+    }
+    $stmt->close();
+    $conn->next_result();
+}
 
 ?>
 
@@ -60,7 +32,7 @@ $menuItems = [
       <input type="text" id="searchInput" class="form-control" name="q" value="<?= htmlspecialchars($_POST['q'] ?? '') ?>" 
        oninput="filterMenu()" />
     </div>
-    <?php foreach ($menuItems as $item): ?>
+    <?php foreach ($katalog as $item): ?>
       <div class="col-md-4 col-lg-3 mb-4">
         <div class="card h-100 text-center d-flex flex-column">
           <img src="<?= $item['gambar']; ?>" class="card-img-top img-fluid" alt="<?= $item['nama']; ?>" style="height: 150px; object-fit: cover;">

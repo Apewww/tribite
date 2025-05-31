@@ -1,5 +1,6 @@
 <?php
 define('PARTIALS_PATH', $_SERVER['DOCUMENT_ROOT'] . "/tribite/app/views/components/");
+define('UPLOAD_PATH', "/tribite/assets/img/upload/");
 
 $host = "localhost";
 $user = "root";
