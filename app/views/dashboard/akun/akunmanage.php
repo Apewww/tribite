@@ -72,7 +72,7 @@ if (isset($_SESSION['notif'])) {
                                     <td><?= $row['active'] ? 'Aktif' : 'Nonaktif' ?></td>
                                     <td>
                                         <div class="d-inline d-md-flex justify-content-md-center gap-2">
-                                            <button type="button" class="btn btn-primary" data-id="<?= $row['id'] ?>" data-nama="<?= htmlspecialchars($row['nama']) ?>" data-email="<?= htmlspecialchars($row['email']) ?>" data-role="<?= $row['role'] ?>" data-bs-toggle="modal" data-bs-target="#EditModal" id="edit-akun">Edit</button>
+                                            <button type="button" class="btn btn-primary" data-id="<?= $row['id'] ?>" data-nama="<?= htmlspecialchars($row['nama']) ?>" data-email="<?= htmlspecialchars($row['email']) ?>" data-role="<?= $row['role'] ?>" data-bs-toggle="modal" data-bs-target="#AkunEditModal" id="edit-akun">Edit</button>
                                             <!-- <a href="/akun/edit.php?id=<?= $row['id'] ?>" class="btn btn-primary btn-sm">Edit</a> -->
                                             <form action="/akun/akun_delete" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin hapus akun ini?')">
                                               <input type="hidden" name="id" value="<?= $row['id'] ?>">
@@ -86,7 +86,7 @@ if (isset($_SESSION['notif'])) {
                     </table>
             </div>
         </div>
-        <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="AkunEditModal" aria-hidden="true">
+        <div class="modal fade" id="AkunEditModal" tabindex="-1" aria-labelledby="AkunEditModal" aria-hidden="true">
           <div class="modal-dialog">
             <form method="POST" action="/akun/akun_edit">
                 <div class="modal-content">

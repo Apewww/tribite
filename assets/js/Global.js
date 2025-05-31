@@ -51,8 +51,8 @@ if (notif) {
   }, 3000);
 }
 
-const editButtons = document.querySelectorAll('#edit-akun');
-editButtons.forEach(button => {
+const editAkunButtons = document.querySelectorAll('#edit-akun');
+editAkunButtons.forEach(button => {
   button.addEventListener('click', () => {
     document.getElementById('edit-id').value = button.dataset.id;
     document.getElementById('data-nama').value = button.dataset.nama;
@@ -61,23 +61,36 @@ editButtons.forEach(button => {
   });
 });
 
-const buttons = document.querySelectorAll('#edit-katalog');
-buttons.forEach(button => {
-    button.addEventListener('click', function () {
-        const id = this.dataset.id;
-        const nama = this.dataset.nama;
-        const deskripsi = this.dataset.deskripsi;
-        const harga = this.dataset.harga;
-        const kategori = this.dataset.kategori;
-        const status = this.dataset.status
-        document.getElementById('data-id').value = id;
-        document.getElementById('data-nama').value = nama;
-        document.getElementById('data-deskripsi').value = deskripsi;
-        document.getElementById('data-harga').value = harga;
-        document.getElementById('data-kategori').value = kategori;
-        document.getElementById('data-status').value = status;
-    });
+const editAkunModal = document.getElementById('AkunEditModal');
+editAkunModal.addEventListener('show.bs.modal', function (event) {
+  const button = event.relatedTarget;
+  const id = button.getAttribute('edit-id');
+  const nama = button.getAttribute('data-nama');
+  const email = button.getAttribute('data-email');
+  const role = button.getAttribute('data-role');
+  this.querySelector('#data-id').value = id || '';
+  this.querySelector('#data-nama').value = nama || '';
+  this.querySelector('#data-email').value = email || '';
+  this.querySelector('#data-role').value = role || '';
 });
+
+const editKatalogModal = document.getElementById('EditKatalog');
+editKatalogModal.addEventListener('show.bs.modal', function (event) {
+  const button = event.relatedTarget;
+  const id = button.getAttribute('data-id');
+  const nama = button.getAttribute('data-nama');
+  const deskripsi = button.getAttribute('data-deskripsi');
+  const harga = button.getAttribute('data-harga');
+  const kategori = button.getAttribute('data-kategori');
+  const status = button.getAttribute('data-status');
+  this.querySelector('#data-id').value = id || '';
+  this.querySelector('#data-nama').value = nama || '';
+  this.querySelector('#data-deskripsi').value = deskripsi || '';
+  this.querySelector('#data-harga').value = harga || '';
+  this.querySelector('#data-kategori').value = kategori || '';
+  this.querySelector('#data-status').value = status || '';
+});
+
 
 function toggleSearchInput(e) {
     e.preventDefault();

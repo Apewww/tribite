@@ -242,8 +242,6 @@ if (isset($_SESSION['notif'])) {
             </form>
           </div>
         </div>
-
-
     </div>
 </div>
 
