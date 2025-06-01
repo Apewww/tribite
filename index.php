@@ -38,7 +38,7 @@ switch ($request) {
         break;
 
     case '/dashboard':
-        require __DIR__ . $viewDir . 'dashboard.php';
+        require __DIR__ . $viewDir . 'dashboard/dashboard.php';
         break;
         
     case '/katalogmanage':
@@ -104,6 +104,22 @@ switch ($request) {
     case '/katalogmanage/katalog_edit':
         require __DIR__ . $viewDir . 'dashboard/katalog/katalog_edit.php';
         break;   
+
+    case '/couponmanage':
+        require __DIR__ . $viewDir . 'dashboard/coupon/couponmanage.php';
+        break;  
+
+    case '/couponmanage/coupon_add':
+        require __DIR__ . $viewDir . 'dashboard/coupon/coupon_tambah.php';
+        break;   
+
+    case '/couponmanage/coupon_edit':
+        require __DIR__ . $viewDir . 'dashboard/coupon/coupon_edit.php';
+        break;   
+
+    case '/couponmanage/coupon_delete':
+        require __DIR__ . $viewDir . 'dashboard/coupon/coupon_delete.php';
+        break;    
         
 
     default:

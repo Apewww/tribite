@@ -53,7 +53,7 @@ if (isset($_SESSION['notif'])) {
                     <p>Halaman pengelolaan akun.</p>
                   </div>
                 </div>
-                <table id="myTable" class="table nowrap w-100">
+                <table id="akunTable" class="table nowrap w-100">
                         <thead>
                             <tr>
                                 <th data-priority="1">Nama</th>

@@ -1,8 +1,9 @@
 <?php
-$pageTitle = "Katalog Management";
+$pageTitle = "Kupon Management";
 include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
 include PARTIALS_PATH . 'header.php';
 session_start();
+
 
 if (!isset($_SESSION['user']['nama'])) {
     header('Location: /login');
@@ -11,31 +12,16 @@ if (!isset($_SESSION['user']['nama'])) {
 
 $username = $_SESSION['user']['nama'];
 
-$katalog = [];
-if ($stmt = $conn->prepare("CALL GetKatalog()")) {
+$kupon = [];
+if ($stmt = $conn->prepare("CALL GetKupon()")) {
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $katalog[] = $row;
+            $kupon[] = $row;
         }
     } else {
-        $_SESSION['notif'] = ["Warn", "Katalog tidak ditemukan!"];
-    }
-    $stmt->close();
-    $conn->next_result();
-}
-
-$kategori = [];
-if ($stmt = $conn->prepare("CALL GetKategori()")) {
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $kategori[] = $row;
-        }
-    } else {
-        $_SESSION['notif'] = ["Warn", "Kategori tidak ditemukan!"];
+        $_SESSION['notif'] = ["Warn", "Kupon tidak ditemukan!"];
     }
     $stmt->close();
     $conn->next_result();
@@ -67,52 +53,49 @@ if (isset($_SESSION['notif'])) {
                     <h3>Katalog Management</h3>
                     <p>Halaman pengelolaan katalog.</p>
                   </div>
-                  <div class="d-md-flex flex-md-column">
-                    <button type="button" class="btn btn-primary w-100 w-md-auto mb-2" data-bs-toggle="modal" data-bs-target="#AddKategori" id="Add-Kategori">+ Tambah Kategori</button>
-                    <button type="button" class="btn btn-success w-100 w-md-auto mb-4" data-bs-toggle="modal" data-bs-target="#AddKatalog" id="Add-Katalog">+ Tambah Produk</button>
-                  </div>
+                  <button type="button" class="btn btn-success w-100 w-md-auto mb-4" data-bs-toggle="modal" data-bs-target="#AddKupon" id="Add-Kupon">+ Tambah Kupon</button>
                 </div>
-                <table id="katalogTable" class="table nowrap w-100">
+                <table id="kuponTable" class="table nowrap w-100">
                         <thead>
                             <tr>
-                                <th data-priority="1">Nama Produk</th>
+                                <th data-priority="1">Kode</th>
                                 <th>Deskripsi</th>
-                                <th>Harga</th>
-                                <th>Kategori</th>
-                                <th>Rating</th>
+                                <th>Tipe Kupon</th>
+                                <th>Nilai Kupon</th>
+                                <th>Min.Belanja</th>
+                                <th>Tanggal Mulai</th>
+                                <th>Tanggal Berakhir</th>
                                 <th>Status</th>
-                                <th>Gambar</th>
                                 <th>Edit</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($katalog as $row): ?>
+                            <?php foreach ($kupon as $row): ?>
                                 <tr>
-                                    <td><?= htmlspecialchars($row['nama']) ?></td>
+                                    <td><?= htmlspecialchars($row['kode']) ?></td>
                                     <td><?= htmlspecialchars($row['deskripsi'] ? $row['deskripsi'] : "None") ?></td>
-                                    <td><?= $row['harga'] ?></td>
-                                    <td>
-                                      <?php
-                                        foreach ($kategori as $rows) {
-                                            if ($row['kategori_id'] == $rows['id']) {
-                                                echo htmlspecialchars($rows['nama']);
-                                                break;
-                                            }
-                                        }
-                                      ?>
-                                    </td>
-                                    <td><?= $row['rating'] ?></td>
+                                    <td><?= $row['tipe_diskon'] ?></td>
+                                    <td><?= $row['nilai_diskon'] ?></td>
+                                    <td><?= $row['minimal_belanja'] ?></td>
+                                    <td><?= $row['tanggal_mulai'] ?></td>
+                                    <td><?= $row['tanggal_berakhir'] ?></td>
                                     <td><?= $row['status'] == "aktif" ? "Aktif" : "NonAktif"; ?></td>
                                     <td>
                                         <div class="d-inline d-md-flex justify-content-md-center gap-2">
-                                            <!-- <img src="/tribite/assets/img/keranjang.jpg" class="img-fluid rounded img-katalog" alt="Gambar Produk"> -->
-                                            <img src="<?= htmlspecialchars($row['gambar']) ?>" class="img-fluid rounded img-katalog" alt="Gambar Produk">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-inline d-md-flex justify-content-md-center gap-2">
                                             <!-- <button class="btn btn-primary">Edit</button> -->
-                                             <button type="button" class="btn btn-primary" data-id="<?= $row['id'] ?>" data-nama="<?= htmlspecialchars($row['nama']) ?>" data-deskripsi="<?= htmlspecialchars($row['deskripsi']) ?>" data-harga="<?= $row['harga'] ?>" data-kategori="<?= $row['kategori_id'] ?>" data-status="<?= $row['status'] ?>" data-bs-toggle="modal" data-bs-target="#EditKatalog" id="edit-katalog">Edit</button>
+                                             <button type="button" class="btn btn-primary" data-id="<?= $row['id'] ?>" 
+                                              data-kode="<?= htmlspecialchars($row['kode']) ?>" 
+                                              data-deskripsi="<?= htmlspecialchars($row['deskripsi']) ?>" 
+                                              data-tipe_diskon="<?= $row['tipe_diskon'] ?>" 
+                                              data-nilai_diskon="<?= $row['nilai_diskon'] ?>" 
+                                              data-minimal_belanja="<?= $row['minimal_belanja'] ?>" 
+                                              data-tanggal_mulai="<?= $row['tanggal_mulai'] ?>" 
+                                              data-tanggal_berakhir="<?= $row['tanggal_berakhir'] ?>" 
+                                              data-status="<?= $row['status'] ?>" 
+                                              data-bs-toggle="modal" 
+                                              data-bs-target="#EditKatalog" id="edit-katalog">
+                                              Edit
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -122,64 +105,46 @@ if (isset($_SESSION['notif'])) {
             </div>
         </div>
 
-        <div class="modal fade" id="AddKategori" tabindex="-1" aria-labelledby="AddKategori" aria-hidden="true">
+        <div class="modal fade" id="AddKupon" tabindex="-1" aria-labelledby="AddKupon" aria-hidden="true">
           <div class="modal-dialog">
-            <form method="POST" action="/katalogmanage/kategori_add">
+            <form method="POST" action="/couponmanage/coupon_add" enctype="multipart/form-data">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="AddKategori">Tambah Kategori</h1>
+                    <h1 class="modal-title fs-5" id="AddKupon">Tambah Kupon</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
                     <div class="mb-3">
-                        <input type="text" name="nama" class="form-control" placeholder="Nama Kategori" value="" required>
-                    </div>
-                    <div class="mb-3">
-                        <textarea name="deskripsi" class="form-control" placeholder="Deskripsi (Optional)"></textarea>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
-                  </div>
-                </div>
-            </form>
-          </div>
-        </div>
-
-        <div class="modal fade" id="AddKatalog" tabindex="-1" aria-labelledby="AddKatalog" aria-hidden="true">
-          <div class="modal-dialog">
-            <form method="POST" action="/katalogmanage/katalog_add" enctype="multipart/form-data">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="AddKatalog">Tambah Katalog</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="mb-3">
-                        <input type="text" name="nama" class="form-control" placeholder="Nama Menu" value="" required>
+                        <input type="text" name="kode" class="form-control" placeholder="Kode" value="" required>
                     </div>
                     <div class="mb-3">
                         <textarea name="deskripsi" class="form-control" placeholder="Deskripsi (Optional)"></textarea>
                     </div>
                     <div class="mb-3">
-                        <input type="number" step="0.01" name="harga" class="form-control" placeholder="Harga" value="" required>
-                    </div>
-                    <div class="mb-3">
-                        <select name="kategori" class="form-control" required>
-                            <?php foreach ($kategori as $row): ?>
-                                <option value="<?= $row['id'] ?>"><?= htmlspecialchars($row['nama']) ?></option>
-                            <?php endforeach; ?>
+                        <select name="tipe_diskon" class="form-control" required>
+                            <option value="persen">Persen</option>
+                            <option value="nominal">Nominal</option>
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" step="0.01" name="nilai_diskon" class="form-control" placeholder="Nilai Diskon" value="" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" step="0.01" name="minimal_belanja" class="form-control" placeholder="Minimal Belanja" value="" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
+                        <input type="date" name="tanggal_mulai" min="<?= date('Y-m-d') ?>" class="form-control" placeholder="Tanggal Mulai" value="" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="tanggal_berakhir" class="form-label">Tanggal Berakhir</label>
+                        <input type="date" name="tanggal_berakhir" min="<?= date('Y-m-d') ?>" class="form-control" placeholder="Tanggal Berakhir" value="" required>
                     </div>
                     <div class="mb-3">
                         <select name="status" class="form-control" required>
                             <option value="aktif">Aktif</option>
                             <option value="nonaktif">NonAktif</option>
                         </select>
-                    </div>
-                    <div class="mb-3">
-                      <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*" required>
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -208,7 +173,7 @@ if (isset($_SESSION['notif'])) {
                         <textarea name="deskripsi" class="form-control" placeholder="Deskripsi (Optional)" id="data-deskripsi"></textarea>
                     </div>
                     <div class="mb-3">
-                        <input type="number" step="0.01" name="harga" class="form-control" placeholder="Harga" id="data-harga" value="">
+                        <input type="number" name="harga" class="form-control" placeholder="Harga" id="data-harga" value="">
                     </div>
                     <div class="mb-3">
                         <select name="kategori" class="form-control" id="data-kategori">

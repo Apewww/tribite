@@ -49,12 +49,17 @@
                 </li> -->
                 <li class="nav-item">
                     <a href="/dashboard" class="nav-link text-black link-danger">
-                        <i class="fa fa-tachometer"></i> <span class="ms-2">Dashboard</span>
+                        <i class="fa fa-pie-chart"></i> <span class="ms-2">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="/katalogmanage" class="nav-link text-black link-danger">
                         <i class="fa fa-table"></i> <span class="ms-2">Katalog</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/couponmanage" class="nav-link text-black link-danger">
+                        <i class="fa fa-ticket"></i> <span class="ms-2">Kupon</span>
                     </a>
                 </li>
                 <li class="nav-item">
