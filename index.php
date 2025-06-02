@@ -103,6 +103,10 @@ switch ($request) {
 
     case '/katalogmanage/katalog_edit':
         require __DIR__ . $viewDir . 'dashboard/katalog/katalog_edit.php';
+        break; 
+
+    case '/katalogmanage/katalog_delete':
+        require __DIR__ . $viewDir . 'dashboard/katalog/katalog_delete.php';
         break;   
 
     case '/couponmanage':

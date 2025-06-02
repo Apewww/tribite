@@ -77,35 +77,35 @@ editAkunButtons.forEach(button => {
   });
 });
 
-const editAkunModal = document.getElementById('AkunEditModal');
-editAkunModal.addEventListener('show.bs.modal', function (event) {
-  const button = event.relatedTarget;
-  const id = button.getAttribute('edit-id');
-  const nama = button.getAttribute('data-nama');
-  const email = button.getAttribute('data-email');
-  const role = button.getAttribute('data-role');
-  this.querySelector('#data-id').value = id || '';
-  this.querySelector('#data-nama').value = nama || '';
-  this.querySelector('#data-email').value = email || '';
-  this.querySelector('#data-role').value = role || '';
-});
+// const editAkunModal = document.getElementById('AkunEditModal');
+// editAkunModal.addEventListener('show.bs.modal', function (event) {
+//   const button = event.relatedTarget;
+//   const id = button.getAttribute('edit-id');
+//   const nama = button.getAttribute('data-nama');
+//   const email = button.getAttribute('data-email');
+//   const role = button.getAttribute('data-role');
+//   this.querySelector('#data-id').value = id || '';
+//   this.querySelector('#data-nama').value = nama || '';
+//   this.querySelector('#data-email').value = email || '';
+//   this.querySelector('#data-role').value = role || '';
+// });
 
-const editKatalogModal = document.getElementById('EditKatalog');
-editKatalogModal.addEventListener('show.bs.modal', function (event) {
-  const button = event.relatedTarget;
-  const id = button.getAttribute('data-id');
-  const nama = button.getAttribute('data-nama');
-  const deskripsi = button.getAttribute('data-deskripsi');
-  const harga = button.getAttribute('data-harga');
-  const kategori = button.getAttribute('data-kategori');
-  const status = button.getAttribute('data-status');
-  this.querySelector('#data-id').value = id || '';
-  this.querySelector('#data-nama').value = nama || '';
-  this.querySelector('#data-deskripsi').value = deskripsi || '';
-  this.querySelector('#data-harga').value = harga || '';
-  this.querySelector('#data-kategori').value = kategori || '';
-  this.querySelector('#data-status').value = status || '';
-});
+// const editKatalogModal = document.getElementById('EditKatalog');
+// editKatalogModal.addEventListener('show.bs.modal', function (event) {
+//   const button = event.relatedTarget;
+//   const id = button.getAttribute('data-id');
+//   const nama = button.getAttribute('data-nama');
+//   const deskripsi = button.getAttribute('data-deskripsi');
+//   const harga = button.getAttribute('data-harga');
+//   const kategori = button.getAttribute('data-kategori');
+//   const status = button.getAttribute('data-status');
+//   this.querySelector('#data-id').value = id || '';
+//   this.querySelector('#data-nama').value = nama || '';
+//   this.querySelector('#data-deskripsi').value = deskripsi || '';
+//   this.querySelector('#data-harga').value = harga || '';
+//   this.querySelector('#data-kategori').value = kategori || '';
+//   this.querySelector('#data-status').value = status || '';
+// });
 
 
 function toggleSearchInput(e) {

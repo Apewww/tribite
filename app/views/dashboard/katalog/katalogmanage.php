@@ -110,9 +110,24 @@ if (isset($_SESSION['notif'])) {
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="d-inline d-md-flex justify-content-md-center gap-2">
+                                        <div class="d-inline d-md-flex gap-2">
                                             <!-- <button class="btn btn-primary">Edit</button> -->
-                                             <button type="button" class="btn btn-primary" data-id="<?= $row['id'] ?>" data-nama="<?= htmlspecialchars($row['nama']) ?>" data-deskripsi="<?= htmlspecialchars($row['deskripsi']) ?>" data-harga="<?= $row['harga'] ?>" data-kategori="<?= $row['kategori_id'] ?>" data-status="<?= $row['status'] ?>" data-bs-toggle="modal" data-bs-target="#EditKatalog" id="edit-katalog">Edit</button>
+                                              <button type="button" class="btn btn-primary" 
+                                                data-id="<?= $row['id'] ?>" 
+                                                data-nama="<?= htmlspecialchars($row['nama']) ?>" 
+                                                data-deskripsi="<?= htmlspecialchars($row['deskripsi']) ?>" 
+                                                data-harga="<?= $row['harga'] ?>" 
+                                                data-kategori="<?= $row['kategori_id'] ?>" 
+                                                data-status="<?= $row['status'] ?>" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#EditKatalog" 
+                                                id="edit-katalog">
+                                                Edit
+                                              </button>
+                                              <form action="/katalogmanage/katalog_delete" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin hapus akun ini?')">
+                                                <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                              <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -191,7 +206,7 @@ if (isset($_SESSION['notif'])) {
           </div>
         </div>
 
-        <div class="modal fade" id="EditKatalog" tabindex="-1" aria-labelledby="EditKatalog" aria-hidden="true">
+        <div class="modal fade" id="EditKatalog" tabindex="-1" aria-labelledby="EditKatalogLabel" aria-hidden="true">
           <div class="modal-dialog">
             <form method="POST" action="/katalogmanage/katalog_edit" enctype="multipart/form-data">
                 <div class="modal-content">
@@ -237,6 +252,29 @@ if (isset($_SESSION['notif'])) {
         </div>
     </div>
 </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const editKatalogModal = document.getElementById('EditKatalog');
+  editKatalogModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    const id = button.getAttribute('data-id');
+    const nama = button.getAttribute('data-nama');
+    const deskripsi = button.getAttribute('data-deskripsi');
+    const harga = button.getAttribute('data-harga');
+    const kategori = button.getAttribute('data-kategori');
+    const status = button.getAttribute('data-status');
+
+    this.querySelector('#data-id').value = id || '';
+    this.querySelector('#data-nama').value = nama || '';
+    this.querySelector('#data-deskripsi').value = deskripsi || '';
+    this.querySelector('#data-harga').value = harga || '';
+    this.querySelector('#data-kategori').value = kategori || '';
+    this.querySelector('#data-status').value = status || '';
+  });
+});
+</script>
 
 
 <?php
