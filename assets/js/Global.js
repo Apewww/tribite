@@ -67,15 +67,15 @@ if (notif) {
   }, 3000);
 }
 
-const editAkunButtons = document.querySelectorAll('#edit-akun');
-editAkunButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    document.getElementById('edit-id').value = button.dataset.id;
-    document.getElementById('data-nama').value = button.dataset.nama;
-    document.getElementById('data-email').value = button.dataset.email;
-    document.getElementById('data-role').value = button.dataset.role;
-  });
-});
+// const editAkunButtons = document.querySelectorAll('#edit-akun');
+// editAkunButtons.forEach(button => {
+//   button.addEventListener('click', () => {
+//     document.getElementById('edit-id').value = button.dataset.id;
+//     document.getElementById('data-nama').value = button.dataset.nama;
+//     document.getElementById('data-email').value = button.dataset.email;
+//     document.getElementById('data-role').value = button.dataset.role;
+//   });
+// });
 
 // const editAkunModal = document.getElementById('AkunEditModal');
 // editAkunModal.addEventListener('show.bs.modal', function (event) {

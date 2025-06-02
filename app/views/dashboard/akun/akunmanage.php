@@ -69,7 +69,7 @@ if (isset($_SESSION['notif'])) {
                                     <td><?= htmlspecialchars($row['nama']) ?></td>
                                     <td><?= htmlspecialchars($row['email']) ?></td>
                                     <td><?= $row['role'] ? 'Admin' : 'User' ?></td>
-                                    <td><?= $row['active'] ? 'Aktif' : 'Nonaktif' ?></td>
+                                    <td><?= $row['status'] ? 'Aktif' : 'Nonaktif' ?></td>
                                     <td>
                                         <div class="d-inline d-md-flex justify-content-md-center gap-2">
                                             <button type="button" class="btn btn-primary" 

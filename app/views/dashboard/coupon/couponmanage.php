@@ -96,6 +96,10 @@ if (isset($_SESSION['notif'])) {
                                               data-bs-target="#EditKatalog" id="edit-katalog">
                                               Edit
                                             </button>
+                                            <form action="/couponmanage/coupon_delete" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin hapus akun ini?')">
+                                              <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                              <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -156,7 +160,7 @@ if (isset($_SESSION['notif'])) {
           </div>
         </div>
 
-        <div class="modal fade" id="EditKatalog" tabindex="-1" aria-labelledby="EditKatalog" aria-hidden="true">
+        <div class="modal fade" id="EditKupon" tabindex="-1" aria-labelledby="EditKuponLabel" aria-hidden="true">
           <div class="modal-dialog">
             <form method="POST" action="/katalogmanage/katalog_edit" enctype="multipart/form-data">
                 <div class="modal-content">
@@ -202,7 +206,26 @@ if (isset($_SESSION['notif'])) {
         </div>
     </div>
 </div>
+<script>
 
+const editKatalogModal = document.getElementById('EditKupon');
+editKatalogModal.addEventListener('show.bs.modal', function (event) {
+  const button = event.relatedTarget;
+  const id = button.getAttribute('data-id');
+  const nama = button.getAttribute('data-nama');
+  const deskripsi = button.getAttribute('data-deskripsi');
+  const harga = button.getAttribute('data-harga');
+  const kategori = button.getAttribute('data-kategori');
+  const status = button.getAttribute('data-status');
+  this.querySelector('#data-id').value = id || '';
+  this.querySelector('#data-nama').value = nama || '';
+  this.querySelector('#data-deskripsi').value = deskripsi || '';
+  this.querySelector('#data-harga').value = harga || '';
+  this.querySelector('#data-kategori').value = kategori || '';
+  this.querySelector('#data-status').value = status || '';
+});
+
+</script>
 
 <?php
 include PARTIALS_PATH . 'footer.php'; 

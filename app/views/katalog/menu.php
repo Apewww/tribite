@@ -10,7 +10,9 @@ if ($stmt = $conn->prepare("CALL GetKatalog()")) {
     $result = $stmt->get_result();
     if ($result && $result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+          if($row['status'] == 'aktif') {
             $katalog[] = $row;
+          }
         }
     } else {
         $_SESSION['notif'] = ["Warn", "Katalog tidak ditemukan!"];
@@ -40,9 +42,16 @@ if ($stmt = $conn->prepare("CALL GetKatalog()")) {
             <h5 class="card-title"><?= $item['nama']; ?></h5>
             <p class="card-text text-danger fw-bold">Rp. <?= number_format($item['harga'], 0, ',', '.'); ?></p>
             <div class="rating mb-2">
-              <?php for ($i = 0; $i < 5; $i++): ?>
-                <i class="fa-regular fa-star"></i>
-              <?php endfor; ?>
+              <?php 
+              $rating = (int)$item['rating'];
+              for ($i = 0; $i < 5; $i++): 
+                  if ($i < $rating): ?>
+                      <img src="/tribite/assets/img/star.png" alt="star" class="star" width="18" height="16">
+                  <?php else: ?>
+                      <img src="/tribite/assets/img/star-none.png" alt="star" class="star" width="18" height="16">
+                  <?php endif;
+              endfor;
+              ?>
             </div>
             <div class="mt-auto">
               <button class="btn btn-danger btn-sm me-1"><i class="fa fa-cart-plus"></i></button>
