@@ -25,9 +25,6 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link text-black link-danger">Promo</a>
-                </li>
 
                 <li class="nav-item">
                     <button type="button" class="btn btn-danger rounded-5 d-block mb-2 mb-md-0 mx-md-2 w-100" data-bs-toggle="modal" data-bs-target="#searchModal">
