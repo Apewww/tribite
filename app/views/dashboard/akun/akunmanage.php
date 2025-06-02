@@ -1,16 +1,10 @@
 <?php
+session_start();
 $pageTitle = "Akun Management";
 include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
 include PARTIALS_PATH . 'header.php';
+include PARTIALS_PATH . 'validation_role.php';
 
-
-session_start();
-if ($_SESSION['user']['nama']) {
-    $username = $_SESSION['user']['nama'];
-} else {
-    header('Location: /login');
-    exit;
-}
 // print_r($_SESSION['user']);
 $stmt = $conn->prepare("CALL GetAkun");
 $stmt->execute();

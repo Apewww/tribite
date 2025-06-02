@@ -1,15 +1,9 @@
 <?php
+session_start();
 $pageTitle = "Katalog Management";
 include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
 include PARTIALS_PATH . 'header.php';
-session_start();
-
-if (!isset($_SESSION['user']['nama'])) {
-    header('Location: /login');
-    exit;
-}
-
-$username = $_SESSION['user']['nama'];
+include PARTIALS_PATH . 'validation_role.php';
 
 $katalog = [];
 if ($stmt = $conn->prepare("CALL GetKatalog()")) {

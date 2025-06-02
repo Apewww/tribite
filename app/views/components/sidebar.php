@@ -18,7 +18,7 @@
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-black" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="/tribite/assets/img/aaaa.png" alt="profile" width="30" height="30" class="rounded-circle">
-                <span class="ms-2"><?= $username ?? "TRIBITE"; ?></span>
+                <span class="ms-2"><?= $_SESSION['user']['nama'] ?? "TRIBITE"; ?></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                 <li><a class="dropdown-item" href="/profile">Profile</a></li>
