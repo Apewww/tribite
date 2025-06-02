@@ -29,9 +29,6 @@ switch ($request) {
         require __DIR__ . $viewDir . 'auth/register.php';
         break;
 
-    case '/notifikasi':
-        require __DIR__ . $viewDir . 'notifikasi.php';
-        break;
 
     case '/voucher':
         require __DIR__ . $viewDir . 'voucher.php';

@@ -89,11 +89,11 @@ if (isset($_SESSION['notif'])) {
                                               data-tipe_diskon="<?= $row['tipe_diskon'] ?>" 
                                               data-nilai_diskon="<?= $row['nilai_diskon'] ?>" 
                                               data-minimal_belanja="<?= $row['minimal_belanja'] ?>" 
-                                              data-tanggal_mulai="<?= $row['tanggal_mulai'] ?>" 
-                                              data-tanggal_berakhir="<?= $row['tanggal_berakhir'] ?>" 
+                                              data-tanggal_mulai="<?= date('Y-m-d', strtotime($row['tanggal_mulai'])) ?>" 
+                                              data-tanggal_berakhir="<?= date('Y-m-d', strtotime($row['tanggal_berakhir'])) ?>" 
                                               data-status="<?= $row['status'] ?>" 
                                               data-bs-toggle="modal" 
-                                              data-bs-target="#EditKatalog" id="edit-katalog">
+                                              data-bs-target="#EditKupon" id="edit-kupon">
                                               Edit
                                             </button>
                                             <form action="/couponmanage/coupon_delete" method="POST" style="display:inline;" onsubmit="return confirm('Yakin ingin hapus akun ini?')">
@@ -162,38 +162,45 @@ if (isset($_SESSION['notif'])) {
 
         <div class="modal fade" id="EditKupon" tabindex="-1" aria-labelledby="EditKuponLabel" aria-hidden="true">
           <div class="modal-dialog">
-            <form method="POST" action="/katalogmanage/katalog_edit" enctype="multipart/form-data">
+            <form method="POST" action="/couponmanage/coupon_edit" enctype="multipart/form-data">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="EditKatalog">Edit Katalog</h1>
+                    <h1 class="modal-title fs-5" id="EditKupon">Edit Katalog</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
                     <input type="hidden" name="id" id="data-id">
                     <div class="mb-3">
-                        <input type="text" name="nama" class="form-control" placeholder="Nama Menu" id="data-nama" value="">
+                        <input type="text" name="kode" id="data-kode" class="form-control" placeholder="Kode" value="" required>
                     </div>
                     <div class="mb-3">
-                        <textarea name="deskripsi" class="form-control" placeholder="Deskripsi (Optional)" id="data-deskripsi"></textarea>
+                        <textarea name="deskripsi" id="data-deskripsi" class="form-control" placeholder="Deskripsi (Optional)"></textarea>
                     </div>
                     <div class="mb-3">
-                        <input type="number" name="harga" class="form-control" placeholder="Harga" id="data-harga" value="">
-                    </div>
-                    <div class="mb-3">
-                        <select name="kategori" class="form-control" id="data-kategori">
-                            <?php foreach ($kategori as $row): ?>
-                                <option value="<?= $row['id'] ?>"><?= htmlspecialchars($row['nama']) ?></option>
-                            <?php endforeach; ?>
+                        <select name="tipe_diskon" id="data-tipe" class="form-control" required>
+                            <option value="persen">Persen</option>
+                            <option value="nominal">Nominal</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <select name="status" class="form-control" id="data-status">
+                        <input type="number" step="0.01" name="nilai_diskon" id="data-nilai" class="form-control" placeholder="Nilai Diskon" value="" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" step="0.01" name="minimal_belanja" id="data-minimal" class="form-control" placeholder="Minimal Belanja" value="" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
+                        <input type="date" name="tanggal_mulai" id="data-mulai" min="<?= date('Y-m-d') ?>" class="form-control" placeholder="Tanggal Mulai" value="" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="tanggal_berakhir" class="form-label">Tanggal Berakhir</label>
+                        <input type="date" name="tanggal_berakhir" id="data-berakhir" min="<?= date('Y-m-d') ?>" class="form-control" placeholder="Tanggal Berakhir" value="" required>
+                    </div>
+                    <div class="mb-3">
+                        <select name="status" id="data-status" class="form-control" required>
                             <option value="aktif">Aktif</option>
                             <option value="nonaktif">NonAktif</option>
                         </select>
-                    </div>
-                    <div class="mb-3">
-                      <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*">
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -208,20 +215,26 @@ if (isset($_SESSION['notif'])) {
 </div>
 <script>
 
-const editKatalogModal = document.getElementById('EditKupon');
-editKatalogModal.addEventListener('show.bs.modal', function (event) {
+const editKuponModal = document.getElementById('EditKupon');
+editKuponModal.addEventListener('show.bs.modal', function (event) {
   const button = event.relatedTarget;
   const id = button.getAttribute('data-id');
-  const nama = button.getAttribute('data-nama');
+  const kode = button.getAttribute('data-kode');
   const deskripsi = button.getAttribute('data-deskripsi');
-  const harga = button.getAttribute('data-harga');
-  const kategori = button.getAttribute('data-kategori');
+  const tipe = button.getAttribute('data-tipe_diskon');
+  const nilai_diskon = button.getAttribute('data-nilai_diskon');
+  const minimal = button.getAttribute('data-minimal_belanja');
+  const mulai = button.getAttribute('data-tanggal_mulai');
+  const berakhir = button.getAttribute('data-tanggal_berakhir');
   const status = button.getAttribute('data-status');
   this.querySelector('#data-id').value = id || '';
-  this.querySelector('#data-nama').value = nama || '';
+  this.querySelector('#data-kode').value = kode || '';
   this.querySelector('#data-deskripsi').value = deskripsi || '';
-  this.querySelector('#data-harga').value = harga || '';
-  this.querySelector('#data-kategori').value = kategori || '';
+  this.querySelector('#data-tipe').value = tipe || '';
+  this.querySelector('#data-nilai').value = nilai_diskon || '';
+  this.querySelector('#data-minimal').value = minimal || '';
+  this.querySelector('#data-mulai').value = mulai || '';
+  this.querySelector('#data-berakhir').value = berakhir || '';
   this.querySelector('#data-status').value = status || '';
 });
 
