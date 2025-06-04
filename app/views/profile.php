@@ -1,3 +1,7 @@
+<?php
+session_start();
+include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php';
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -127,6 +131,11 @@
       background-color: #ffecec;
     }
 
+    .header i {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
     .card-icon {
       font-size: 24px;
       margin-bottom: 5px;
@@ -174,6 +183,13 @@
 </head>
 <body>
 
+    <div class="container py-4">
+    <div class="header">
+      <i class="fas fa-arrow-left" onclick="window.history.back()"></i>
+      <span>Kembali</span>
+    </div>
+    <div class="divider"></div>
+
   <div class="container-fluid px-3 px-md-5 mt-4">
     <!-- Profil Box -->
     <div class="box text-center fade-in">
@@ -190,15 +206,15 @@
 
       <input type="file" accept="image/*" id="uploadInput" style="display: none;" />
 
-      <div class="username">Nama Pengguna</div>
-      <div class="user-contact">Email/Telepon</div>
+      <div class="username"><?= htmlspecialchars($_SESSION['user']['nama']) ?></div>
+      <div class="user-contact"><?= htmlspecialchars($_SESSION['user']['email']) ?></div>
 
       <div class="row text-center mt-3 g-2">
         <div class="col-12 col-md-4">
           <div class="card-custom" onclick="toggleValue(this)">
             <div class="card-icon"><i class="fa-solid fa-wallet"></i></div>
             <div class="card-label">Bite Pay</div>
-            <div class="card-value" data-real="Rp. 100.000">***</div>
+            <div class="card-value" data-real=""><?= htmlspecialchars($_SESSION['user']['bitepay']) ?></div>
           </div>
         </div>
         <div class="col-12 col-md-4">

@@ -120,9 +120,16 @@ switch ($request) {
 
     case '/couponmanage/coupon_delete':
         require __DIR__ . $viewDir . 'dashboard/coupon/coupon_delete.php';
-        break;    
-        
+        break;
+    
+    case '/harian':
+        require __DIR__ . $viewDir . 'harian.php';
+        break;
 
+    case '/proses_absen':
+        require __DIR__ . $viewDir . 'proses_absen.php';
+        break;
+    
     default:
         http_response_code(404);
         require __DIR__ . $viewDir . '404.php';
