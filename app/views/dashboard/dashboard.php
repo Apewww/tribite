@@ -49,8 +49,8 @@ $conn->close();
                     <div class="col-md-3">
                       <div class="card text-dark bg-pink h-100">
                         <div class="card-body">
-                          <h5 class="card-title">Total Akun</h5>
-                          <p class="card-text fs-3"><?= $akun['total_akun'] ?? 0 ?></p>
+                            <i class="fa fa-user"></i><h5 class="card-title d-inline ms-1">Total Akun</h5>
+                            <p class="card-text fs-3"><?= $akun['total_akun'] ?? 0 ?></p>
                         </div>
                       </div>
                     </div>
@@ -58,7 +58,7 @@ $conn->close();
                     <div class="col-md-3">
                       <div class="card text-dark bg-pink h-100">
                         <div class="card-body">
-                          <h5 class="card-title">Total Kupon</h5>
+                          <i class="fa fa-ticket-alt"></i><h5 class="card-title d-inline ms-1">Total Kupon</h5>
                           <p class="card-text fs-3"><?= $kupon['total_kupon'] ?? 0 ?></p>
                         </div>
                       </div>
@@ -67,7 +67,7 @@ $conn->close();
                     <div class="col-md-3">
                       <div class="card text-dark bg-pink h-100">
                         <div class="card-body">
-                          <h5 class="card-title">Total Katalog</h5>
+                          <i class="fa fa-boxes"></i><h5 class="card-title d-inline ms-1">Total Katalog</h5>
                           <p class="card-text fs-3"><?= $katalog['total_katalog'] ?? 0 ?></p>
                         </div>
                       </div>
@@ -76,7 +76,7 @@ $conn->close();
                     <div class="col-md-3">
                       <div class="card text-dark bg-pink h-100">
                         <div class="card-body">
-                          <h5 class="card-title">Total Kategori</h5>
+                          <i class="fa fa-layer-group"></i><h5 class="card-title d-inline ms-1">Total Kategori</h5>
                           <p class="card-text fs-3"><?= $kategori['total_kategori'] ?? 0 ?></p>
                         </div>
                       </div>

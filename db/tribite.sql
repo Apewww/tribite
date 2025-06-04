@@ -11,7 +11,7 @@
  Target Server Version : 80403
  File Encoding         : 65001
 
- Date: 02/06/2025 05:23:08
+ Date: 04/06/2025 13:22:11
 */
 
 SET NAMES utf8mb4;
@@ -28,18 +28,13 @@ CREATE TABLE `akun`  (
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `telepon` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `role` tinyint(0) NOT NULL DEFAULT 0,
+  `bitepay` int(0) NOT NULL DEFAULT 0,
+  `point` int(0) NOT NULL DEFAULT 0,
+  `status` enum('aktif','deleted') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
   `deleted_at` datetime(0) NULL DEFAULT NULL,
-  `active` tinyint(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of akun
--- ----------------------------
-INSERT INTO `akun` VALUES (6, 'Rafly Anggara Putra', '$2y$10$bUX//96TupOBH/pvDBHP5e7hDHwpN/HASdAYRjjr48EoIZyIgbRzS', 'apewinaja@gmail.com', '+6285710789216', 1, '2025-05-26 22:22:43', NULL, 1);
-INSERT INTO `akun` VALUES (7, 'Nabila Dwi Marsono', '$2y$10$xY4JwtBs6yclZDhSfPW.UuTA7iZlUj4w8lTeI.MD66A9JuCOU1Gxe', 'nabila@gmail.com', '+6281388502890', 0, '2025-05-27 07:04:41', '2025-05-31 09:12:30', 1);
-INSERT INTO `akun` VALUES (8, 'Siti Aulia', '$2y$10$jQcTjp64sTAta9Nt0f4Wg.lSDcQpuQFE9PuKIMgI9HMBFlyWvPHza', 'sauliarr03@gmail.com', '+6285864510735', 0, '2025-05-31 18:48:09', NULL, 1);
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for katalog
@@ -52,19 +47,14 @@ CREATE TABLE `katalog`  (
   `harga` decimal(10, 0) NOT NULL,
   `gambar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   `kategori_id` int(0) NOT NULL DEFAULT 0,
-  `rating` float NOT NULL DEFAULT 0,
-  `status` enum('aktif','nonaktif') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `rating` int(0) NOT NULL DEFAULT 0,
+  `status` enum('aktif','nonaktif','deleted') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `created_at` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   `updated_at` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `kategori`(`kategori_id`) USING BTREE,
   CONSTRAINT `kategori` FOREIGN KEY (`kategori_id`) REFERENCES `kategori` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of katalog
--- ----------------------------
-INSERT INTO `katalog` VALUES (7, 'Test', 'Test', 1000, '/tribite/assets/img/upload/Untitled.png', 1, 0, 'aktif', '2025-05-31 23:34:00', '2025-05-31 23:34:00');
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for kategori
@@ -80,12 +70,6 @@ CREATE TABLE `kategori`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of kategori
--- ----------------------------
-INSERT INTO `kategori` VALUES (1, 'Makanan', 'Jenis Kategori untuk makanan', '2025-05-31 21:08:22');
-INSERT INTO `kategori` VALUES (2, 'Minuman', 'Jenis Kategori minuman untuk minuman', '2025-05-31 21:52:50');
-
--- ----------------------------
 -- Table structure for kupon
 -- ----------------------------
 DROP TABLE IF EXISTS `kupon`;
@@ -98,17 +82,12 @@ CREATE TABLE `kupon`  (
   `minimal_belanja` decimal(10, 2) NULL DEFAULT 0.00,
   `tanggal_mulai` datetime(0) NOT NULL,
   `tanggal_berakhir` datetime(0) NOT NULL,
-  `status` enum('aktif','nonaktif') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'aktif',
+  `status` enum('aktif','nonaktif','deleted') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'aktif',
   `created_at` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `kode`(`kode`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of kupon
--- ----------------------------
-INSERT INTO `kupon` VALUES (1, 'KUPON01', '', 'nominal', 20000.00, 250000.00, '2025-06-01 00:00:00', '2025-07-03 00:00:00', 'aktif', '2025-06-01 19:52:33', '2025-06-01 19:52:33');
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Procedure structure for AddKatalog
@@ -120,7 +99,7 @@ CREATE PROCEDURE `AddKatalog`(IN k_nama VARCHAR(100),
   IN k_harga INT,
   IN k_gambar VARCHAR(255),
   IN k_kategori_id INT,
-  IN k_status ENUM('aktif', 'nonaktif'))
+  IN k_status ENUM('aktif', 'nonaktif', 'deleted'))
 BEGIN
   INSERT INTO katalog (nama, deskripsi, harga, gambar, kategori_id, status, created_at)
   VALUES (k_nama, k_deskripsi, k_harga, k_gambar, k_kategori_id, k_status, NOW());
@@ -154,10 +133,58 @@ CREATE PROCEDURE `AddKupon`(IN k_kode VARCHAR(50),
   IN k_minimal_belanja DECIMAL(10,2),
   IN k_tanggal_mulai DATE,
   IN k_tanggal_berakhir DATE,
-  IN k_status ENUM('aktif', 'nonaktif'))
+  IN k_status ENUM('aktif', 'nonaktif','deleted'))
 BEGIN
   INSERT INTO kupon (kode, deskripsi, tipe_diskon, nilai_diskon, minimal_belanja, tanggal_mulai, tanggal_berakhir, status, created_at)
   VALUES (k_kode, k_deskripsi, k_tipediskon, k_nilai_diskon, k_minimal_belanja, k_tanggal_mulai, k_tanggal_berakhir, k_status, NOW());
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for CountAkun
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `CountAkun`;
+delimiter ;;
+CREATE PROCEDURE `CountAkun`()
+BEGIN
+	SELECT COUNT(*) AS total_akun FROM akun WHERE status != 'deleted';
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for CountKatalog
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `CountKatalog`;
+delimiter ;;
+CREATE PROCEDURE `CountKatalog`()
+BEGIN
+	SELECT COUNT(*) AS total_katalog FROM katalog where status != 'deleted';
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for CountKategori
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `CountKategori`;
+delimiter ;;
+CREATE PROCEDURE `CountKategori`()
+BEGIN
+	SELECT COUNT(*) AS total_kategori FROM kategori;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for CountKupon
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `CountKupon`;
+delimiter ;;
+CREATE PROCEDURE `CountKupon`()
+BEGIN
+	SELECT COUNT(*) AS total_kupon FROM kupon where status != 'deleted';
 END
 ;;
 delimiter ;
@@ -193,8 +220,46 @@ BEGIN
 			UPDATE akun
 				SET 
 					deleted_at = NOW(),
-					active = 0
+					status = 'deleted'
       WHERE id = p_id;
+	ELSE
+		SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'ID Tidak ditemukan, terjadi kesalahan!';
+	END IF;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for DeleteKatalog
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `DeleteKatalog`;
+delimiter ;;
+CREATE PROCEDURE `DeleteKatalog`(IN k_id INT)
+BEGIN
+	IF EXISTS (SELECT 1 FROM katalog WHERE id = k_id) THEN
+			UPDATE katalog
+				SET status = 'deleted'
+      WHERE id = k_id;
+	ELSE
+		SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'ID Tidak ditemukan, terjadi kesalahan!';
+	END IF;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for DeleteKupon
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `DeleteKupon`;
+delimiter ;;
+CREATE PROCEDURE `DeleteKupon`(IN k_id INT)
+BEGIN
+	IF EXISTS (SELECT 1 FROM kupon WHERE id = k_id) THEN
+			UPDATE kupon
+				SET status = 'deleted'
+      WHERE id = k_id;
 	ELSE
 		SIGNAL SQLSTATE '45000' 
         SET MESSAGE_TEXT = 'ID Tidak ditemukan, terjadi kesalahan!';
@@ -210,7 +275,7 @@ DROP PROCEDURE IF EXISTS `GetAkun`;
 delimiter ;;
 CREATE PROCEDURE `GetAkun`()
 BEGIN
-  SELECT * FROM Akun where active = 1;
+  SELECT * FROM Akun where status != 'deleted';
 END
 ;;
 delimiter ;
@@ -222,7 +287,7 @@ DROP PROCEDURE IF EXISTS `GetKatalog`;
 delimiter ;;
 CREATE PROCEDURE `GetKatalog`()
 BEGIN
-  SELECT * FROM katalog;
+  SELECT * FROM katalog where status != 'deleted';
 END
 ;;
 delimiter ;
@@ -246,7 +311,7 @@ DROP PROCEDURE IF EXISTS `GetKupon`;
 delimiter ;;
 CREATE PROCEDURE `GetKupon`()
 BEGIN
-  SELECT * FROM kupon;
+  SELECT * FROM kupon where status != 'deleted';
 END
 ;;
 delimiter ;
@@ -260,7 +325,7 @@ CREATE PROCEDURE `GetLogin`(IN p_email VARCHAR(100))
 BEGIN
   SELECT id, nama, email, role, password
   FROM akun
-  WHERE email = p_email and active != 0
+  WHERE email = p_email and status != 'deleted'
   LIMIT 1;
 END
 ;;
@@ -337,6 +402,40 @@ BEGIN
       WHERE id = k_id;
     END IF;
 
+  ELSE
+    SIGNAL SQLSTATE '45000'
+      SET MESSAGE_TEXT = 'ID Tidak ditemukan, terjadi kesalahan!';
+  END IF;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for UpdateKupon
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `UpdateKupon`;
+delimiter ;;
+CREATE PROCEDURE `UpdateKupon`(IN k_id INT,
+  IN k_kode VARCHAR(50),
+  IN k_deskripsi TEXT,
+  IN k_tipediskon ENUM('persen', 'nominal'),
+  IN k_nilai_diskon DECIMAL(10,2),
+  IN k_minimal_belanja DECIMAL(10,2),
+  IN k_tanggal_mulai DATE,
+  IN k_tanggal_berakhir DATE,
+  IN k_status ENUM('aktif', 'nonaktif','deleted'))
+BEGIN
+  IF EXISTS (SELECT 1 FROM kupon WHERE id = k_id) THEN
+		UPDATE kupon
+		SET kode = k_kode,
+				deskripsi = k_deskripsi,
+				tipe_diskon = k_tipediskon,
+				nilai_diskon = k_nilai_diskon,
+				minimal_belanja = k_minimal_belanja,
+				tanggal_mulai = k_tanggal_mulai,
+				tanggal_berakhir = k_tanggal_berakhir,
+				status = k_status
+		WHERE id = k_id;
   ELSE
     SIGNAL SQLSTATE '45000'
       SET MESSAGE_TEXT = 'ID Tidak ditemukan, terjadi kesalahan!';
