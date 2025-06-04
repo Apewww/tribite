@@ -35,6 +35,12 @@ if (isset($_SESSION['notif'])) {
   <?php endif; ?>
 </div>
 
+<style>
+  .cursor-pointer {
+    cursor: pointer;
+  }
+</style>
+
 <div class="container-fluid">
     <div class="row">
         <?php include PARTIALS_PATH . 'sidebar.php'; ?>
@@ -53,6 +59,8 @@ if (isset($_SESSION['notif'])) {
                                 <th data-priority="1">Nama</th>
                                 <th>Email</th>
                                 <th>Role</th>
+                                <th>Bitepay</th>
+                                <th>Royalbites</th>
                                 <th>Status</th>
                                 <th>Edit</th>
                             </tr>
@@ -63,6 +71,8 @@ if (isset($_SESSION['notif'])) {
                                     <td><?= htmlspecialchars($row['nama']) ?></td>
                                     <td><?= htmlspecialchars($row['email']) ?></td>
                                     <td><?= $row['role'] ? 'Admin' : 'User' ?></td>
+                                    <td><?= $row['bitepay'] ?></td>
+                                    <td><?= $row['point'] ?></td>
                                     <td><?= $row['status'] ? 'Aktif' : 'Nonaktif' ?></td>
                                     <td>
                                         <div class="d-inline d-md-flex justify-content-md-center gap-2">
@@ -70,7 +80,10 @@ if (isset($_SESSION['notif'])) {
                                               data-id="<?= $row['id'] ?>" 
                                               data-nama="<?= htmlspecialchars($row['nama']) ?>" 
                                               data-email="<?= htmlspecialchars($row['email']) ?>" 
-                                              data-role="<?= $row['role'] ?>" data-bs-toggle="modal" 
+                                              data-role="<?= $row['role'] ?>" 
+                                              data-bitepay="<?= $row['bitepay'] ?>" 
+                                              data-point="<?= $row['point'] ?>" 
+                                              data-bs-toggle="modal" 
                                               data-bs-target="#EditAkun" id="edit-akun">
                                               Edit
                                             </button>
@@ -108,6 +121,12 @@ if (isset($_SESSION['notif'])) {
                             <option value="0">User</option>
                             <option value="1">Admin</option>
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" name="bite_pay" class="form-control" placeholder="Bitepay">
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" name="point" class="form-control" placeholder="Point">
                     </div>
                     <div class="mb-3">
                         <input type="password" name="password" class="form-control" placeholder="Password">

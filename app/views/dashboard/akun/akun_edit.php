@@ -16,6 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $role = $_POST['role'];
     $password = $_POST['password']; 
+    $bitepay = $_POST['bite_pay'];
+    $point = $_POST['point'];
 
     if ($password !== '') {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -23,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $hashedPassword = '';
     }
 
-    $stmt = $conn->prepare("CALL UpdateAkun(?, ?, ?, ?, ?)");
-    $stmt->bind_param("issss", $id, $nama, $email, $role, $hashedPassword);
+    $stmt = $conn->prepare("CALL UpdateAkun(?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("issssii", $id, $nama, $email, $role, $hashedPassword, $bitepay, $point);
     
     try {
         $stmt->execute();

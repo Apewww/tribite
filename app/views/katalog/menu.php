@@ -21,26 +21,49 @@ if ($stmt = $conn->prepare("CALL GetKatalog()")) {
     $conn->next_result();
 }
 
-if (!isset($_SESSION['KERANJANG'])) {
-    $_SESSION['KERANJANG'] = [];
+$kategori = [];
+if ($stmt = $conn->prepare("CALL GetKategori()")) {
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $kategori[] = $row;
+        }
+    } else {
+        $_SESSION['notif'] = ["Warn", "Kategori tidak ditemukan!"];
+    }
+    $stmt->close();
+    $conn->next_result();
 }
-$total_item = 3;
-?>
 
+$conn->close();
+
+$kategori_lookup = [];
+foreach ($kategori as $tipe) {
+  $kategori_lookup[$tipe['id']] = $tipe['nama'];
+}
+?>  
 
 <?php include PARTIALS_PATH . 'navbar.php';?>
 <div class="container min-vh-100 d-flex menu-body" id="menuContent">
   <div class="container py-4">
     <div class="row">
       <div class="mb-4">
-        <!-- <input type="text" id="searchInput" class="form-control" placeholder="Cari menu..." onkeyup="filterMenu()"> -->
-        <!-- <input type="text" id="searchInput" class="form-control" placeholder="Cari menu..." onkeyup="filterMenu()" value="<?= htmlspecialchars($_POST['q'] ?? '') ?>"> -->
-        <input type="text" id="searchInput" class="form-control" name="q" value="<?= htmlspecialchars($_POST['q'] ?? '') ?>" 
-         oninput="filterMenu()" />
+        <div class="input-group">
+          <select id="kategoriSelect" class="form-select flex-shrink-0" style="max-width: 150px;">
+            <option value="">Kategori</option>
+              <?php foreach($kategori as $tipe): ?>
+                <option value="<?= htmlspecialchars($tipe['nama']) ?>">
+                  <?= htmlspecialchars($tipe['nama']) ?>
+                </option>
+              <?php endforeach; ?>
+          <input type="text" id="searchInput" class="form-control" placeholder="Masukkan nama menu...">
+          <button class="btn btn-danger" type="button" onclick="filterMenu()">Cari</button>
+        </div>
       </div>
       <?php foreach ($katalog as $item): ?>
         <div class="col-md-4 col-lg-3 mb-4">
-          <div class="card h-100 text-center d-flex flex-column">
+          <div class="card h-100 text-center d-flex flex-column" data-kategori="<?= htmlspecialchars($kategori_lookup[$item['kategori_id']] ?? '') ?>">
             <img src="<?= $item['gambar']; ?>" class="card-img-top img-fluid" alt="<?= $item['nama']; ?>" style="height: 150px; object-fit: cover;">
             <div class="card-body d-flex flex-column justify-content-between">
               <h5 class="card-title"><?= $item['nama']; ?></h5>
@@ -75,15 +98,12 @@ $total_item = 3;
     </div>
   </div>
   <form action="/menu/keranjang" method="POST" id="Keranjang" class="d-none">
-    <button type="submit">
-        <div
-         class="position-fixed bottom-0 end-0 m-4 bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
+    <button type="submit" class="position-fixed bottom-0 end-0 m-4 bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
          style="width: 60px; height: 60px; z-index: 1050;">
-          <i class="fa fa-shopping-cart fa-lg"></i>
-          <span id="cart-count"
-            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
-          </span>
-        </div>
+        <i class="fa fa-shopping-cart fa-lg"></i>
+        <span id="cart-count"
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
+        </span>
     </button>
   </form>
 </div>
