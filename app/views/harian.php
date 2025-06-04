@@ -7,7 +7,9 @@ $nama_hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
 $poin_hari = [150, 50, 60, 60, 100, 100, 150]; // Minggu - Sabtu
 
 $data_absen = [];
-$total_poin = $_SESSION['user']['point'];
+$result = mysqli_query($conn, "SELECT point FROM akun WHERE id = $akun_id");
+$row = mysqli_fetch_assoc($result);
+$total_poin = $row['point'];
 for ($i = 6; $i >= 0; $i--) {
     $tgl = date('Y-m-d', strtotime("-$i days"));
     $hari = date('w', strtotime($tgl));
@@ -89,7 +91,6 @@ $sudah_absen = mysqli_num_rows(mysqli_query($conn, "SELECT 1 FROM akun WHERE id 
 
         <?php if (!$sudah_absen): ?>
           <form action="/proses_absen" method="post" class="mt-3">
-            <input type="hidden" name="akun_id" value="<?=$akun_id?>">
             <button class="btn btn-success" type="submit" >Absen Hari Ini</button>
           </form>
         <?php else: ?>

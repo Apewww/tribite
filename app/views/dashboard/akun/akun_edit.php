@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $stmt->execute();
         $_SESSION['notif'] = ["System", "Berhasil di Update!"];
+        $_SESSION['user']['role'] = $role;
     } catch (mysqli_sql_exception $e) {
         $_SESSION['notif'] = ["Warn", "Gagal update akun: " . $e->getMessage()];
     }
