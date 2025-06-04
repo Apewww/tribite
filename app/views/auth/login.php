@@ -70,9 +70,7 @@ if (isset($_SESSION['notif'])) {
           <p class="small">Kembali ke <a href="/home" class="text-decoration-none">Kembali</a></p>
         </div>
 
-    </div>
-</div>
-
+    </div>  
 </div>
 
 

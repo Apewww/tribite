@@ -29,7 +29,7 @@ if (isset($_POST['register'])) {
     $stmt->execute();
 
     $_SESSION['notif'] = ["System", "Akun berhasil dibuat!"];
-    
+    header('Location: login');
   } catch (mysqli_sql_exception $e) {
     $_SESSION['notif'] = ["Error", $e->getMessage()];
   }
