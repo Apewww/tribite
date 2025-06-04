@@ -75,15 +75,12 @@ $total_item = 3;
     </div>
   </div>
   <form action="/menu/keranjang" method="POST" id="Keranjang" class="d-none">
-    <button type="submit">
-        <div
-         class="position-fixed bottom-0 end-0 m-4 bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
+    <button type="submit" class="position-fixed bottom-0 end-0 m-4 bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
          style="width: 60px; height: 60px; z-index: 1050;">
-          <i class="fa fa-shopping-cart fa-lg"></i>
-          <span id="cart-count"
-            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
-          </span>
-        </div>
+        <i class="fa fa-shopping-cart fa-lg"></i>
+        <span id="cart-count"
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
+        </span>
     </button>
   </form>
 </div>
