@@ -214,7 +214,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php';
           <div class="card-custom" onclick="toggleValue(this)">
             <div class="card-icon"><i class="fa-solid fa-wallet"></i></div>
             <div class="card-label">Bite Pay</div>
-            <div class="card-value" data-real=""><?= htmlspecialchars($_SESSION['user']['bitepay']) ?></div>
+            <div class="card-value" data-real="<?= htmlspecialchars($_SESSION['user']['bitepay']) ?>">***</div>
           </div>
         </div>
         <div class="col-12 col-md-4">
@@ -227,7 +227,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php';
           <div class="card-custom" onclick="toggleValue(this)">
             <div class="card-icon"><i class="fa-solid fa-car"></i></div>
             <div class="card-label">Royalbites Point</div>
-            <div class="card-value" data-real="500">***</div>
+            <div class="card-value" data-real="<?= htmlspecialchars($_SESSION['user']['point']) ?>">***</div>
           </div>
         </div>
       </div>
