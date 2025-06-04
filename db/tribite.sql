@@ -11,7 +11,7 @@
  Target Server Version : 80403
  File Encoding         : 65001
 
- Date: 04/06/2025 13:22:11
+ Date: 04/06/2025 16:36:57
 */
 
 SET NAMES utf8mb4;
@@ -23,18 +23,29 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `akun`;
 CREATE TABLE `akun`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `telepon` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `nama` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `telepon` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `role` tinyint(0) NOT NULL DEFAULT 0,
+  `picture` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
   `bitepay` int(0) NOT NULL DEFAULT 0,
   `point` int(0) NOT NULL DEFAULT 0,
-  `status` enum('aktif','deleted') CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `date` datetime(0) NULL DEFAULT NULL,
+  `status` enum('aktif','deleted') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
   `deleted_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of akun
+-- ----------------------------
+INSERT INTO `akun` VALUES (6, 'Rafly Anggara Putra', '$2y$10$bUX//96TupOBH/pvDBHP5e7hDHwpN/HASdAYRjjr48EoIZyIgbRzS', 'apewinaja@gmail.com', '+6285710789216', 1, '', 0, 220, '2025-06-04 00:00:00', 'aktif', '2025-05-26 22:22:43', NULL);
+INSERT INTO `akun` VALUES (7, 'Nabila Dwi Marsono', '$2y$10$xY4JwtBs6yclZDhSfPW.UuTA7iZlUj4w8lTeI.MD66A9JuCOU1Gxe', 'nabila@gmail.com', '+6281388502890', 1, '', 500000, 0, NULL, 'aktif', '2025-05-27 07:04:41', '2025-05-31 09:12:30');
+INSERT INTO `akun` VALUES (8, 'Siti Aulia', '$2y$10$jQcTjp64sTAta9Nt0f4Wg.lSDcQpuQFE9PuKIMgI9HMBFlyWvPHza', 'sauliarr03@gmail.com', '+6285864510735', 0, '', 0, 0, NULL, 'deleted', '2025-05-31 18:48:09', '2025-06-02 14:23:10');
+INSERT INTO `akun` VALUES (9, 'Rafly Anggara Putra', '$2y$10$zVN0g6XlHvWPvL7qgUdiVO05hyWzx3uZM84fskLrAMp4pJuZtlQg2', 'apewinaja2@gmail.com', '+62857107892216', 0, '', 0, 0, NULL, 'deleted', '2025-06-04 14:30:10', '2025-06-04 14:58:42');
+INSERT INTO `akun` VALUES (10, 'Rafly Anggara Putra', '$2y$10$kq94n/W8252vXn8UXMW5ae0bSpJG4YVvsJ34m.AO8qjhRze4EEilu', 'apewinaja3@gmail.com', '+62857107892216', 0, '', 0, 0, NULL, 'deleted', '2025-06-04 14:35:34', '2025-06-04 14:58:39');
 
 -- ----------------------------
 -- Table structure for katalog
@@ -42,19 +53,29 @@ CREATE TABLE `akun`  (
 DROP TABLE IF EXISTS `katalog`;
 CREATE TABLE `katalog`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL,
+  `nama` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `harga` decimal(10, 0) NOT NULL,
-  `gambar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `gambar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '',
   `kategori_id` int(0) NOT NULL DEFAULT 0,
   `rating` int(0) NOT NULL DEFAULT 0,
-  `status` enum('aktif','nonaktif','deleted') CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `status` enum('aktif','nonaktif','deleted') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `created_at` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   `updated_at` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `kategori`(`kategori_id`) USING BTREE,
   CONSTRAINT `kategori` FOREIGN KEY (`kategori_id`) REFERENCES `kategori` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of katalog
+-- ----------------------------
+INSERT INTO `katalog` VALUES (7, 'Test', 'Test', 1000, '/tribite/assets/img/upload/Untitled.png', 1, 0, 'deleted', '2025-06-02 11:46:04', '2025-06-02 11:46:04');
+INSERT INTO `katalog` VALUES (8, 'Test2', '', 10000, '/tribite/assets/img/upload/Christy_JKT48.jpg', 1, 0, 'deleted', '2025-06-02 11:47:22', '2025-06-02 11:47:22');
+INSERT INTO `katalog` VALUES (9, 'Test3', '', 1000, '/tribite/assets/img/upload/Christy_JKT48.jpg', 1, 0, 'deleted', '2025-06-02 11:47:51', '2025-06-02 11:47:51');
+INSERT INTO `katalog` VALUES (10, 'Test', 'Test', 20000, '/tribite/assets/img/upload/Chocolate.jpg', 2, 5, 'aktif', '2025-06-02 14:53:50', '2025-06-02 14:53:50');
+INSERT INTO `katalog` VALUES (11, 'Test2', '', 300000, '/tribite/assets/img/upload/Avocado_Milkshake.webp', 2, 3, 'aktif', '2025-06-02 14:58:14', '2025-06-02 14:58:14');
+INSERT INTO `katalog` VALUES (12, 'Test3', '', 30000, '/tribite/assets/img/upload/star-none.png', 1, 0, 'aktif', '2025-06-04 15:50:20', NULL);
 
 -- ----------------------------
 -- Table structure for kategori
@@ -62,12 +83,18 @@ CREATE TABLE `katalog`  (
 DROP TABLE IF EXISTS `kategori`;
 CREATE TABLE `kategori`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL,
+  `nama` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `created_at` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `nama`(`nama`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of kategori
+-- ----------------------------
+INSERT INTO `kategori` VALUES (1, 'Makanan', 'Jenis Kategori untuk makanan', '2025-05-31 21:08:22');
+INSERT INTO `kategori` VALUES (2, 'Minuman', 'Jenis Kategori minuman untuk minuman', '2025-05-31 21:52:50');
 
 -- ----------------------------
 -- Table structure for kupon
@@ -75,19 +102,26 @@ CREATE TABLE `kategori`  (
 DROP TABLE IF EXISTS `kupon`;
 CREATE TABLE `kupon`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
-  `kode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL,
-  `tipe_diskon` enum('persen','nominal') CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `kode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `tipe_diskon` enum('persen','nominal') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nilai_diskon` decimal(10, 2) NOT NULL,
   `minimal_belanja` decimal(10, 2) NULL DEFAULT 0.00,
   `tanggal_mulai` datetime(0) NOT NULL,
   `tanggal_berakhir` datetime(0) NOT NULL,
-  `status` enum('aktif','nonaktif','deleted') CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT 'aktif',
+  `status` enum('aktif','nonaktif','deleted') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'aktif',
   `created_at` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   `updated_at` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `kode`(`kode`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of kupon
+-- ----------------------------
+INSERT INTO `kupon` VALUES (1, 'KUPON01', '', 'nominal', 20000.00, 250000.00, '2025-06-01 00:00:00', '2025-07-03 00:00:00', 'aktif', '2025-06-01 19:52:33', '2025-06-02 20:36:40');
+INSERT INTO `kupon` VALUES (3, 'TEST', '', 'nominal', 20000.00, 50000.00, '2025-06-02 00:00:00', '2025-06-10 00:00:00', 'aktif', '2025-06-02 14:11:41', '2025-06-02 20:36:42');
+INSERT INTO `kupon` VALUES (5, 'KUPON001', '', 'nominal', 25000.00, 60000.00, '2025-06-02 00:00:00', '2025-06-19 00:00:00', 'aktif', '2025-06-02 14:33:07', '2025-06-02 20:59:54');
 
 -- ----------------------------
 -- Procedure structure for AddKatalog
@@ -202,8 +236,8 @@ BEGIN
 	IF EXISTS (SELECT 1 FROM akun WHERE email = p_email) THEN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Email sudah terdaftar, gunakan email lain';
   ELSE
-    INSERT INTO akun (nama, email, password, telepon, created_at, active)
-    VALUES (p_nama, p_email, p_password, p_telepon, NOW(), 1);
+    INSERT INTO akun (nama, email, password, telepon, created_at, status)
+    VALUES (p_nama, p_email, p_password, p_telepon, NOW(), 'aktif');
   END IF;
 END
 ;;
@@ -323,7 +357,7 @@ DROP PROCEDURE IF EXISTS `GetLogin`;
 delimiter ;;
 CREATE PROCEDURE `GetLogin`(IN p_email VARCHAR(100))
 BEGIN
-  SELECT id, nama, email, role, password
+  SELECT *
   FROM akun
   WHERE email = p_email and status != 'deleted'
   LIMIT 1;
@@ -340,7 +374,9 @@ CREATE PROCEDURE `UpdateAkun`(IN p_id INT,
     IN p_nama VARCHAR(100),
     IN p_email VARCHAR(100),
     IN p_role INT,
-    IN p_password VARCHAR(255))
+    IN p_password VARCHAR(255),
+		IN p_bitepay INT,
+		IN p_point INT)
 BEGIN
 	IF EXISTS (SELECT 1 FROM akun WHERE id = p_id) THEN
         IF p_password IS NULL OR p_password = '' THEN
@@ -348,7 +384,9 @@ BEGIN
             SET 
                 nama = p_nama,
                 email = p_email,
-                role = p_role
+                role = p_role,
+								bitepay = p_bitepay,
+								point = p_point
             WHERE id = p_id;
         ELSE
             UPDATE akun
@@ -356,7 +394,9 @@ BEGIN
                 nama = p_nama,
                 email = p_email,
                 role = p_role,
-                password = p_password
+                password = p_password,
+								bitepay = p_bitepay,
+								point = p_point
             WHERE id = p_id;
         END IF;
 	ELSE
