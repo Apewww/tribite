@@ -5,12 +5,6 @@ include AUTH;
 include PARTIALS_PATH . 'header.php';
 include PARTIALS_PATH . 'validation_role.php';
 
-
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] != 1) {
-    header('Location: /home');
-    exit;
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $id = $_POST['id'];
 
