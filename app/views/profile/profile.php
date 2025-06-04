@@ -50,7 +50,7 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
         background-color: #fff;
         border-radius: 40px;
         padding: 30px 20px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         background: linear-gradient(to bottom right, #f8d7da, #f5c6cb);
         animation: fadeIn 0.8s ease both;
     }
@@ -70,6 +70,7 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
             opacity: 0;
             transform: translateY(20px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
@@ -142,7 +143,7 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
         padding: 10px;
         text-align: center;
         font-size: 12px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease, background-color 0.3s ease;
         cursor: pointer;
         height: 100%;
@@ -176,7 +177,8 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
         font-size: 16px;
     }
 
-    .menu-item, .logout {
+    .menu-item,
+    .logout {
         background: white;
         padding: 12px;
         margin: 6px 0;
@@ -210,6 +212,7 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
     </div>
 
     <div class="container-fluid px-3 px-md-5 mt-4">
+        <!-- Profile Box -->
         <div class="box text-center fade-in">
             <div class="dropdown">
                 <div class="profile-icon dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -265,39 +268,55 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
             <div class="menu-item">Alamat Saya</div>
             <a href="/voucher" class="menu-item">Voucher Saya</a>
             <a href="/metodepembayaran" class="menu-item">Metode Pembayaran</a>
-            <div class="menu-item">Bookmark</div>
+            <div class="menu-item">Absensi</div>
             <div class="menu-item">Riwayat</div>
             <a href="/bahasa" class="menu-item">Bahasa</a>
             <a href="/pengaturanakun" class="menu-item">Pengaturan Akun</a>
-            <a href="/logout" class="logout">Logout</>
+            <a href="/logout" class="logout">Logout</a>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+<!-- QR Code Modal -->
+<div class="modal fade" id="qrModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered">
-      <div class="modal-content text-center">
-        <div class="modal-header">
-          <h5 class="modal-title w-100" id="qrModalLabel">QR Code Anda</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <h5 class="modal-title w-100">QR Code Anda</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <img id="qrCodeImage" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=<?= urlencode('UserID:'.$userId) ?>" 
+                     alt="QR Code" class="img-fluid">
+                <div class="mt-2">
+                    <button class="btn btn-sm btn-outline-secondary" onclick="downloadQR()">
+                        <i class="fas fa-download me-1"></i> Download
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=User123" alt="QR Code" class="img-fluid" />
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
 <script>
+    function showQR() {
+        const qrImage = document.getElementById('qrCodeImage');
+        qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=UserID:<?= $userId ?>`;
+        new bootstrap.Modal(document.getElementById('qrModal')).show();
+    }
+
+    function downloadQR() {
+        const link = document.createElement('a');
+        link.href = document.getElementById('qrCodeImage').src;
+        link.download = 'QRCode-<?= $userId ?>.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
     function toggleValue(cardElement) {
         const valueElement = cardElement.querySelector('.card-value');
         valueElement.textContent = valueElement.textContent === '***' ? valueElement.dataset.real : '***';
-    }
-
-    function showQR() {
-        alert("QR Code akan ditampilkan di sini!");
-        // Jika ingin redirect:
-        // window.location.href = "/tribite/app/views/profile/qr.php";
     }
 </script>
 

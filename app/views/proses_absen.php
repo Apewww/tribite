@@ -2,6 +2,15 @@
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php';
 
+if (!isset($_SESSION['user'])) {
+    // Redirect atau beri pesan jika belum login
+    header('Location: /login.php');
+    exit;
+}
+
+$akun_id = $_SESSION['user']['id'];
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $akun_id = $_SESSION['user']['id'];
     $tanggal = date('Y-m-d');

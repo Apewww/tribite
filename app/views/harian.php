@@ -4,7 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php';
 $akun_id = $_SESSION['user']['id'];
 $hari_ini = date('Y-m-d');
 $nama_hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-$poin_hari = [150, 50, 60, 60, 100, 100, 150]; // Minggu - Sabtu
+$poin_hari = [150, 50, 60, 60, 100, 100, 150];
 
 $data_absen = [];
 $result = mysqli_query($conn, "SELECT point FROM akun WHERE id = $akun_id");
@@ -29,44 +29,117 @@ $sudah_absen = mysqli_num_rows(mysqli_query($conn, "SELECT 1 FROM akun WHERE id 
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Absensi Horizontal - Tribite</title>
+  <title>Absensi - Tribite</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background: #f9fbfe;
-      font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: #ebb1b1;
+        color: #333;
     }
-    .card {
-      border: none;
-      border-radius: 18px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+
+    .box {
+        background-color: #fff;
+        border-radius: 40px;
+        padding: 30px 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(to bottom right, #f8d7da, #f5c6cb);
+        animation: fadeIn 0.8s ease both;
     }
-    .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
+
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 0.8s ease forwards;
     }
-    .absen-box {
-      min-width: 100px;
-      padding: 12px;
-      margin: 5px;
-      border-radius: 12px;
-      text-align: center;
-      background: #e9ecef;
-      transition: 0.3s;
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
-    .absen-box.today {
-      background: #d1e7dd;
-      font-weight: bold;
-      border: 2px solid #198754;
+
+    .profile-icon {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 10px;
     }
-    .absen-status {
-      font-size: 24px;
+
+    .profile-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
+
+    .username {
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .user-contact {
+        font-size: 14px;
+        color: #555;
+        text-align: center;
+    }
+
     .scroll-row {
-      overflow-x: auto;
-      white-space: nowrap;
+        overflow-x: auto;
+        white-space: nowrap;
+        margin-top: 20px;
+    }
+
+    .absen-box {
+        display: inline-block;
+        min-width: 100px;
+        padding: 15px;
+        margin: 8px;
+        border-radius: 20px;
+        text-align: center;
+        background: #fff;
+        color: #b94444;
+        font-weight: 600;
+        transition: 0.3s ease;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .absen-box.today {
+        background-color: #ffecec;
+        border: 2px solid #b94444;
+    }
+
+    .absen-status {
+        font-size: 24px;
+        margin-top: 5px;
+    }
+
+    .btn-success {
+        background-color: #b94444;
+        border: none;
+        padding: 10px 20px;
+        font-weight: 600;
+        border-radius: 10px;
+    }
+
+    .btn-success:hover {
+        background-color: #a13c3c;
+    }
+
+    .alert-success {
+        background-color: #d1e7dd;
+        border: none;
+        color: #0f5132;
+        border-radius: 10px;
     }
   </style>
 </head>
@@ -74,27 +147,29 @@ $sudah_absen = mysqli_num_rows(mysqli_query($conn, "SELECT 1 FROM akun WHERE id 
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-md-9">
-      <div class="card p-4 text-center">
-        <img src="https://i.pravatar.cc/100?u=<?=$akun_id?>" class="avatar mb-3" alt="avatar">
-        <h4><?= $_SESSION['user']['nama']?></h4>
-        <p class="text-muted">Total Poin Mingguan: <strong><?=$total_poin?></strong></p>
+      <div class="box fade-in text-center">
+        <div class="profile-icon">
+          <img src="https://i.pravatar.cc/150?u=<?=$akun_id?>" alt="avatar">
+        </div>
+        <div class="username"><?= $_SESSION['user']['nama']?></div>
+        <div class="user-contact">Total Poin Mingguan: <strong><?=$total_poin?></strong></div>
 
-        <div class="scroll-row d-flex justify-content-between mt-4 mb-3">
+        <div class="scroll-row">
           <?php foreach ($data_absen as $absen): ?>
             <div class="absen-box <?= $absen['highlight'] ? 'today' : '' ?>">
               <div class="text-muted small"><?=$absen['hari']?></div>
-              <div class="fw-semibold"><?=date('d M', strtotime($absen['tanggal']))?></div>
+              <div><?=date('d M', strtotime($absen['tanggal']))?></div>
               <div class="absen-status"><?=$absen['status']?></div>
             </div>
           <?php endforeach; ?>
         </div>
 
         <?php if (!$sudah_absen): ?>
-          <form action="/proses_absen" method="post" class="mt-3">
-            <button class="btn btn-success" type="submit" >Absen Hari Ini</button>
+          <form action="/proses_absen" method="post" class="mt-4">
+            <button class="btn btn-success" type="submit">Absen Hari Ini</button>
           </form>
         <?php else: ?>
-          <div class="alert alert-success mt-3 mb-0">Kamu sudah absen hari ini 🎉</div>
+          <div class="alert alert-success mt-4">Kamu sudah absen hari ini 🎉</div>
         <?php endif; ?>
       </div>
     </div>
