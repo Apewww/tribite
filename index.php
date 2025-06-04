@@ -29,6 +29,22 @@ switch ($request) {
         require __DIR__ . $viewDir . 'profile/hapus_foto.php';
         break;
 
+    case '/profile/settings/pengaturanakun':
+        require __DIR__ . $viewDir . 'profile/settings/pengaturanakun.php';
+        break; 
+
+    case '/profile/settings/keamanandanakun':
+        require __DIR__ . $viewDir . 'profile/settings/keamanandanakun.php';
+        break;    
+
+    case '/profile/settings/changeusername':
+        require __DIR__ . $viewDir . 'profile/settings/changeusername.php';
+        break;   
+
+    case '/profile/settings/changepassword':
+        require __DIR__ . $viewDir . 'profile/settings/changepassword.php';
+        break;    
+
     case '/keranjang':
         require __DIR__ . $viewDir . 'keranjang.php';
         break;
@@ -36,7 +52,6 @@ switch ($request) {
     case '/register':
         require __DIR__ . $viewDir . 'auth/register.php';
         break;
-
 
     case '/voucher':
         require __DIR__ . $viewDir . 'voucher.php';
@@ -62,10 +77,6 @@ switch ($request) {
         require __DIR__ . $viewDir . 'metodepembayaran.php';
         break;
         
-    case '/pengaturanakun':
-        require __DIR__ . $viewDir . 'pengaturanakun.php';
-        break; 
-        
     case '/alamat':
         require __DIR__ . $viewDir . 'alamat.php';
         break;
@@ -73,10 +84,6 @@ switch ($request) {
     case '/akunsosialmedia':
         require __DIR__ . $viewDir . 'akunsosialmedia.php';
         break;
-        
-    case '/keamanandanakun':
-        require __DIR__ . $viewDir . 'keamanandanakun.php';
-        break;    
 
     case '/riwayat':
         require __DIR__ . $viewDir . 'riwayat.php';
