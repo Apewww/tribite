@@ -24,8 +24,6 @@ session_start();
         </div>
     </div>
 </div>
-
-
 <?php
 include PARTIALS_PATH . 'footer.php'; 
-?> 
+?>

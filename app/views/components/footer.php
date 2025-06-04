@@ -21,5 +21,19 @@
     </div>
   </div>
 </div>
+  <!-- QR Code Modal -->
+  <div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content text-center">
+        <div class="modal-header">
+          <h5 class="modal-title w-100" id="qrModalLabel">QR Code Anda</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=User123" alt="QR Code" class="img-fluid" />
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

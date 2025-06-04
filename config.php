@@ -3,6 +3,14 @@ define('PARTIALS_PATH', $_SERVER['DOCUMENT_ROOT'] . "/tribite/app/views/componen
 define('UPLOAD_PATH', $_SERVER['DOCUMENT_ROOT'] . "/tribite/assets/img/upload/");
 define('AUTH', $_SERVER['DOCUMENT_ROOT'] . "/tribite/app/views/auth/auth.php");
 
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'tribite');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+
+define('DSN', 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME);
+
+
 $host = "localhost";
 $user = "root";
 $pass = "";

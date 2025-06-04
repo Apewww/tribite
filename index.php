@@ -18,7 +18,15 @@ switch ($request) {
         break;
 
     case '/profile':
-        require __DIR__ . $viewDir . 'profile.php';
+        require __DIR__ . $viewDir . 'profile/profile.php';
+        break;
+
+    case 'profile/upload_foto':
+        require __DIR__ . $viewDir . 'profile/upload_foto.php';
+        break;
+
+    case 'profile/hapus_foto':
+        require __DIR__ . $viewDir . 'profile/hapus_foto.php';
         break;
 
     case '/keranjang':
