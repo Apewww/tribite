@@ -12,17 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("❌ ID akun tidak valid.");
     }
 
-    // Cek apakah sudah absen
     $cek = mysqli_query($conn, "SELECT 1 FROM akun WHERE id = $akun_id AND date = '$tanggal'");
     if (mysqli_num_rows($cek) > 0) {
-        header("Location: harian.php?id=$akun_id");
+        header("Location: harian");
         exit;
     }
 
-    // Tambahkan absen
-    $query = mysqli_query($conn, "INSERT INTO akun (id, date , point) VALUES ($akun_id, '$tanggal', $poin)");
+    $query = mysqli_query($conn, "UPDATE akun SET date = '$tanggal', point = point + $poin WHERE id = $akun_id");
     if ($query) {
-        header("Location: harian.php?id=$akun_id");
+        header("Location: harian");
         exit;
     } else {
         die("❌ Gagal menyimpan absen: " . mysqli_error($conn));

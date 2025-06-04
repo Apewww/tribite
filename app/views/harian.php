@@ -1,21 +1,18 @@
 <?php
-
+session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php';
-$akun_id = $_GET['id'] ?? 1;
+$akun_id = $_SESSION['user']['id'];
 $hari_ini = date('Y-m-d');
 $nama_hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
 $poin_hari = [150, 50, 60, 60, 100, 100, 150]; // Minggu - Sabtu
 
-$akun = mysqli_fetch_assoc(mysqli_query($conn, "SELECT nama FROM akun WHERE id = $akun_id"));
-
 $data_absen = [];
-$total_poin = 0;
+$total_poin = $_SESSION['user']['point'];
 for ($i = 6; $i >= 0; $i--) {
     $tgl = date('Y-m-d', strtotime("-$i days"));
     $hari = date('w', strtotime($tgl));
-    $cek = mysqli_query($conn, "SELECT 1 FROM absen WHERE user_id = $akun_id AND tanggal = '$tgl'");
+    $cek = mysqli_query($conn, "SELECT 1 FROM akun WHERE id = $akun_id AND date = '$tgl'");
     $absen = mysqli_num_rows($cek) > 0;
-    if ($absen) $total_poin += $poin_hari[$hari];
     $data_absen[] = [
         'tanggal' => $tgl,
         'hari' => $nama_hari[$hari],
@@ -24,7 +21,7 @@ for ($i = 6; $i >= 0; $i--) {
     ];
 }
 
-$sudah_absen = mysqli_num_rows(mysqli_query($conn, "SELECT 1 FROM absen WHERE user_id = $akun_id AND tanggal = '$hari_ini'")) > 0;
+$sudah_absen = mysqli_num_rows(mysqli_query($conn, "SELECT 1 FROM akun WHERE id = $akun_id AND date = '$hari_ini'")) > 0;
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -77,7 +74,7 @@ $sudah_absen = mysqli_num_rows(mysqli_query($conn, "SELECT 1 FROM absen WHERE us
     <div class="col-md-9">
       <div class="card p-4 text-center">
         <img src="https://i.pravatar.cc/100?u=<?=$akun_id?>" class="avatar mb-3" alt="avatar">
-        <h4><?=$akun['nama']?></h4>
+        <h4><?= $_SESSION['user']['nama']?></h4>
         <p class="text-muted">Total Poin Mingguan: <strong><?=$total_poin?></strong></p>
 
         <div class="scroll-row d-flex justify-content-between mt-4 mb-3">
