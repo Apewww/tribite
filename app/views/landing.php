@@ -1,6 +1,7 @@
 <?php
 $pageTitle = "Home";
 include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
+include AUTH;
 include PARTIALS_PATH . 'header.php';
 session_start();
 ?>

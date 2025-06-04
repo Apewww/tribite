@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
+include AUTH;
 include PARTIALS_PATH . 'header.php';
 include PARTIALS_PATH . 'validation_role.php';
 
@@ -16,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $gambarTmp = $_FILES['gambar']['tmp_name'];
         $gambarName = basename($_FILES['gambar']['name']);
         $gambarName = preg_replace('/[^A-Za-z0-9\-\_\.]/', '_', $gambarName);
-        $targetPath = $_SERVER['DOCUMENT_ROOT'] . UPLOAD_PATH . $gambarName;
+        $targetPath = UPLOAD_PATH . $gambarName;
 
         if (!is_dir(UPLOAD_PATH)) {
             mkdir(UPLOAD_PATH, 0777, true);

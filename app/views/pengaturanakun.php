@@ -1,77 +1,24 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pengaturan Akun</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<?php
+session_start();
+$pageTitle = "Pengaturan Akun";
+include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
+include AUTH;
+include PARTIALS_PATH . 'header.php';
+?>
 
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      height: 100vh;
-      width: 100vw;
-    }
 
-    .container {
-      background-color: #fddede;
-      height: 100vh;
-      padding: 30px 20px;
-    }
-
-    .title {
-      font-weight: bold;
-      font-size: 1.5em;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .menu-item {
-      color: black;
-      text-decoration: none;
-      background-color: white;
-      border: 1px solid #ccc;
-      padding: 18px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-
-    .menu-item:hover {
-      background-color: #f0f0f0;
-    }
-
-    .menu-item:not(:last-child) {
-      border-bottom: none;
-      margin-bottom: 10px;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="title">Pengaturan Akun</div>
-    <div>
+<div class="container min-vh-100 d-flex" id="landingContent">
+  <div class="title">Pengaturan Akun</div>
+  <div>
     <a href="/keamanandanakun" class="menu-item" onclick="window.location.href='keamanan-akun.html'">Keamanan dan Akun</a>  
-    </div>
-    
-    <div>
-    <a href="/alamatsaya" class="menu-item" onclick="window.location.href='alamat-saya.html'">Alamat Saya</a> 
-    </div>
-    
-    <div>
-    <a href="/pengaturannotifikasi" class="menu-item" onclick="window.location.href='pengaturan-notifikasi.html'">Pengaturan Notifikasi</a>
-    </div>
   </div>
+  
+  <div>
+    <a href="/alamatsaya" class="menu-item" onclick="window.location.href='alamat-saya.html'">Alamat Saya</a> 
+  </div>
+</div>
 
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
-</html>
+
+<?php
+include PARTIALS_PATH . 'footer.php'; 
+?> 

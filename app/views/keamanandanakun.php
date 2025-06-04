@@ -21,7 +21,7 @@
 
     .container {
       background-color: #fddede; /* Warna pink */
-      height: 100vh
+      height: 100vh;
       padding: 30px 20px;
     }
 
@@ -83,8 +83,7 @@
       <span class="value">t********e@gmail.com</span>
     </div>
     <div>
-    <a href="/akunsosialmedia" class="row link-row" onclick="window.location.href='akunsosialmedia.html'">Akun Sosial Media</a>
-    <a href="/gantipassword" class="row link-row" onclick="window.location.href='gantipassword.html'">Ganti Password</a> 
+      <a href="/gantipassword" class="row link-row" onclick="window.location.href='gantipassword.html'">Ganti Password</a> 
     </div>
   </div>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
