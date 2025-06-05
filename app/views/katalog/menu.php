@@ -90,7 +90,8 @@ foreach ($kategori as $tipe) {
                     data-id="<?= $item['id']; ?>"
                     data-nama="<?= htmlspecialchars($item['nama']); ?>"
                     data-harga="<?= $item['harga']; ?>"
-                    onclick="<?php $total_item++ ?>">
+                    data-gambar="<?= $item['gambar']; ?>"
+                  >
                     <i class="fa fa-cart-plus"></i>
                 </button>
                 <button class="btn btn-danger btn-sm">Pesan</button>
@@ -103,6 +104,7 @@ foreach ($kategori as $tipe) {
   </div>
 <form action="/menu/keranjang" method="POST" id="Keranjang" class="d-none">
   <input type="hidden" name="keranjangData" id="keranjangData">
+  <input type="hidden" name="ids" id="keranjangIds">
   <button type="submit" class="position-fixed bottom-0 end-0 m-4 bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
        style="width: 60px; height: 60px; z-index: 1050;">
       <i class="fa fa-shopping-cart fa-lg"></i>
@@ -134,22 +136,24 @@ foreach ($kategori as $tipe) {
     }
 
     document.querySelectorAll('.btn-add-to-cart').forEach(button => {
-        button.addEventListener('click', function () {
-            const id = this.dataset.id;
-            const nama = this.dataset.nama;
-            const harga = parseInt(this.dataset.harga);
-        
-            const existingItem = keranjang.find(item => item.id === id);
-            if (existingItem) {
-                existingItem.jumlah += 1;
-            } else {
-                keranjang.push({ id, nama, harga, jumlah: 1 });
-            }
-          
-            updateCartCount();
-            LocalStorage();
-        });
+      button.addEventListener('click', function () {
+          const id = this.dataset.id;
+          const nama = this.dataset.nama;
+          const harga = parseInt(this.dataset.harga);
+          const gambar = this.dataset.gambar;
+
+          const existingItem = keranjang.find(item => item.id === id);
+          if (existingItem) {
+              existingItem.jumlah += 1;
+          } else {
+              keranjang.push({ id, nama, harga, jumlah: 1, gambar });
+          }
+
+          updateCartCount();
+          LocalStorage();
+      });
     });
+
 
     function updateCartCount() {
         const totalItem = keranjang.reduce((total, item) => total + item.jumlah, 0);
@@ -170,8 +174,14 @@ foreach ($kategori as $tipe) {
     const keranjangForm = document.getElementById('Keranjang');
     keranjangForm.addEventListener('submit', function (e) {
       const hiddenInput = document.getElementById('keranjangData');
-      hiddenInput.value = JSON.stringify(keranjang); // kirim data ke server
+      hiddenInput.value = JSON.stringify(keranjang); // pakai keranjang dari luar event handler
+    
+      const idList = keranjang.map(item => item.id);
+      document.getElementById('keranjangIds').value = JSON.stringify(idList);
+    
+      console.log(idList);
     });
+
 
   });
 
