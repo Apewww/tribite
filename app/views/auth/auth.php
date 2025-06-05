@@ -1,6 +1,6 @@
 <?php
-    $stmt = $conn->prepare("CALL GetLogin(?)");
-    $stmt->bind_param("s", $_SESSION['user']['email']);
+    $stmt = $conn->prepare("CALL GetAuth(?)");
+    $stmt->bind_param("i", $_SESSION['user']['id']);
     $stmt->execute();
     $result = $stmt->get_result();
 

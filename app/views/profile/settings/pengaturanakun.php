@@ -9,9 +9,9 @@ session_start();
 
 <div class="container min-vh-100" id="PeganturanContent">
   <div class="position-relative py-3 border-bottom">
-    <span class="position-absolute start-0 top-50 translate-middle-y ps-3 fw-semibold" style="cursor: pointer;" onclick="window.history.back()">
+    <a href="/profile" class="position-absolute start-0 top-50 translate-middle-y ps-3 fw-semibold text-decoration-none text-black" style="cursor: pointer;">
       <i class="fas fa-arrow-left me-2"></i> Kembali
-    </span>
+    </a>
     <div class="text-center fw-bold fs-5">Keamanan & Akun</div>
   </div>
   
