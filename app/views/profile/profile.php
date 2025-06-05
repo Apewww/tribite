@@ -18,7 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profile_picture'])) 
         $stmt->bind_param("si", $dbPath, $userId);
         $stmt->execute();
 
-        $_SESSION['user']['picture'] = $dbPath;
+        // $_SESSION['user']['picture'] = $dbPath;
+        include AUTH;
         header("Location: /profile");
         exit;
     }
@@ -205,7 +206,7 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
     }
 </style>
 
-<div class="container py-4">
+    <div class="container py-4">
     <div class="header">
         <i class="fas fa-arrow-left" onclick="window.history.back()"></i>
         <span>Kembali</span>
@@ -230,7 +231,7 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
                         </form>
                     </li>
                     <?php if ($foto && $foto !== '/tribite/assets/img/default.png'): ?>
-                        <li><a class="dropdown-item" href="?hapus_foto=1">Hapus Foto</a></li>
+                        <li><a class="dropdown-item" href="/hapus_foto">Hapus Foto</a></li>
                     <?php endif; ?>
                 </ul>
             </div>
@@ -268,7 +269,7 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
             <div class="menu-item">Alamat Saya</div>
             <a href="/voucher" class="menu-item">Voucher Saya</a>
             <a href="/metodepembayaran" class="menu-item">Metode Pembayaran</a>
-            <div class="menu-item">Absensi</div>
+            <a href="/harian" class="menu-item">Absensi</a>
             <div class="menu-item">Riwayat</div>
             <a href="/bahasa" class="menu-item">Bahasa</a>
             <a href="/profile/settings/pengaturanakun" class="menu-item">Pengaturan Akun</a>
@@ -319,5 +320,4 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
         valueElement.textContent = valueElement.textContent === '***' ? valueElement.dataset.real : '***';
     }
 </script>
-
 <?php include PARTIALS_PATH . 'footer.php'; ?>

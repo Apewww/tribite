@@ -45,8 +45,8 @@ switch ($request) {
         require __DIR__ . $viewDir . 'profile/settings/changepassword.php';
         break;    
 
-    case '/keranjang':
-        require __DIR__ . $viewDir . 'keranjang.php';
+    case '/menu/keranjang':
+        require __DIR__ . $viewDir . 'katalog/keranjang.php';
         break;
 
     case '/register':

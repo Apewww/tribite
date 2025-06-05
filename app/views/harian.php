@@ -144,12 +144,17 @@ $sudah_absen = mysqli_num_rows(mysqli_query($conn, "SELECT 1 FROM akun WHERE id 
   </style>
 </head>
 <body>
+<div class="container py-4">
+    <div class="header">
+        <i class="fas fa-arrow-left" onclick="window.history.back()"></i>
+        <span>Kembali</span>
+    </div>
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-md-9">
       <div class="box fade-in text-center">
         <div class="profile-icon">
-          <img src="https://i.pravatar.cc/150?u=<?=$akun_id?>" alt="avatar">
+          <img src="tribite\assets\img\login.png-removebg-preview.png" alt="avatar">
         </div>
         <div class="username"><?= $_SESSION['user']['nama']?></div>
         <div class="user-contact">Total Poin Mingguan: <strong><?=$total_poin?></strong></div>

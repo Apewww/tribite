@@ -1,6 +1,6 @@
 <?php
 define('PARTIALS_PATH', $_SERVER['DOCUMENT_ROOT'] . "/tribite/app/views/components/");
-define('UPLOAD_PATH', $_SERVER['DOCUMENT_ROOT'] . "/tribite/assets/img/upload/");
+define('UPLOAD_PATH',  "/tribite/assets/img/upload/");
 define('AUTH', $_SERVER['DOCUMENT_ROOT'] . "/tribite/app/views/auth/auth.php");
 
 define('DB_HOST', 'localhost');
