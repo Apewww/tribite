@@ -1,148 +1,83 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Keranjang Saya</title>
-  <!-- Link Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f8dede;
-  margin: 0;
-  padding: 0;
-}
+<?php
+$pageTitle = "Keranjang Saya";
+include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
+include AUTH;
+include PARTIALS_PATH . 'header.php';
+session_start();
+?>
 
-.cart-container {
-  padding: 20px;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.cart-container a {
-  text-decoration: none;
-  color: black;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-header i {
-  font-size: 18px;
-}
-
-h2 {
-  margin: 0;
-}
-
-hr {
-  border: 1px solid #000;
-  margin: 10px 0 20px;
-}
-
-.cart-item {
-  display: flex;
-  align-items: center;
-  background-color: #f8dede;
-  padding: 10px;
-  margin-bottom: 10px;
-  gap: 10px;
-}
-
-.cart-item img {
-  width: 60px;
-  height: 60px;
-  border-radius: 10px;
-}
-
-.item-info h3 {
-  font-size: 16px;
-  margin: 0 0 5px;
-  font-weight: bold;
-}
-
-.price {
-  background-color: white;
-  padding: 4px 8px;
-  border-radius: 8px;
-  font-weight: bold;
-}
-
-.cart-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  padding: 15px;
-  border-radius: 15px;
-  position: sticky;
-  bottom: 0;
-  margin-top: 20px;
-}
-
-.checkout-btn {
-  background-color: #e48b8b;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 10px 20px;
-  font-weight: bold;
-}
-
-.checkout-btn:hover {
-  background-color: #d77a7a;        
-}
-
-  </style>
-</head>
-<body>
-  <div class="cart-container">
-    <header>
-      <a href="#"><i class="fa fa-arrow-left"></i></a>
-      <h2>Keranjang Saya</h2>
-    </header>
-    <hr>
-
-    <div class="cart-item">
-      <input type="checkbox">
-      <img src="/tribite/assets/img/keranjang.jpg" alt="dessert">
-      <div class="item-info">
-        <h3>[Ready Stock ] dessert</h3>
-        <span class="price">Rp. 60.000</span>
-      </div>
-    </div>
-
-    <div class="cart-item">
-      <input type="checkbox">
-      <img src="/tribite/assets/img/keranjang.jpg" alt="dessert">
-      <div class="item-info">
-        <h3>[Ready Stock ] dessert</h3>
-        <span class="price">Rp. 60.000</span>
-      </div>
-    </div>
-
-    <div class="cart-item">
-      <input type="checkbox">
-      <img src="/tribite/assets/img/keranjang.jpg" alt="dessert">
-      <div class="item-info">
-        <h3>[Ready Stock ] dessert</h3>
-        <span class="price">Rp. 60.000</span>
-      </div>
-    </div>
-
-    <footer class="cart-footer">
-      <label><input type="checkbox"> Semua</label>
-      <span>Total <strong>Rp0</strong></span>
-      <a href=""><button class="checkout-btn">CheckOut (0)</button></a>
-    </footer>
+<div class="container py-5 min-vh-100">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <a href="/menu" class="btn btn-outline-secondary">
+      <i class="fa fa-arrow-left me-2"></i> Kembali ke Menu
+    </a>
+    <h2 class="mb-0">Keranjang Saya</h2>
   </div>
-  <!-- Link Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
-</html>
+
+  <div id="cart-items" class="row gy-3"></div>
+
+  <div class="card mt-4">
+    <div class="card-body d-flex justify-content-between align-items-center">
+      <div>
+        <input type="checkbox" id="selectAll" class="form-check-input me-2">
+        <label for="selectAll" class="form-check-label">Pilih Semua</label>
+      </div>
+      <div>
+        <span>Total: <strong id="totalHarga">Rp 0</strong></span>
+        <button class="btn btn-danger ms-3" id="checkoutBtn">Checkout (0)</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const cartItemsContainer = document.getElementById('cart-items');
+  const totalHargaEl = document.getElementById('totalHarga');
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  const selectAll = document.getElementById('selectAll');
+
+  let keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];
+
+  function renderCart() {
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
+    let totalItem = 0;
+
+    keranjang.forEach((item, index) => {
+      const subtotal = item.harga * item.jumlah;
+      total += subtotal;
+      totalItem += item.jumlah;
+
+      const col = document.createElement('div');
+      col.className = 'col-12';
+
+      col.innerHTML = `
+        <div class="card shadow-sm">
+          <div class="card-body d-flex align-items-center">
+            <input type="checkbox" class="form-check-input me-3 item-check" data-index="${index}" checked>
+            <img src="/tribite/assets/img/keranjang.jpg" alt="gambar" class="img-thumbnail me-3" style="width: 80px; height: 80px; object-fit: cover;">
+            <div class="flex-grow-1">
+              <h5 class="mb-1">${item.nama}</h5>
+              <div class="text-danger">Rp. ${item.harga.toLocaleString()}</div>
+              <small>Jumlah: ${item.jumlah}</small>
+            </div>
+          </div>
+        </div>
+      `;
+      cartItemsContainer.appendChild(col);
+    });
+
+    totalHargaEl.textContent = `Rp. ${total.toLocaleString()}`;
+    checkoutBtn.textContent = `Checkout (${totalItem})`;
+  }
+
+  selectAll.addEventListener('change', function () {
+    document.querySelectorAll('.item-check').forEach(cb => cb.checked = this.checked);
+  });
+
+  renderCart();
+});
+</script>
+
+
+<?php include PARTIALS_PATH . 'footer.php'; ?>

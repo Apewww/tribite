@@ -61,7 +61,7 @@ foreach ($kategori as $tipe) {
           <input type="text" id="searchInput" class="form-control" placeholder="Masukkan nama menu...">
           <input type="text" id="searchInputNav" class="form-control" placeholder="Masukkan nama menu..." 
           oninput="filterMenu()" 
-          value="<?= $_POST['q'] ?>"  hidden>
+          value="<?= $_POST['q'] ?? '' ?>"  hidden>
           <button class="btn btn-danger" type="button" onclick="filterMenu()">Cari</button>
         </div>
       </div>
@@ -101,15 +101,17 @@ foreach ($kategori as $tipe) {
       <?php endforeach; ?>
     </div>
   </div>
-  <form action="/menu/keranjang" method="POST" id="Keranjang" class="d-none">
-    <button type="submit" class="position-fixed bottom-0 end-0 m-4 bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
-         style="width: 60px; height: 60px; z-index: 1050;">
-        <i class="fa fa-shopping-cart fa-lg"></i>
-        <span id="cart-count"
-          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
-        </span>
-    </button>
-  </form>
+<form action="/menu/keranjang" method="POST" id="Keranjang" class="d-none">
+  <input type="hidden" name="keranjangData" id="keranjangData">
+  <button type="submit" class="position-fixed bottom-0 end-0 m-4 bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
+       style="width: 60px; height: 60px; z-index: 1050;">
+      <i class="fa fa-shopping-cart fa-lg"></i>
+      <span id="cart-count"
+        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
+      </span>
+  </button>
+</form>
+
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -164,7 +166,16 @@ foreach ($kategori as $tipe) {
         localStorage.setItem('keranjang', JSON.stringify(keranjang));
     }
 
+
+    const keranjangForm = document.getElementById('Keranjang');
+    keranjangForm.addEventListener('submit', function (e) {
+      const hiddenInput = document.getElementById('keranjangData');
+      hiddenInput.value = JSON.stringify(keranjang); // kirim data ke server
+    });
+
   });
+
+
 </script>
 
 <?php
