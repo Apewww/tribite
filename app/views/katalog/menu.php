@@ -59,6 +59,9 @@ foreach ($kategori as $tipe) {
                 </option>
               <?php endforeach; ?>
           <input type="text" id="searchInput" class="form-control" placeholder="Masukkan nama menu...">
+          <input type="text" id="searchInputNav" class="form-control" placeholder="Masukkan nama menu..." 
+          oninput="filterMenu()" 
+          value="<?= $_POST['q'] ?>"  hidden>
           <button class="btn btn-danger" type="button" onclick="filterMenu()">Cari</button>
         </div>
       </div>
@@ -111,7 +114,11 @@ foreach ($kategori as $tipe) {
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const input = document.getElementById('searchInput');
-    if (input && input.value.trim() !== '') {
+    const inputNav = document.getElementById('searchInputNav');
+    if (inputNav && inputNav.value.trim() !== '') {
+      // Opsional: Salin ke input utama
+      const input = document.getElementById('searchInput');
+      if (input) input.value = inputNav.value;
       filterMenu();
     }
     let keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];

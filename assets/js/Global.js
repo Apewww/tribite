@@ -119,20 +119,26 @@ function toggleSearchInput(e) {
 }
 
 function filterMenu() {
-  const keyword = document.getElementById('searchInput').value.toLowerCase();
-  const kategori = document.getElementById('kategoriSelect').value.toLowerCase();
+  const input = document.getElementById('searchInput');
+  const inputNav = document.getElementById('searchInputNav');
+  const select = document.getElementById('kategoriSelect');
+
+  const keyword = input ? input.value.toLowerCase() : '';
+  const keywordNav = inputNav ? inputNav.value.toLowerCase() : '';
+  const kategori = select ? select.value.toLowerCase() : '';
 
   document.querySelectorAll('.card').forEach(card => {
     const nama = card.querySelector('.card-title').textContent.toLowerCase();
     const kategoriItem = card.getAttribute('data-kategori')?.toLowerCase() || '';
 
     const cocokNama = nama.includes(keyword);
+    const cocokNamaNav = nama.includes(keywordNav);
     const cocokKategori = kategori === '' || kategoriItem === kategori;
 
-    if (cocokNama && cocokKategori) {
-      card.parentElement.style.display = ''; // tampilkan kolom
+    if ((cocokNama || cocokNamaNav) && cocokKategori) {
+      card.parentElement.style.display = ''; // tampilkan
     } else {
-      card.parentElement.style.display = 'none'; // sembunyikan kolom
+      card.parentElement.style.display = 'none'; // sembunyikan
     }
   });
 }
