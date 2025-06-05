@@ -271,7 +271,7 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
             <div class="menu-item">Absensi</div>
             <div class="menu-item">Riwayat</div>
             <a href="/bahasa" class="menu-item">Bahasa</a>
-            <a href="/pengaturanakun" class="menu-item">Pengaturan Akun</a>
+            <a href="/profile/settings/pengaturanakun" class="menu-item">Pengaturan Akun</a>
             <a href="/logout" class="logout">Logout</a>
         </div>
     </div>
