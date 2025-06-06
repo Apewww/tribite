@@ -65,6 +65,11 @@ switch ($request) {
         require __DIR__ . $viewDir . 'katalog/keranjang.php';
         break;
 
+    case '/menu/keranjang/checkout':
+        require __DIR__ . $viewDir . 'katalog/checkout.php';
+        break;
+
+
     case '/register':
         require __DIR__ . $viewDir . 'auth/register.php';
         break;

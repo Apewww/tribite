@@ -3,7 +3,6 @@ session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
 include AUTH;
 include PARTIALS_PATH . 'header.php';
-include PARTIALS_PATH . 'validation_role.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_SESSION['user']['id'];

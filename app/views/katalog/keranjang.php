@@ -32,9 +32,33 @@ if (!isset($_POST['keranjangData'])) {
       </div>
       <div>
         <span>Total: <strong id="totalHarga">Rp 0</strong></span>
-        <button class="btn btn-danger ms-3" id="checkoutBtn">Checkout (0)</button>
+        <button class="btn btn-danger ms-3" id="checkoutBtn" data-bs-toggle="modal" data-bs-target="#Checkout">Checkout (0)</button>
       </div>
     </div>
+  </div>
+</div>
+<div class="modal fade" id="Checkout" tabindex="-1" aria-labelledby="CheckoutLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form method="POST" action="/menu/keranjang/checkout">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="Checkout">Checkout Payment</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="hiddenInputArea"></div>
+            <div class="mb-3">
+                <select name="KuponSelected" class="form-control">
+                  <option value="">Pilih Kupon</option>
+                </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Bayar</button>
+          </div>
+        </div>
+    </form>
   </div>
 </div>
 <script>
@@ -43,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const totalHargaEl = document.getElementById('totalHarga');
   const checkoutBtn = document.getElementById('checkoutBtn');
   const selectAll = document.getElementById('selectAll');
+  const inputArea = document.getElementById("hiddenInputArea");
 
   let keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];
 
@@ -82,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function updateTotal() {
     let total = 0;
     let totalItem = 0;
+    inputArea.innerHTML = "";
     document.querySelectorAll('.item-check').forEach(cb => {
       if (cb.checked) {
         const idx = parseInt(cb.dataset.index);
@@ -90,6 +116,25 @@ document.addEventListener('DOMContentLoaded', function () {
         totalItem += item.jumlah;
       }
     });
+
+    keranjang.forEach((item, index) => {
+      // Input untuk nama produk
+      const inputNama = document.createElement("input");
+      inputNama.type = "hidden";
+      inputNama.name = `dataCheckout[${index}][nama]`;
+      inputNama.value = item.nama;
+      
+      // Input untuk jumlah
+      const inputJumlah = document.createElement("input");
+      inputJumlah.type = "hidden";
+      inputJumlah.name = `dataCheckout[${index}][jumlah]`;
+      inputJumlah.value = item.jumlah;
+      
+      // Tambahkan ke form
+      inputArea.appendChild(inputNama);
+      inputArea.appendChild(inputJumlah);
+    });
+
 
     totalHargaEl.textContent = `Rp. ${total.toLocaleString()}`;
     checkoutBtn.textContent = `Checkout (${totalItem})`;
