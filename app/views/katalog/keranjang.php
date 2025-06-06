@@ -12,6 +12,23 @@ if (!isset($_POST['keranjangData'])) {
     echo "<script>alert('Keranjang kosong!'); window.location.href='/menu';</script>";
     exit;
 }
+
+$rowupon = [];
+if ($stmt = $conn->prepare("CALL GetKupon()")) {
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $rowupon[] = $row;
+        }
+    } else {
+        $_SESSION['notif'] = ["Warn", "Kupon tidak ditemukan!"];
+    }
+    $stmt->close();
+    $conn->next_result();
+}
+
+$conn->close();
 ?>
 
 <div class="container py-5 min-vh-100">
@@ -48,9 +65,28 @@ if (!isset($_POST['keranjangData'])) {
           <div class="modal-body">
             <div id="hiddenInputArea"></div>
             <div class="mb-3">
-                <select name="KuponSelected" class="form-control">
-                  <option value="">Pilih Kupon</option>
-                </select>
+              <select name="KuponSelected" id="KuponSelected" class="form-control">
+                <option>Pilih Kupon</option>
+                <?php foreach ($rowupon as $row): ?>
+                  <option 
+                    value="<?= $row['id'] ?? '' ?>"
+                    data-nilai="<?= $row['nilai_diskon'] ?? '' ?>"
+                    data-tipe="<?= $row['tipe_diskon'] ?? '' ?>" 
+                    data-deskripsi="<?= $row['deskripsi'] ?? '' ?>"
+                    data-minimal="<?= $row['minimal_belanja'] ?? '' ?>"
+                    >
+                    <?= $row['kode'] ?> (<?= $row['tipe_diskon'] == 'nominal' ? 'Rp' . number_format($row['nilai_diskon']) : $row['nilai_diskon'] . '%' ?>)
+                  </option>
+                <?php endforeach; ?>
+              </select>
+              <div class="mt-1">
+                <small id="KuponDeskripsi" class="text-muted fst-italic d-block">
+                </small>
+            </div>
+            </div>
+            <div class="mb-3">
+              <input type="text" name="FinalPrice" id="totalHargaConfirm" class="form-control" value="" disabled>
+              <!-- <span><strong id="totalHargaConfirm">Rp 0</strong></span> -->
             </div>
           </div>
           <div class="modal-footer">
@@ -65,9 +101,12 @@ if (!isset($_POST['keranjangData'])) {
 document.addEventListener('DOMContentLoaded', function () {
   const cartItemsContainer = document.getElementById('cart-items');
   const totalHargaEl = document.getElementById('totalHarga');
+  const totalHargaConfirm = document.getElementById('totalHargaConfirm');
   const checkoutBtn = document.getElementById('checkoutBtn');
   const selectAll = document.getElementById('selectAll');
   const inputArea = document.getElementById("hiddenInputArea");
+  const KuponSelect = document.getElementById("KuponSelected");
+  const DescKupon = document.getElementById("KuponDeskripsi");
 
   let keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];
 
@@ -105,36 +144,61 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function updateTotal() {
+    const selectedOption = KuponSelect.options[KuponSelect.selectedIndex];
+    const nilaiDiskon = parseFloat(selectedOption.dataset.nilai || 0);
+    const jenisDiskon = selectedOption.dataset.tipe || "";
+    const deskripsiDiskon = selectedOption.dataset.deskripsi || "";
+    const minimalDiskon = selectedOption.dataset.minimal || "";
     let total = 0;
     let totalItem = 0;
+    let Diskon;
     inputArea.innerHTML = "";
     document.querySelectorAll('.item-check').forEach(cb => {
       if (cb.checked) {
-        const idx = parseInt(cb.dataset.index);
-        const item = keranjang[idx];
+        const index = parseInt(cb.dataset.index);
+        const item = keranjang[index];
         total += item.harga * item.jumlah;
         totalItem += item.jumlah;
+
+        const inputNama = document.createElement("input");
+        inputNama.type = "hidden";
+        inputNama.name = `dataCheckout[${index}][nama]`;
+        inputNama.value = item.nama;
+        
+        const inputJumlah = document.createElement("input");
+        inputJumlah.type = "hidden";
+        inputJumlah.name = `dataCheckout[${index}][jumlah]`;
+        inputJumlah.value = item.jumlah;
+        
+        inputArea.appendChild(inputNama);
+        inputArea.appendChild(inputJumlah);
       }
     });
 
-    keranjang.forEach((item, index) => {
-      // Input untuk nama produk
-      const inputNama = document.createElement("input");
-      inputNama.type = "hidden";
-      inputNama.name = `dataCheckout[${index}][nama]`;
-      inputNama.value = item.nama;
-      
-      // Input untuk jumlah
-      const inputJumlah = document.createElement("input");
-      inputJumlah.type = "hidden";
-      inputJumlah.name = `dataCheckout[${index}][jumlah]`;
-      inputJumlah.value = item.jumlah;
-      
-      // Tambahkan ke form
-      inputArea.appendChild(inputNama);
-      inputArea.appendChild(inputJumlah);
-    });
+    // keranjang.forEach((item, index) => {
+    //   // Input untuk nama produk
 
+    // });
+
+    if(total > minimalDiskon) {
+      Diskon = total;
+      if (jenisDiskon === "nominal") {
+        Diskon -= nilaiDiskon;
+      } else if (jenisDiskon === "persen") {
+        Diskon -= total * (nilaiDiskon / 100);
+      }
+
+      if (Diskon < 0) Diskon = 0;
+
+      DescKupon.innerHTML = deskripsiDiskon;
+      totalHargaConfirm.value = `Rp. ${Math.round(Diskon).toLocaleString()}`;
+    } else {
+      DescKupon.innerHTML = deskripsiDiskon;
+      totalHargaConfirm.value = `Rp. ${Math.round(total).toLocaleString()} (Kupon tidak aktif)`;
+    }
+
+
+    
 
     totalHargaEl.textContent = `Rp. ${total.toLocaleString()}`;
     checkoutBtn.textContent = `Checkout (${totalItem})`;
@@ -189,6 +253,7 @@ document.addEventListener('DOMContentLoaded', function () {
     updateTotal();
   });
 
+  KuponSelect.addEventListener("change", updateTotal);
   renderCart();
 });
 
