@@ -43,7 +43,17 @@ $kategori_lookup = [];
 foreach ($kategori as $tipe) {
   $kategori_lookup[$tipe['id']] = $tipe['nama'];
 }
+
+if (isset($_SESSION['notif'])) {
+  list($headMessage, $message) = $_SESSION['notif'];
+  unset($_SESSION['notif']);
+}
 ?>  
+<div style="position: fixed; top: 1rem; right: 1rem; z-index: 1050;" id="notif">
+  <?php if (isset($headMessage) && isset($message)): ?>
+    <?php include PARTIALS_PATH . 'notifikasi.php'; ?>
+  <?php endif; ?>
+</div>
 
 <?php include PARTIALS_PATH . 'navbar.php';?>
 <div class="container min-vh-100 d-flex menu-body" id="menuContent">
