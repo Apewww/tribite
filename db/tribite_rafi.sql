@@ -11,7 +11,7 @@
  Target Server Version : 80403
  File Encoding         : 65001
 
- Date: 05/06/2025 08:01:52
+ Date: 08/06/2025 11:02:42
 */
 
 SET NAMES utf8mb4;
@@ -32,11 +32,21 @@ CREATE TABLE `akun`  (
   `bitepay` int(0) NOT NULL DEFAULT 0,
   `point` int(0) NOT NULL DEFAULT 0,
   `date` datetime(0) NULL DEFAULT NULL,
+  `alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `metode_pembayaran` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
   `status` enum('aktif','deleted') CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
   `created_at` datetime(0) NULL DEFAULT NULL,
   `deleted_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of akun
+-- ----------------------------
+INSERT INTO `akun` VALUES (6, 'Rafly Anggara Putra', '$2y$10$g8tUyT9QHzRtkHP6FmpyM.LTqxlAiKKF5cLZoQ6lLcuguEjQ3OEMu', 'apewinaja@gmail.com', '+6285710789216', 1, '/tribite/assets/img/upload/profile/6.jpg', 30, 400, '2025-06-05 00:00:00', 'aaaa', NULL, 'aktif', '2025-05-26 22:22:43', NULL);
+INSERT INTO `akun` VALUES (7, 'Nabila Dwi Marsono', '$2y$10$xY4JwtBs6yclZDhSfPW.UuTA7iZlUj4w8lTeI.MD66A9JuCOU1Gxe', 'nabila@gmail.com', '+6281388502890', 1, '', 500000, 0, NULL, NULL, NULL, 'aktif', '2025-05-27 07:04:41', '2025-05-31 09:12:30');
+INSERT INTO `akun` VALUES (8, 'Siti Aulia', '$2y$10$jQcTjp64sTAta9Nt0f4Wg.lSDcQpuQFE9PuKIMgI9HMBFlyWvPHza', 'sauliarr03@gmail.com', '+6285864510735', 0, '', 0, 0, NULL, NULL, NULL, 'deleted', '2025-05-31 18:48:09', '2025-06-02 14:23:10');
+INSERT INTO `akun` VALUES (11, 'Rafly Anggara Putra', '$2y$10$MNmtOfRTDfKNMdscfrDPfuKEALjKL94jgF2RW/CVuI0sbWOMz/Xxe', 'rafly@gmail.com', '+62857107892216', 0, '/tribite/assets/img/upload/profile/11.jpg', 0, 100, '2025-06-06 00:00:00', 'Test', NULL, 'aktif', '2025-06-06 13:43:42', NULL);
 
 -- ----------------------------
 -- Table structure for katalog
@@ -56,7 +66,17 @@ CREATE TABLE `katalog`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `kategori`(`kategori_id`) USING BTREE,
   CONSTRAINT `kategori` FOREIGN KEY (`kategori_id`) REFERENCES `kategori` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of katalog
+-- ----------------------------
+INSERT INTO `katalog` VALUES (7, 'Test', 'Test', 1000, '/tribite/assets/img/upload/Untitled.png', 1, 0, 'deleted', '2025-06-02 11:46:04', '2025-06-02 11:46:04');
+INSERT INTO `katalog` VALUES (8, 'Test2', '', 10000, '/tribite/assets/img/upload/Christy_JKT48.jpg', 1, 0, 'deleted', '2025-06-02 11:47:22', '2025-06-02 11:47:22');
+INSERT INTO `katalog` VALUES (9, 'Test3', '', 1000, '/tribite/assets/img/upload/Christy_JKT48.jpg', 1, 0, 'deleted', '2025-06-02 11:47:51', '2025-06-02 11:47:51');
+INSERT INTO `katalog` VALUES (10, 'Test', 'Test', 20000, '/tribite/assets/img/upload/Chocolate.jpg', 2, 5, 'aktif', '2025-06-02 14:53:50', '2025-06-02 14:53:50');
+INSERT INTO `katalog` VALUES (11, 'Test2', '', 300000, '/tribite/assets/img/upload/Avocado_Milkshake.webp', 2, 3, 'aktif', '2025-06-02 14:58:14', '2025-06-02 14:58:14');
+INSERT INTO `katalog` VALUES (12, 'Test3', '', 30000, '/tribite/assets/img/upload/star-none.png', 1, 0, 'aktif', '2025-06-04 15:50:20', NULL);
 
 -- ----------------------------
 -- Table structure for kategori
@@ -69,7 +89,13 @@ CREATE TABLE `kategori`  (
   `created_at` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `nama`(`nama`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of kategori
+-- ----------------------------
+INSERT INTO `kategori` VALUES (1, 'Makanan', 'Jenis Kategori untuk makanan', '2025-05-31 21:08:22');
+INSERT INTO `kategori` VALUES (2, 'Minuman', 'Jenis Kategori minuman untuk minuman', '2025-05-31 21:52:50');
 
 -- ----------------------------
 -- Table structure for kupon
@@ -89,7 +115,33 @@ CREATE TABLE `kupon`  (
   `updated_at` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `kode`(`kode`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of kupon
+-- ----------------------------
+INSERT INTO `kupon` VALUES (1, 'KUPON01', '', 'nominal', 20000.00, 250000.00, '2025-06-01 00:00:00', '2025-07-03 00:00:00', 'deleted', '2025-06-01 19:52:33', '2025-06-06 19:52:36');
+INSERT INTO `kupon` VALUES (3, 'TEST', '', 'nominal', 20000.00, 50000.00, '2025-06-02 00:00:00', '2025-06-10 00:00:00', 'deleted', '2025-06-02 14:11:41', '2025-06-06 19:52:37');
+INSERT INTO `kupon` VALUES (5, 'KUPON001', '', 'nominal', 25000.00, 60000.00, '2025-06-02 00:00:00', '2025-06-19 00:00:00', 'deleted', '2025-06-02 14:33:07', '2025-06-06 19:52:34');
+INSERT INTO `kupon` VALUES (6, 'Diskon 20%', 'Diskon 20%, Minimal Belanja 100.000rb', 'persen', 20.00, 100000.00, '2025-06-06 00:00:00', '2025-06-30 00:00:00', 'aktif', '2025-06-06 19:53:36', '2025-06-06 19:56:52');
+INSERT INTO `kupon` VALUES (7, 'Diskon 50.000', 'Diskon 50.000 Minimal Belanja 100.000', 'nominal', 50000.00, 100000.00, '2025-06-06 00:00:00', '2025-06-30 00:00:00', 'aktif', '2025-06-06 20:25:38', '2025-06-06 20:25:38');
+
+-- ----------------------------
+-- Table structure for riwayat_transaksi
+-- ----------------------------
+DROP TABLE IF EXISTS `riwayat_transaksi`;
+CREATE TABLE `riwayat_transaksi`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `akun_id` int(0) NOT NULL,
+  `tanggal_transaksi` datetime(0) NOT NULL,
+  `total_harga` decimal(10, 0) NOT NULL,
+  `kupon_id` int(0) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `akun`(`akun_id`) USING BTREE,
+  INDEX `kupon`(`kupon_id`) USING BTREE,
+  CONSTRAINT `akun` FOREIGN KEY (`akun_id`) REFERENCES `akun` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `kupon` FOREIGN KEY (`kupon_id`) REFERENCES `kupon` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Procedure structure for AddKatalog
@@ -144,6 +196,40 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for ChangeAlamat
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `ChangeAlamat`;
+delimiter ;;
+CREATE PROCEDURE `ChangeAlamat`(IN p_id INT,
+    IN p_alamat_new VARCHAR(255))
+BEGIN
+		IF EXISTS (SELECT 1 FROM akun WHERE id = p_id) THEN
+        UPDATE akun SET alamat = p_alamat_new WHERE id = p_id;
+    ELSE
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'ID tidak ditemukan!';
+    END IF;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for ChangeEmail
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `ChangeEmail`;
+delimiter ;;
+CREATE PROCEDURE `ChangeEmail`(IN p_id INT,
+    IN p_email_new VARCHAR(255))
+BEGIN
+		IF EXISTS (SELECT 1 FROM akun WHERE id = p_id) THEN
+        UPDATE akun SET email = p_email_new WHERE id = p_id;
+    ELSE
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'ID tidak ditemukan!';
+    END IF;
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for ChangePassword
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `ChangePassword`;
@@ -153,6 +239,23 @@ CREATE PROCEDURE `ChangePassword`(IN p_id INT,
 BEGIN
 		IF EXISTS (SELECT 1 FROM akun WHERE id = p_id) THEN
         UPDATE akun SET password = p_password_new WHERE id = p_id;
+    ELSE
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'ID tidak ditemukan!';
+    END IF;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for ChangeTelp
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `ChangeTelp`;
+delimiter ;;
+CREATE PROCEDURE `ChangeTelp`(IN p_id INT,
+    IN p_telp_new VARCHAR(255))
+BEGIN
+		IF EXISTS (SELECT 1 FROM akun WHERE id = p_id) THEN
+        UPDATE akun SET telepon = p_telp_new WHERE id = p_id;
     ELSE
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'ID tidak ditemukan!';
     END IF;
@@ -312,6 +415,21 @@ delimiter ;;
 CREATE PROCEDURE `GetAkun`()
 BEGIN
   SELECT * FROM Akun where status != 'deleted';
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for GetAuth
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `GetAuth`;
+delimiter ;;
+CREATE PROCEDURE `GetAuth`(IN p_id INT)
+BEGIN
+  SELECT *
+  FROM akun
+  WHERE id = p_id and status != 'deleted'
+  LIMIT 1;
 END
 ;;
 delimiter ;

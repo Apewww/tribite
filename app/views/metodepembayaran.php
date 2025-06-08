@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Metode Pembayaran</title>
   <!-- Link Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -62,6 +63,12 @@
     }
 </style>
 <body>
+    <div class="container py-4">
+    <div class="header">
+        <i class="fas fa-arrow-left cursor : pointer" onclick="window.history.back()"></i>
+        <span>Kembali</span>
+    </div>
+
   <div class="container">
     <h2>Metode Pembayaran</h2>
     <div class="payment-box">

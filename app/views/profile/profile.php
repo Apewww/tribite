@@ -40,6 +40,7 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
 ?>
 
 <style>
+    
     body {
         margin: 0;
         font-family: 'Poppins', sans-serif;
@@ -206,13 +207,13 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
     }
 </style>
 
-    <div class="container py-4">
-    <div class="header">
-        <i class="fas fa-arrow-left" onclick="window.history.back()"></i>
-        <span>Kembali</span>
-    </div>
-
     <div class="container-fluid px-3 px-md-5 mt-4">
+         <div class="container-fluid py-4" style="background-color: #ebb1b1;">
+        <a href="/home" style="text-decoration: none; color: inherit;">
+            <i class="fas fa-arrow-left"></i>
+            <span>Kembali</span>
+        </a>
+        </div>
         <!-- Profile Box -->
         <div class="box text-center fade-in">
             <div class="dropdown">
@@ -270,7 +271,7 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
             <a href="/voucher" class="menu-item">Voucher Saya</a>
             <a href="/metodepembayaran" class="menu-item">Metode Pembayaran</a>
             <a href="/harian" class="menu-item">Absensi</a>
-            <div class="menu-item">Riwayat</div>
+            <a href="/riwayat" class="menu-item">Riwayat</a>
             <a href="/bahasa" class="menu-item">Bahasa</a>
             <a href="/profile/settings/pengaturanakun" class="menu-item">Pengaturan Akun</a>
             <a href="/logout" class="logout">Logout</a>

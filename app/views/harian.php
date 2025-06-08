@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php';
+include PARTIALS_PATH . 'header.php';
 $akun_id = $_SESSION['user']['id'];
 $hari_ini = date('Y-m-d');
 $nama_hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
@@ -140,6 +141,10 @@ $sudah_absen = mysqli_num_rows(mysqli_query($conn, "SELECT 1 FROM akun WHERE id 
         border: none;
         color: #0f5132;
         border-radius: 10px;
+    }
+
+    .py-4 {
+        cursor: pointer;
     }
   </style>
 </head>
