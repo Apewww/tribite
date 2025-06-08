@@ -67,6 +67,12 @@
 <body>
 
   <div class="container py-5">
+  <div class="container-fluid py-4" style="background-color: #ebb1b1;">
+        <a href="/profile" style="text-decoration: none; color: inherit;">
+            <i class="fas fa-arrow-left"></i>
+            <span>Kembali</span>
+        </a>
+        </div>
     <div class="reservasi-box">
       <h3 class="text-center fw-bold mb-4">Reservasi Meja Online</h3>
       <form id="reservasiForm" onsubmit="handleReservasi(event)" aria-label="Formulir reservasi meja">

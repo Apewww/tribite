@@ -143,17 +143,20 @@ $sudah_absen = mysqli_num_rows(mysqli_query($conn, "SELECT 1 FROM akun WHERE id 
         border-radius: 10px;
     }
 
-    .py-4 {
+    .py-4 ::before {
         cursor: pointer;
     }
   </style>
 </head>
 <body>
-<div class="container py-4">
-    <div class="header">
-        <i class="fas fa-arrow-left" onclick="window.history.back()"></i>
-        <span>Kembali</span>
-    </div>
+
+<div class="" style="background-color: #ebb1b1;">
+        <a href="/home" style="text-decoration: none; color: inherit;">
+            <i class="fas fa-arrow-left"></i>
+            <span>Kembali</span>
+        </a>
+        </div>
+        
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-md-9">
