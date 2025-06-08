@@ -232,7 +232,7 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
                         </form>
                     </li>
                     <?php if ($foto && $foto !== '/tribite/assets/img/default.png'): ?>
-                        <li><a class="dropdown-item" href="/hapus_foto">Hapus Foto</a></li>
+                        <li><a class="dropdown-item" href="/profile?hapus_foto">Hapus Foto</a></li>
                     <?php endif; ?>
                 </ul>
             </div>
