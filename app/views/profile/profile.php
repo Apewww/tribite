@@ -267,12 +267,12 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
         <!-- Menu Box -->
         <div class="box mt-4 fade-in" style="animation-delay: 0.3s;">
             <div class="menu-title">Menu</div>
-            <div class="menu-item">Alamat Saya</div>
-            <a href="/voucher" class="menu-item">Voucher Saya</a>
-            <a href="/metodepembayaran" class="menu-item">Metode Pembayaran</a>
+            <a href="/reservasi" class="menu-item">Reservasi</a>
+            <a href="/voucher" class="menu-item">Voucher Saya</a>            
             <a href="/harian" class="menu-item">Absensi</a>
-            <a href="/riwayat" class="menu-item">Riwayat</a>
-            <a href="/bahasa" class="menu-item">Bahasa</a>
+            <a href="/riwayat" class="menu-item">Riwayat</a>            
+            <div class="menu-item">Alamat Saya</div>
+            <a href="/metodepembayaran" class="menu-item">Metode Pembayaran</a>
             <a href="/profile/settings/pengaturanakun" class="menu-item">Pengaturan Akun</a>
             <a href="/logout" class="logout">Logout</a>
         </div>

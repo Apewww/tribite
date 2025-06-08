@@ -1,18 +1,33 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Promo Voucher</title>
+<?php
+$pageTitle = "Voucher";
+include_once $_SERVER['DOCUMENT_ROOT'] . '/tribite/config.php'; 
+include AUTH;
+include PARTIALS_PATH ."header.php";
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Font & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+session_start();
 
-  <style>
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+if ($conn->connect_error) {
+    die("Koneksi database gagal: " . $conn->connect_error);
+}
+
+$currentDate = date('Y-m-d H:i:s');
+$query = "SELECT * FROM kupon 
+          WHERE status = 'aktif' 
+          AND tanggal_mulai <= '$currentDate' 
+          AND tanggal_berakhir >= '$currentDate'";
+$result = $conn->query($query);
+$kuponList = [];
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $kuponList[] = $row;
+    }
+}
+$conn->close();
+?>
+
+<style>
+    <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -81,52 +96,69 @@
       background-color: #b94444;
     }
   </style>
-</head>
-<body>
 
-  <div class="container py-4">
-    <div class="header">
-      <i class="fas fa-arrow-left" onclick="window.history.back()"></i>
-      <span>Promo Voucher</span>
-    </div>
+<body>
+  <div class="container-fluid py-4">
+    <a href="/profile" style="text-decoration: none; color: inherit;">
+      <i class="fas fa-arrow-left"></i>
+      <span>Kembali</span>
+    </a>
     <div class="divider"></div>
 
-    <!-- Voucher 1 -->
-    <div class="voucher-card">
-      <div class="voucher-img">🚲</div>
-      <div class="flex-grow-1">
-        <div class="voucher-title">DISKON 5% minimal belanja RP. 30.000</div>
-        <div class="d-flex justify-content-end">
-          <button class="voucher-button">Pakai</button>
+    <?php if (empty($kuponList)): ?>
+      <div class="alert alert-info">Tidak ada voucher yang tersedia saat ini</div>
+    <?php else: ?>
+      <?php foreach ($kuponList as $kupon): ?>
+        <div class="voucher-card">
+          <div class="voucher-img">
+            <?= $kupon['tipe_diskon'] === 'persen' ? '🎁' : '💰' ?>
+          </div>
+          <div class="flex-grow-1">
+            <div class="voucher-title">
+              <?= htmlspecialchars($kupon['deskripsi']) ?>
+              <small class="text-muted d-block">
+                Berlaku hingga: <?= date('d M Y', strtotime($kupon['tanggal_berakhir'])) ?>
+              </small>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button class="voucher-button" onclick="gunakanVoucher('<?= $kupon['kode'] ?>')">
+                Pakai
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Voucher 2 -->
-    <div class="voucher-card">
-      <div class="voucher-img">🚲</div>
-      <div class="flex-grow-1">
-        <div class="voucher-title">DISKON 10% minimal belanja RP. 30.000 menggunakan Bite Pay</div>
-        <div class="d-flex justify-content-end">
-          <button class="voucher-button">Pakai</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Voucher 3 -->
-    <div class="voucher-card">
-      <div class="voucher-img">📦</div>
-      <div class="flex-grow-1">
-        <div class="voucher-title">Gratis Ongkir minimal belanja RP. 30.000</div>
-        <div class="d-flex justify-content-end">
-          <button class="voucher-button">Pakai</button>
-        </div>
-      </div>
-    </div>
-
+      <?php endforeach; ?>
+    <?php endif; ?>
   </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+  
+  <script>
+    function gunakanVoucher(kodeVoucher) {
+      // Simpan voucher ke session atau langsung aplikasikan
+      fetch('/apply_voucher.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ kode: kodeVoucher })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Voucher berhasil digunakan!');
+          window.location.href = '/checkout'; // Redirect ke halaman checkout
+        } else {
+          alert(data.message || 'Gagal menggunakan voucher');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat menggunakan voucher');
+      });
+    }
+  </script>
+<?php
+include PARTIALS_PATH . 'footer.php';
+?>
