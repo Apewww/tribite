@@ -149,13 +149,6 @@ $sudah_absen = mysqli_num_rows(mysqli_query($conn, "SELECT 1 FROM akun WHERE id 
   </style>
 </head>
 <body>
-
-<div class="" style="background-color: #ebb1b1;">
-        <a href="/home" style="text-decoration: none; color: inherit;">
-            <i class="fas fa-arrow-left"></i>
-            <span>Kembali</span>
-        </a>
-        </div>
         
 <div class="container py-5">
   <div class="row justify-content-center">
