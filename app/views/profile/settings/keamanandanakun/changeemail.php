@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $stmt->execute();
             $_SESSION['notif'] = ["System", "Berhasil di Update!"];
-        } catch (mysqli_sql_exception $e) {
+        } caatch (mysqli_sql_exception $e) {
             $_SESSION['notif'] = ["Warn", "Gagal update email: " . $e->getMessage()];
         }
         $stmt->close();
