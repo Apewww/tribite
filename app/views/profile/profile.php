@@ -8,32 +8,39 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 // Handle upload foto
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profile_picture'])) {
-    $uploadDir = '/tribite/assets/img/upload/profile/';
+    $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/tribite/assets/img/upload/profile/';
+    
+    // Pastikan direktori ada
+    if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0755, true);
+    }
+    
     $fileName = $userId . '.' . pathinfo($_FILES['profile_picture']['name'], PATHINFO_EXTENSION);
-    $uploadPath = $_SERVER['DOCUMENT_ROOT'] . $uploadDir . $fileName;
-
+    $uploadPath = $uploadDir . $fileName;
+    
+    // Hapus foto lama jika ada
+    $oldFiles = glob($uploadDir . $userId . '.*');
+    foreach ($oldFiles as $oldFile) {
+        if (is_file($oldFile)) {
+            unlink($oldFile);
+        }
+    }
+    
     if (move_uploaded_file($_FILES['profile_picture']['tmp_name'], $uploadPath)) {
-        $dbPath = $uploadDir . $fileName;
+        $dbPath = '/tribite/assets/img/upload/profile/' . $fileName;
         $stmt = $conn->prepare("UPDATE akun SET picture = ? WHERE id = ?");
         $stmt->bind_param("si", $dbPath, $userId);
         $stmt->execute();
-
-        // $_SESSION['user']['picture'] = $dbPath;
-        include AUTH;
+        
+        $_SESSION['user']['picture'] = $dbPath;
+        header("Location: /profile");
+        exit;
+    } else {
+        // Tambahkan penanganan error
+        $_SESSION['error'] = "Gagal mengupload gambar";
         header("Location: /profile");
         exit;
     }
-}
-
-// Handle hapus foto
-if (isset($_GET['hapus_foto'])) {
-    $stmt = $conn->prepare("UPDATE akun SET picture = '' WHERE id = ?");
-    $stmt->bind_param("i", $userId);
-    $stmt->execute();
-
-    $_SESSION['user']['picture'] = '';
-    header("Location: /profile");
-    exit;
 }
 
 $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
@@ -231,9 +238,6 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
                             <a class="dropdown-item" href="#" onclick="document.getElementById('uploadInput').click()">Ubah Foto</a>
                         </form>
                     </li>
-                    <?php if ($foto && $foto !== '/tribite/assets/img/default.png'): ?>
-                        <li><a class="dropdown-item" href="/profile?hapus_foto">Hapus Foto</a></li>
-                    <?php endif; ?>
                 </ul>
             </div>
 
@@ -267,7 +271,7 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
         <!-- Menu Box -->
         <div class="box mt-4 fade-in" style="animation-delay: 0.3s;">
             <div class="menu-title">Menu</div>
-            <a href="/reservasi" class="menu-item">Reservasi</a>
+            <a href="/reservasimenu" class="menu-item">Reservasi</a>
             <a href="/voucher" class="menu-item">Voucher Saya</a>            
             <a href="/harian" class="menu-item">Absensi</a>
             <a href="/riwayat" class="menu-item">Riwayat</a>            
@@ -320,5 +324,51 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
         const valueElement = cardElement.querySelector('.card-value');
         valueElement.textContent = valueElement.textContent === '***' ? valueElement.dataset.real : '***';
     }
+
+    async function uploadProfilePicture(file) {
+    const formData = new FormData();
+    formData.append('profile_picture', file);
+    
+    try {
+        const response = await fetch('/upload.php', {
+            method: 'POST',
+            body: formData,
+            credentials: 'same-origin'
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            // Force reload image dengan cache busting
+            const img = document.getElementById('profileImage');
+            img.src = result.imageUrl;
+            
+            // Tambahkan class untuk animasi
+            img.classList.add('image-updated');
+            setTimeout(() => img.classList.remove('image-updated'), 500);
+            
+            return true;
+        } else {
+            throw new Error(result.message || 'Upload failed');
+        }
+    } catch (error) {
+        console.error('Upload error:', error);
+        alert('Error: ' + error.message);
+        return false;
+    }
+}
+
+// Event listener untuk form upload
+document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const fileInput = document.getElementById('profile_picture');
+    
+    if (fileInput.files.length > 0) {
+        const success = await uploadProfilePicture(fileInput.files[0]);
+        if (success) {
+            fileInput.value = ''; // Reset input file
+        }
+    }
+});
 </script>
 <?php include PARTIALS_PATH . 'footer.php'; ?>

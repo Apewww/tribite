@@ -163,8 +163,8 @@ switch ($request) {
         require __DIR__ . $viewDir . 'proses_absen.php';
         break;
     
-    case '/reservasi2':
-        require __DIR__ . $viewDir . 'reservasi2.php';
+    case '/reservasimenu':
+        require __DIR__ . $viewDir . 'reservasimenu.php';
         break;
     
     default:

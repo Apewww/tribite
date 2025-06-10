@@ -11,11 +11,7 @@ if ($conn->connect_error) {
 
 // Ambil data reservasi
 $userId = $_SESSION['user']['id'];
-$query = "SELECT r.*, o.nama_outlet 
-          FROM reservasi r 
-          JOIN outlet o ON r.outlet_id = o.id 
-          WHERE r.user_id = ? 
-          ORDER BY r.tanggal DESC, r.jam_mulai DESC";
+$query = "SELECT * FROM reservasi WHERE user_id = ? ORDER BY tanggal DESC, jam_mulai DESC";
 
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $userId);
@@ -31,7 +27,7 @@ if (isset($_POST['cancel_reservation'])) {
     $updateStmt->bind_param("ii", $reservationId, $userId);
     $updateStmt->execute();
     
-    header("Location: /reservasi");
+    header("Location: " . $_SERVER['PHP_SELF']);
     exit;
 }
 ?>
@@ -273,7 +269,7 @@ if (isset($_POST['cancel_reservation'])) {
                 </select>
             </div>
             <div class="col-md-3">
-                <a href="/buat-reservasi" class="btn btn-primary w-100">
+                <a href="/reservasi" class="btn btn-primary w-100">
                     <i class="fas fa-plus me-2"></i>Reservasi Baru
                 </a>
             </div>
@@ -370,44 +366,6 @@ if (isset($_POST['cancel_reservation'])) {
 </div>
 
 <script>
-    // Fungsi untuk filter dan pencarian
-    document.addEventListener('DOMContentLoaded', function() {
-        const searchInput = document.getElementById('searchInput');
-        const statusFilter = document.getElementById('statusFilter');
-        const reservationCards = document.querySelectorAll('.reservation-card');
-        
-        function filterReservations() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const statusValue = statusFilter.value;
-            
-            reservationCards.forEach(card => {
-                const title = card.querySelector('.reservation-title').textContent.toLowerCase();
-                const status = card.getAttribute('data-status');
-                
-                const matchesSearch = title.includes(searchTerm);
-                const matchesStatus = statusValue === 'all' || status === statusValue;
-                
-                if (matchesSearch && matchesStatus) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-        
-        searchInput.addEventListener('input', filterReservations);
-        statusFilter.addEventListener('change', filterReservations);
-    });
-    
-    // Fungsi untuk menampilkan detail reservasi
-    function viewDetail(reservationId) {
-        // Dalam implementasi nyata, ini akan mengambil data dari server via AJAX
-        // Contoh sederhana:
-        fetch(`/api/reservasi/detail?id=${reservationId}`)
-            .then(response => response.json())
-            .then(data => {
-                const modalContent = document.getElementById('modalDetailContent');
-                modalContent.innerHTML = `
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <h6>Kode Booking</h6>
@@ -443,35 +401,5 @@ if (isset($_POST['cancel_reservation'])) {
                         <p>${data.catatan || 'Tidak ada catatan'}</p>
                     </div>
                 `;
-                
-                const modal = new bootstrap.Modal(document.getElementById('detailModal'));
-                modal.show();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Gagal memuat detail reservasi');
-            });
     }
-    
-    function getStatusColor(status) {
-        const colors = {
-            'menunggu': 'warning',
-            'dikonfirmasi': 'success',
-            'selesai': 'info',
-            'dibatalkan': 'danger'
-        };
-        return colors[status] || 'secondary';
-    }
-    
-    function formatDate(dateString) {
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        return new Date(dateString).toLocaleDateString('id-ID', options);
-    }
-    
-    // Fungsi cetak reservasi
-    document.getElementById('printReservationBtn').addEventListener('click', function() {
-        window.print();
-    });
-</script>
-
 <?php include PARTIALS_PATH . 'footer.php'; ?>
