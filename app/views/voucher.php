@@ -27,7 +27,6 @@ $conn->close();
 ?>
 
 <style>
-    <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -130,9 +129,6 @@ $conn->close();
       <?php endforeach; ?>
     <?php endif; ?>
   </div>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
   <script>
     function gunakanVoucher(kodeVoucher) {

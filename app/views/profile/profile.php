@@ -6,7 +6,7 @@ include PARTIALS_PATH . 'header.php';
 $userId = $_SESSION['user']['id'];
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-// Handle upload foto
+// Upload foto
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profile_picture'])) {
     $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/tribite/assets/img/upload/profile/';
     
@@ -47,7 +47,6 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
 ?>
 
 <style>
-    
     body {
         margin: 0;
         font-family: 'Poppins', sans-serif;
@@ -79,7 +78,6 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
             opacity: 0;
             transform: translateY(20px);
         }
-
         to {
             opacity: 1;
             transform: translateY(0);
@@ -214,72 +212,72 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
     }
 </style>
 
-    <div class="container-fluid px-3 px-md-5 mt-4">
-         <div class="container-fluid py-4" style="background-color: #ebb1b1;">
+<div class="container-fluid px-3 px-md-5 mt-4">
+    <div class="container-fluid py-4" style="background-color: #ebb1b1;">
         <a href="/home" style="text-decoration: none; color: inherit;">
             <i class="fas fa-arrow-left"></i>
             <span>Kembali</span>
         </a>
-        </div>
-        <!-- Profile Box -->
-        <div class="box text-center fade-in">
-            <div class="dropdown">
-                <div class="profile-icon dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?php if ($foto && $foto !== '/tribite/assets/img/default.png'): ?>
-                        <img id="profileImage" src="<?= htmlspecialchars($foto) ?>" class="d-block" alt="Foto Profil" />
-                    <?php else: ?>
-                        <i class="fa-solid fa-circle-user fa-5x text-white" id="defaultIcon"></i>
-                    <?php endif; ?>
-                </div>
-                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                    <li>
-                        <form method="post" enctype="multipart/form-data">
-                            <input type="file" name="profile_picture" accept="image/*" onchange="this.form.submit()" style="display:none" id="uploadInput">
-                            <a class="dropdown-item" href="#" onclick="document.getElementById('uploadInput').click()">Ubah Foto</a>
-                        </form>
-                    </li>
-                </ul>
+    </div>
+    
+    <!-- Profile Box -->
+    <div class="box text-center fade-in">
+        <div class="dropdown">
+            <div class="profile-icon dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <?php if ($foto && $foto !== '/tribite/assets/img/default.png'): ?>
+                    <img id="profileImage" src="<?= htmlspecialchars($foto) ?>" class="d-block" alt="Foto Profil" />
+                <?php else: ?>
+                    <i class="fa-solid fa-circle-user fa-5x text-white" id="defaultIcon"></i>
+                <?php endif; ?>
             </div>
+            <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                <li>
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="file" name="profile_picture" accept="image/*" onchange="this.form.submit()" style="display:none" id="uploadInput">
+                        <a class="dropdown-item" href="#" onclick="document.getElementById('uploadInput').click()">Ubah Foto</a>
+                    </form>
+                </li>
+            </ul>
+        </div>
 
-            <div class="username"><?= htmlspecialchars($_SESSION['user']['nama']) ?></div>
-            <div class="user-contact"><?= htmlspecialchars($_SESSION['user']['email']) ?></div>
+        <div class="username"><?= htmlspecialchars($_SESSION['user']['nama']) ?></div>
+        <div class="user-contact"><?= htmlspecialchars($_SESSION['user']['email']) ?></div>
 
-            <div class="row text-center mt-3 g-2">
-                <div class="col-12 col-md-4">
-                    <div class="card-custom" onclick="toggleValue(this)">
-                        <div class="card-icon"><i class="fa-solid fa-wallet"></i></div>
-                        <div class="card-label">Bite Pay</div>
-                        <div class="card-value" data-real="<?= htmlspecialchars($_SESSION['user']['bitepay']) ?>">***</div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="card-custom" onclick="showQR()">
-                        <div class="card-icon"><i class="fa-solid fa-qrcode"></i></div>
-                        <div class="card-label">QR Code</div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <div class="card-custom" onclick="toggleValue(this)">
-                        <div class="card-icon"><i class="fa-solid fa-car"></i></div>
-                        <div class="card-label">Royalbites Point</div>
-                        <div class="card-value" data-real="<?= htmlspecialchars($_SESSION['user']['point']) ?>">***</div>
-                    </div>
+        <div class="row text-center mt-3 g-2">
+            <div class="col-12 col-md-4">
+                <div class="card-custom" onclick="toggleValue(this)">
+                    <div class="card-icon"><i class="fa-solid fa-wallet"></i></div>
+                    <div class="card-label">Bite Pay</div>
+                    <div class="card-value" data-real="<?= htmlspecialchars($_SESSION['user']['bitepay']) ?>">***</div>
                 </div>
             </div>
+            <div class="col-12 col-md-4">
+                <div class="card-custom" onclick="showQR()">
+                    <div class="card-icon"><i class="fa-solid fa-qrcode"></i></div>
+                    <div class="card-label">QR Code</div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card-custom" onclick="toggleValue(this)">
+                    <div class="card-icon"><i class="fa-solid fa-car"></i></div>
+                    <div class="card-label">Royalbites Point</div>
+                    <div class="card-value" data-real="<?= htmlspecialchars($_SESSION['user']['point']) ?>">***</div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Menu Box -->
-        <div class="box mt-4 fade-in" style="animation-delay: 0.3s;">
-            <div class="menu-title">Menu</div>
-            <a href="/reservasimenu" class="menu-item">Reservasi</a>
-            <a href="/voucher" class="menu-item">Voucher Saya</a>            
-            <a href="/harian" class="menu-item">Absensi</a>
-            <a href="/riwayat" class="menu-item">Riwayat</a>            
-            <div class="menu-item">Alamat Saya</div>
-            <a href="/metodepembayaran" class="menu-item">Metode Pembayaran</a>
-            <a href="/profile/settings/pengaturanakun" class="menu-item">Pengaturan Akun</a>
-            <a href="/logout" class="logout">Logout</a>
-        </div>
+    <!-- Menu Box -->
+    <div class="box mt-4 fade-in">
+        <div class="menu-title">Menu</div>
+        <a href="/reservasimenu" class="menu-item">Reservasi</a>
+        <a href="/voucher" class="menu-item">Voucher Saya</a>            
+        <a href="/harian" class="menu-item">Absensi</a>
+        <a href="/riwayat" class="menu-item">Riwayat</a>            
+        <div class="menu-item">Alamat Saya</div>
+        <a href="/metodepembayaran" class="menu-item">Metode Pembayaran</a>
+        <a href="/profile/settings/pengaturanakun" class="menu-item">Pengaturan Akun</a>
+        <a href="/logout" class="logout">Logout</a>
     </div>
 </div>
 
@@ -326,49 +324,49 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
     }
 
     async function uploadProfilePicture(file) {
-    const formData = new FormData();
-    formData.append('profile_picture', file);
-    
-    try {
-        const response = await fetch('/upload.php', {
-            method: 'POST',
-            body: formData,
-            credentials: 'same-origin'
-        });
+        const formData = new FormData();
+        formData.append('profile_picture', file);
         
-        const result = await response.json();
-        
-        if (result.success) {
-            // Force reload image dengan cache busting
-            const img = document.getElementById('profileImage');
-            img.src = result.imageUrl;
+        try {
+            const response = await fetch('/upload.php', {
+                method: 'POST',
+                body: formData,
+                credentials: 'same-origin'
+            });
             
-            // Tambahkan class untuk animasi
-            img.classList.add('image-updated');
-            setTimeout(() => img.classList.remove('image-updated'), 500);
+            const result = await response.json();
             
-            return true;
-        } else {
-            throw new Error(result.message || 'Upload failed');
+            if (result.success) {
+                // Force reload image dengan cache busting
+                const img = document.getElementById('profileImage');
+                img.src = result.imageUrl;
+                
+                // Tambahkan class untuk animasi
+                img.classList.add('image-updated');
+                setTimeout(() => img.classList.remove('image-updated'), 500);
+                
+                return true;
+            } else {
+                throw new Error(result.message || 'Upload failed');
+            }
+        } catch (error) {
+            console.error('Upload error:', error);
+            alert('Error: ' + error.message);
+            return false;
         }
-    } catch (error) {
-        console.error('Upload error:', error);
-        alert('Error: ' + error.message);
-        return false;
     }
-}
 
-// Event listener untuk form upload
-document.getElementById('uploadForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const fileInput = document.getElementById('profile_picture');
-    
-    if (fileInput.files.length > 0) {
-        const success = await uploadProfilePicture(fileInput.files[0]);
-        if (success) {
-            fileInput.value = ''; // Reset input file
+    // Event listener untuk form upload
+    document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const fileInput = document.getElementById('profile_picture');
+        
+        if (fileInput.files.length > 0) {
+            const success = await uploadProfilePicture(fileInput.files[0]);
+            if (success) {
+                fileInput.value = ''; // Reset input file
+            }
         }
-    }
-});
+    });
 </script>
 <?php include PARTIALS_PATH . 'footer.php'; ?>
