@@ -66,7 +66,7 @@ include PARTIALS_PATH . 'header.php';
             <span>Kembali</span>
         </a>
         </div>
-        <div class="reservasi-box">
+        <div class="container-fluid reservasi-box">
     <h3 class="text-center fw-bold mb-4">Reservasi Meja Online</h3>
     <form id="reservasiForm" aria-label="Formulir reservasi meja">
       <div class="row g-3">

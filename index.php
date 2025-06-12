@@ -53,6 +53,10 @@ switch ($request) {
         require __DIR__ . $viewDir . 'profile/settings/keamanandanakun/hangepassword.php';
         break;    
 
+    case '/profile/alamat':
+        require __DIR__ . $viewDir . 'profile/settings/alamatsaya/viewalamat.php';
+        break;
+
     case '/profile/settings/alamatsaya':
         require __DIR__ . $viewDir . 'profile/settings/alamatsaya/alamat.php';
         break;
