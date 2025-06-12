@@ -273,7 +273,8 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
         <a href="/reservasimenu" class="menu-item">Reservasi</a>
         <a href="/voucher" class="menu-item">Voucher Saya</a>            
         <a href="/harian" class="menu-item">Absensi</a>
-        <a href="/riwayat" class="menu-item">Riwayat</a>            
+        <a href="/riwayat" class="menu-item">Riwayat</a>
+        <a href="/bahasa" class="menu-item">Bahasa</a>            
         <a href="/profile/alamat" class="menu-item">Alamat Saya</a>
         <a href="/metodepembayaran" class="menu-item">Metode Pembayaran</a>
         <a href="/profile/settings/pengaturanakun" class="menu-item">Pengaturan Akun</a>
