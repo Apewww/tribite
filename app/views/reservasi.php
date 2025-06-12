@@ -11,15 +11,14 @@ include PARTIALS_PATH . 'header.php';
       color: #333;
     }
 
-    .reservasi-box {
+     .reservasi-box {
       background: linear-gradient(to bottom right, #f8d7da, #f5c6cb);
-      border-radius: 30px;
       padding: 30px 20px;
+      border-radius: 30px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      max-width: 600px;
       margin: auto;
       animation: fadeIn 0.5s ease;
-    }
+    } 
 
     .form-label {
       font-weight: 500;
@@ -59,7 +58,7 @@ include PARTIALS_PATH . 'header.php';
 </head>
 <body>
 
-  <div class="container py-5">
+  <div class="container-fluid py-5">
   <div class="container-fluid py-4" style="background-color: #ebb1b1;">
         <a href="/profile" style="text-decoration: none; color: inherit;">
             <i class="fas fa-arrow-left"></i>
