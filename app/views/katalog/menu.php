@@ -104,7 +104,12 @@ if (isset($_SESSION['notif'])) {
                   >
                     <i class="fa fa-cart-plus"></i>
                 </button>
-                <button class="btn btn-danger btn-sm">Pesan</button>
+                <button class="btn btn-danger btn-sm btn-pesan"
+                  data-id="<?= $item['id']; ?>"
+                  data-nama="<?= htmlspecialchars($item['nama']); ?>"
+                  data-harga="<?= $item['harga']; ?>"
+                  data-gambar="<?= $item['gambar']; ?>"
+                >Pesan</button>
               </div>
             </div>
           </div>
@@ -127,6 +132,28 @@ if (isset($_SESSION['notif'])) {
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.btn-pesan').forEach(button => {
+      button.addEventListener('click', function () {
+        const id = this.dataset.id;
+        const nama = this.dataset.nama;
+        const harga = parseInt(this.dataset.harga);
+        const gambar = this.dataset.gambar;
+      
+        let keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];
+        const existingItem = keranjang.find(item => item.id === id);
+        if (existingItem) {
+          existingItem.jumlah += 1;
+        } else {
+          keranjang.push({ id, nama, harga, gambar, jumlah: 1 });
+        }
+        localStorage.setItem('keranjang', JSON.stringify(keranjang));
+      
+        document.getElementById('keranjangData').value = JSON.stringify(keranjang);
+        document.getElementById('keranjangIds').value = JSON.stringify(keranjang.map(i => i.id));
+        document.getElementById('Keranjang').submit();
+      });
+    });
+
     const input = document.getElementById('searchInput');
     const inputNav = document.getElementById('searchInputNav');
     if (inputNav && inputNav.value.trim() !== '') {
@@ -184,7 +211,7 @@ if (isset($_SESSION['notif'])) {
     const keranjangForm = document.getElementById('Keranjang');
     keranjangForm.addEventListener('submit', function (e) {
       const hiddenInput = document.getElementById('keranjangData');
-      hiddenInput.value = JSON.stringify(keranjang); // pakai keranjang dari luar event handler
+      hiddenInput.value = JSON.stringify(keranjang);
     
       const idList = keranjang.map(item => item.id);
       document.getElementById('keranjangIds').value = JSON.stringify(idList);
