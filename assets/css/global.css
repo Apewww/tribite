@@ -14,7 +14,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #F7E2E2;
+    background-color: #FCE9E9;
 }
 
 .landing-blur {
@@ -26,13 +26,165 @@ body {
     max-width: 65%;
 }
 
+.navbar .nav-link.active,
+.nav-pills .nav-link.active {
+    color: red !important; /* Warna merah untuk link aktif */
+    font-weight: bold; /* Opsional: Tambahkan penekanan */
+    background-color: transparent !important; 
+}
+
+.bg-pink {
+    background-color: #FCE9E9;
+}
+
+.text-red {
+    color: red;
+}
+
+.content-margin {
+    margin-left: 100px;
+}
+
+.img-katalog {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+div .dt-container div.dt-search {
+    padding: 0px !important;
+    display: flex !important;
+    margin: 0px 0px 15px 0px !important;
+}
+
+.dt-container .dt-search label {
+  display: inline-block !important;     /* supaya lebarnya pas isi */
+  background-color: #0d6efd !important; /* warna primary Bootstrap */
+  color: white !important;               /* teks putih */
+  padding: 0.4rem 0.75rem !important; /* padding button bootstrap */
+  border-radius: 0.375rem !important;   /* border radius */
+  font-weight: 500 !important;           /* font-weight medium */
+  cursor: pointer !important;             /* cursor pointer */
+  user-select: none !important;           /* supaya teks gak bisa diseleksi */
+  border: 1px solid #0a58ca !important;   /* border warna lebih gelap */
+  transition: background-color 0.15s ease-in-out !important; /* efek transisi */
+  text-align: center !important;
+}
+
+/* efek hover */
+.dt-container .dt-search label:hover {
+  background-color: #0b5ed7 !important; /* warna hover Bootstrap */
+  border-color: #0a58ca !important;
+  text-decoration: none !important;
+}
+
+
+div .dt-container div.dt-search input {
+    width: 99% !important;
+}
+
+.menu-body {
+  background-color: #fce9e9;
+  font-family: 'Poppins', sans-serif;
+  padding-top: 56px; /* Tambahkan padding agar konten tidak tertutup navbar */
+}
+.menu-card {
+  margin: 30px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.menu-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+.menu-card h3 {
+  font-size: 16px;
+  margin-top: 10px;
+}
+.menu-card p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+.price {
+  font-weight: bold;
+  margin-top: 10px;
+}
+.menu-card button {
+  margin-top: 10px;
+}
+
+.navbar {
+  background-color: #fce9e9; /* Warna latar belakang navbar */
+}
+
+.auth-body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+}
+
+.chef-img {
+    width: 150px;
+}
+
+.login-box {
+    max-width: 400px;
+}
+
+
+.settingakun-menu-item {
+  color: black;
+  text-decoration: none;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 18px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.settingakun-menu-item:hover {
+  background-color: #f0f0f0;
+}
+
+.settingakun-menu-item:not(:last-child) {
+  border-bottom: none;
+  margin-bottom: 10px;
+}
+
+.keamananakun-row {
+  color: black;
+  text-decoration: none;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95em;
+}
+
 @media (min-width: 768px) {
     body {
         margin: 10px 150px 0 150px;
     }
-    
+
     .foodicon {
         max-width: 350px;
         height: auto;
+    }
+
+    .content-margin {
+        margin-left: 300px;
+    }
+
+    .w-md-auto {
+        width: auto !important;
     }
 }

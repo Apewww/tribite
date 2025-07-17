@@ -1,0 +1,4 @@
+/*! Fomantic integration for DataTables' Responsive
+ * © SpryMedia Ltd - datatables.net/license
+ */
+import jQuery from"jquery";import DataTable from"datatables.net-se";import Responsive from"datatables.net-responsive";let $=jQuery;var _display=DataTable.Responsive.display,_original=_display.modal,_modal=$('<div class="ui modal" role="dialog"><div class="header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="content"/></div>');_display.modal=function(t){return function(a,e,d,o){var l;return $.fn.modal?!1!==(l=d())&&!e&&(t&&t.header&&_modal.find("div.header").empty().append('<h4 class="title">'+t.header(a)+"</h4>"),_modal.find("div.content").empty().append(l),_modal.parent().hasClass("dimmer")||_modal.appendTo("body"),_modal.modal({onHide:o}).modal("show"),!0):_original(a,e,d,o)}};export default DataTable;

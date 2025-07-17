@@ -1,129 +1,177 @@
 <?php
-    if (! empty($_GET['q'])) {
-        $query = htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8');
 
-        switch ($query) {
-            case 'info':
-                phpinfo();
-                exit;
-            default:
-                header("HTTP/1.0 404 Not Found");
-                echo "Invalid query parameter.";
-                exit;
-        }
-    }
-?>
+$request = $_SERVER['REQUEST_URI'];
+$viewDir = '/app/views/';
+// $dbDir = '/app/db/';
 
-<!DOCTYPE html>
-<html lang="en">
+switch ($request) {
+    case '/home':
+        require __DIR__ . $viewDir . 'landing.php';
+        break;
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laragon</title>
-    <style>
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;
-        font-weight: 100;
-        background-color: #f9f9f9;
-        color: #333;
-    }
+    case '/login':
+        require __DIR__ . $viewDir . 'auth/login.php';
+        break;
 
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        text-align: center;
-    }
+    case '/menu':
+        require __DIR__ . $viewDir . 'katalog/menu.php';
+        break;
 
-    .content {
-        max-width: 800px;
-        padding: 100px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+    case '/profile':
+        require __DIR__ . $viewDir . 'profile/profile.php';
+        break;
 
-    .title {
-        font-size: 60px;
-        margin: 0;
+    case 'profile/upload_foto':
+        require __DIR__ . $viewDir . 'profile/upload_foto.php';
+        break;
 
-    }
+    case 'profile/hapus_foto':
+        require __DIR__ . $viewDir . 'profile/hapus_foto.php';
+        break;
 
-    .info {
-        margin-top: 20px;
-        line-height: 1.6;
-    }
+    case '/profile/settings/pengaturanakun':
+        require __DIR__ . $viewDir . 'profile/settings/pengaturanakun.php';
+        break; 
 
-    .info a {
-        color: #007bff;
-        text-decoration: none;
-    }
+    case '/profile/settings/keamanandanakun':
+        require __DIR__ . $viewDir . 'profile/settings/keamanandanakun/keamanandanakun.php';
+        break;    
 
-    .info a:hover {
-        color: #0056b3;
-        text-decoration: underline;
-    }
+    case '/profile/settings/changeusername':
+        require __DIR__ . $viewDir . 'profile/settings/keamanandanakun/changeusername.php';
+        break;   
 
-    .opt {
-        margin-top: 30px;
-    }
+    case '/profile/settings/changetelp':
+        require __DIR__ . $viewDir . 'profile/settings/keamanandanakun/changetelp.php';
+        break;  
 
-    .opt a {
-        color: #007bff;
-        font-size: 14px;
-        text-decoration: none;
-    }
+    case '/profile/settings/changeemail':
+        require __DIR__ . $viewDir . 'profile/settings/keamanandanakun/changeemail.php';
+        break;  
 
-    .opt a:hover {
-        color: #0056b3;
-        text-decoration: underline;
-    }
+    case '/profile/settings/changepassword':
+        require __DIR__ . $viewDir . 'profile/settings/keamanandanakun/hangepassword.php';
+        break;    
+
+    case '/profile/alamat':
+        require __DIR__ . $viewDir . 'profile/settings/alamatsaya/viewalamat.php';
+        break;
+
+    case '/profile/settings/alamatsaya':
+        require __DIR__ . $viewDir . 'profile/settings/alamatsaya/alamat.php';
+        break;
+
+    case '/profile/settings/alamatsaya/changealamat':
+        require __DIR__ . $viewDir . 'profile/settings/alamatsaya/changealamat.php';
+        break;
+
+    case '/menu/keranjang':
+        require __DIR__ . $viewDir . 'katalog/keranjang.php';
+        break;
+
+    case '/menu/keranjang/checkout':
+        require __DIR__ . $viewDir . 'katalog/checkout.php';
+        break;
 
 
-    button {
-        display: flex;
-        height: 3em;
-        width: 200px;
-        align-items: center;
-        justify-content: center;
-        background-color: #eeeeee4b;
-        border-radius: 3px;
-        letter-spacing: 1px;
-        transition: all 0.2s linear;
-        cursor: pointer;
-        border: none;
-        background: #fff;
-        box-shadow: 6px 6px 30px #d1d1d1, -6px -6px 30px #ffffff;
-        transform: translateY(-1px);
-    }
+    case '/register':
+        require __DIR__ . $viewDir . 'auth/register.php';
+        break;
 
+    case '/voucher':
+        require __DIR__ . $viewDir . 'voucher.php';
+        break;
+
+    case '/dashboard':
+        require __DIR__ . $viewDir . 'dashboard/dashboard.php';
+        break;
+        
+    case '/katalogmanage':
+        require __DIR__ . $viewDir . 'dashboard/katalog/katalogmanage.php';
+        break;
+
+    case '/akun':
+        require __DIR__ . $viewDir . 'dashboard/akun/akunmanage.php';
+        break;
+
+    case '/bahasa':
+        require __DIR__ . $viewDir . 'bahasa.php';
+        break; 
+        
+    case '/metodepembayaran':
+        require __DIR__ . $viewDir . 'metodepembayaran.php';
+        break;
+        
+
+    case '/akunsosialmedia':
+        require __DIR__ . $viewDir . 'akunsosialmedia.php';
+        break;
+
+    case '/riwayat':
+        require __DIR__ . $viewDir . 'riwayat.php';
+        break;
     
-    </style>
-</head>
+    case '/reservasi':
+        require __DIR__ . $viewDir . 'reservasi.php';
+        break;    
 
-<body>
-    <div class="container">
-        <div class="content">
-            <h1 class="title" title="Laragon">Laragon</h1>
-            <div class="info">
-                <p><?php echo htmlspecialchars($_SERVER['SERVER_SOFTWARE'], ENT_QUOTES, 'UTF-8'); ?></p>
-                <p>PHP version: <?php echo htmlspecialchars(phpversion(), ENT_QUOTES, 'UTF-8'); ?>
-                    <a title="phpinfo()" href="/?q=info">info</a>
-                </p>
-                <p>Document Root: <?php echo htmlspecialchars($_SERVER['DOCUMENT_ROOT'], ENT_QUOTES, 'UTF-8'); ?></p>
-            </div>
-            <div class="opt">
-                <p><button><span><a title="Getting Started" target="_blank" href="https://laragon.org/docs"> Getting
-                                Started</a></span></button></p>
-            </div>
-        </div>
-    </div>
-</body>
+    case '/logout':
+        require __DIR__ . $viewDir . 'auth/logout.php';
+        break;    
 
-</html>
+    case '/akun/akun_edit':
+        require __DIR__ . $viewDir . 'dashboard/akun/akun_edit.php';
+        break;    
+
+    case '/akun/akun_delete':
+        require __DIR__ . $viewDir . 'dashboard/akun/akun_delete.php';
+        break;    
+
+    case '/katalogmanage/kategori_add':
+        require __DIR__ . $viewDir . 'dashboard/katalog/kategori_tambah.php';
+        break;  
+
+    case '/katalogmanage/katalog_add':
+        require __DIR__ . $viewDir . 'dashboard/katalog/katalog_tambah.php';
+        break;   
+
+    case '/katalogmanage/katalog_edit':
+        require __DIR__ . $viewDir . 'dashboard/katalog/katalog_edit.php';
+        break; 
+
+    case '/katalogmanage/katalog_delete':
+        require __DIR__ . $viewDir . 'dashboard/katalog/katalog_delete.php';
+        break;   
+
+    case '/couponmanage':
+        require __DIR__ . $viewDir . 'dashboard/coupon/couponmanage.php';
+        break;  
+
+    case '/couponmanage/coupon_add':
+        require __DIR__ . $viewDir . 'dashboard/coupon/coupon_tambah.php';
+        break;   
+
+    case '/couponmanage/coupon_edit':
+        require __DIR__ . $viewDir . 'dashboard/coupon/coupon_edit.php';
+        break;   
+
+    case '/couponmanage/coupon_delete':
+        require __DIR__ . $viewDir . 'dashboard/coupon/coupon_delete.php';
+        break;
+    
+    case '/harian':
+        require __DIR__ . $viewDir . 'harian.php';
+        break;
+
+    case '/proses_absen':
+        require __DIR__ . $viewDir . 'proses_absen.php';
+        break;
+    
+    case '/reservasimenu':
+        require __DIR__ . $viewDir . 'reservasimenu.php';
+        break;
+    
+    default:
+        http_response_code(404);
+        require __DIR__ . $viewDir . '404.php';
+}
