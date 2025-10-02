@@ -10,7 +10,6 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profile_picture'])) {
     $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/tribite/assets/img/upload/profile/';
     
-    // Pastikan direktori ada
     if (!file_exists($uploadDir)) {
         mkdir($uploadDir, 0755, true);
     }
@@ -18,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profile_picture'])) 
     $fileName = $userId . '.' . pathinfo($_FILES['profile_picture']['name'], PATHINFO_EXTENSION);
     $uploadPath = $uploadDir . $fileName;
     
-    // Hapus foto lama jika ada
     $oldFiles = glob($uploadDir . $userId . '.*');
     foreach ($oldFiles as $oldFile) {
         if (is_file($oldFile)) {
@@ -36,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profile_picture'])) 
         header("Location: /profile");
         exit;
     } else {
-        // Tambahkan penanganan error
         $_SESSION['error'] = "Gagal mengupload gambar";
         header("Location: /profile");
         exit;
@@ -357,7 +354,6 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
         }
     }
 
-    // Event listener untuk form upload
     document.getElementById('uploadForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const fileInput = document.getElementById('profile_picture');
@@ -365,7 +361,7 @@ $foto = $_SESSION['user']['picture'] ?: '/tribite/assets/img/default.png';
         if (fileInput.files.length > 0) {
             const success = await uploadProfilePicture(fileInput.files[0]);
             if (success) {
-                fileInput.value = ''; // Reset input file
+                fileInput.value = '';
             }
         }
     });
