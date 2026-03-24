@@ -11,6 +11,8 @@ interface UserAccount {
   status: string;
 }
 
+export const dynamic = "force-dynamic";
+
 export default function AdminAkun() {
   const [accounts, setAccounts] = useState<UserAccount[]>([]);
   const [loading, setLoading] = useState(true);

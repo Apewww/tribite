@@ -12,6 +12,8 @@ interface Product {
   kategori_id: number;
 }
 
+export const dynamic = "force-dynamic";
+
 export default function AdminKatalog() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
