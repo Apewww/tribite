@@ -1,17 +1,63 @@
 "use client";
 
+import { useState } from "react";
 import { useCart } from "@/lib/cart-context";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 export default function CartPage() {
   const { cart, removeFromCart, totalPrice, clearCart } = useCart();
   const router = useRouter();
 
-  const handleCheckout = () => {
-    // In a real app, we would send the order to Supabase here.
-    // For now, we simulate success as per legacy logic.
-    router.push("/cart/success");
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
+
+  const handleCheckout = async () => {
+    if (cart.length === 0) return;
+    setIsCheckingOut(true);
+
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        router.push("/login");
+        return;
+      }
+
+      // 1. Insert into 'pesanan'
+      const { data: order, error: orderError } = await supabase
+        .from("pesanan")
+        .insert({
+          user_id: user.id,
+          total_harga: totalPrice,
+          metode_pembayaran: "BitePay", // Default for now
+          status: "proses",
+        })
+        .select()
+        .single();
+
+      if (orderError) throw orderError;
+
+      // 2. Insert into 'detail_pesanan'
+      const orderDetails = cart.map((item) => ({
+        pesanan_id: order.id,
+        produk_id: item.id,
+        quantity: item.quantity,
+        harga_satuan: item.harga,
+      }));
+
+      const { error: detailsError } = await supabase
+        .from("detail_pesanan")
+        .insert(orderDetails);
+
+      if (detailsError) throw detailsError;
+
+      // 3. Clear cart and redirect
+      router.push("/cart/success");
+    } catch (error: any) {
+      alert("Gagal memproses pesanan: " + error.message);
+    } finally {
+      setIsCheckingOut(false);
+    }
   };
 
   return (
@@ -82,9 +128,10 @@ export default function CartPage() {
 
                <button 
                 onClick={handleCheckout}
-                className="w-full mt-8 py-5 bg-rose-600 text-white rounded-[1.5rem] font-black shadow-2xl shadow-rose-200 hover:bg-rose-700 transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3"
+                disabled={isCheckingOut}
+                className="w-full mt-8 py-5 bg-rose-600 text-white rounded-[1.5rem] font-black shadow-2xl shadow-rose-200 hover:bg-rose-700 transition-all hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-3 disabled:opacity-50"
                >
-                 CHECKOUT SEKARANG
+                 {isCheckingOut ? "MEMPROSES..." : "CHECKOUT SEKARANG"}
                  <span className="text-xl">➔</span>
                </button>
             </div>
