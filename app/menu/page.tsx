@@ -15,6 +15,8 @@ interface Product {
   rating: number;
 }
 
+export const dynamic = "force-dynamic";
+
 export default function MenuPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
