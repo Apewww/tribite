@@ -57,9 +57,9 @@ export default function AdminKatalog() {
           <h1 className="text-3xl font-black tracking-tight">Manajemen Katalog</h1>
           <p className="text-gray-400 mt-1">Kelola menu makanan dan minuman Tribite.</p>
         </div>
-        <button className="px-6 py-3 bg-rose-600 text-white rounded-2xl font-bold shadow-lg shadow-rose-900/40 hover:bg-rose-700 transition-all active:scale-95 flex items-center gap-2">
+        <Link href="/admin/katalog/add" className="px-6 py-3 bg-rose-600 text-white rounded-2xl font-bold shadow-lg shadow-rose-900/40 hover:bg-rose-700 transition-all active:scale-95 flex items-center gap-2">
            <span className="text-xl">+</span> Tambah Menu Baru
-        </button>
+        </Link>
       </div>
 
       <div className="bg-gray-800 border border-gray-700 rounded-3xl overflow-hidden shadow-2xl">
@@ -94,7 +94,7 @@ export default function AdminKatalog() {
                   </span>
                 </td>
                 <td className="px-6 py-4 text-right space-x-3">
-                  <button className="text-xs font-black text-blue-500 hover:underline uppercase tracking-widest">Edit</button>
+                  <Link href={`/admin/katalog/edit/${product.id}`} className="text-xs font-black text-blue-500 hover:underline uppercase tracking-widest">Edit</Link>
                   <button onClick={() => handleDelete(product.id)} className="text-xs font-black text-rose-500 hover:underline uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Hapus</button>
                 </td>
               </tr>

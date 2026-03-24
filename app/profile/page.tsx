@@ -75,9 +75,9 @@ export default function ProfilePage() {
             </div>
 
             <div className="pt-8 border-t border-gray-100 flex flex-col gap-3">
-                <button className="w-full py-4 bg-gray-950 text-white rounded-2xl font-bold hover:bg-rose-600 transition-all active:scale-95 shadow-xl shadow-gray-200">
+                <Link href="/profile/edit" className="w-full py-4 bg-gray-950 text-white rounded-2xl font-bold hover:bg-rose-600 transition-all active:scale-95 shadow-xl shadow-gray-200 text-center">
                     Edit Profil
-                </button>
+                </Link>
                 <button className="w-full py-4 bg-white text-rose-600 border border-rose-100 rounded-2xl font-bold hover:bg-rose-50 transition-all active:scale-95">
                     Ubah Password
                 </button>

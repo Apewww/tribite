@@ -5,6 +5,8 @@ import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+import { Navbar } from "@/components/navbar";
+
 export const dynamic = "force-dynamic";
 
 export default function DashboardPage() {
@@ -38,15 +40,9 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white border-b border-gray-100 px-4 h-16 flex items-center justify-between sticky top-0 z-40">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-rose-600 rounded-lg flex items-center justify-center text-white font-bold">T</div>
-          <span className="font-bold">TRIBITE</span>
-        </Link>
-        <button onClick={handleLogout} className="text-xs font-bold text-gray-500 hover:text-rose-600 transition-colors uppercase tracking-widest">Logout</button>
-      </nav>
+      <Navbar />
 
-      <main className="max-w-4xl mx-auto px-4 py-12">
+      <main className="max-w-4xl mx-auto px-4 py-32">
         <div className="bg-white rounded-[2rem] p-8 shadow-xl shadow-gray-200/50 border border-gray-100 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-rose-50 rounded-bl-[4rem] -z-0 opacity-50"></div>
           

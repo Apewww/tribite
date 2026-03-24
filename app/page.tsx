@@ -1,28 +1,11 @@
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white text-gray-900 selection:bg-rose-100 selection:text-rose-900">
-      {/* Navbar */}
-      <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-rose-600 rounded-lg rotate-3 flex items-center justify-center">
-                <span className="text-white font-bold text-lg">T</span>
-              </div>
-              <span className="text-xl font-bold tracking-tight">TRIBITE</span>
-            </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/menu" className="text-sm font-medium hover:text-rose-600 transition-colors">Menu</Link>
-              <Link href="/about" className="text-sm font-medium hover:text-rose-600 transition-colors">Tentang Kami</Link>
-              <Link href="/login" className="px-5 py-2 text-sm font-medium text-rose-600 hover:bg-rose-50 rounded-full border border-rose-200 transition-all active:scale-95">Masuk</Link>
-              <Link href="/register" className="px-5 py-2 text-sm font-medium text-white bg-rose-600 hover:bg-rose-700 rounded-full shadow-lg shadow-rose-200 transition-all active:scale-95">Daftar</Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
       <main className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
@@ -107,21 +90,7 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="mt-20 border-t border-gray-100 bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-gray-900 rounded-lg flex items-center justify-center text-[10px] text-white font-bold">T</div>
-            <span className="text-base font-bold text-gray-900 tracking-tight">TRIBITE</span>
-          </div>
-          <div className="flex gap-8 text-sm text-gray-500">
-            <Link href="#" className="hover:text-rose-600 transition-colors">Privasi</Link>
-            <Link href="#" className="hover:text-rose-600 transition-colors">Syarat & Ketentuan</Link>
-            <Link href="#" className="hover:text-rose-600 transition-colors">Pusat Bantuan</Link>
-          </div>
-          <p className="text-xs text-gray-400">© 2026 Tribite POS. Dibuat dengan cinta untuk kuliner Indonesia.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
